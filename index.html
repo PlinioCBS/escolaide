@@ -140,8 +140,8 @@
 
   /* ---- authority ---- */
   .bio{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-5)}
-  .avatar{width:64px;height:64px;border-radius:var(--radius-pill);background:var(--color-surface-sunken);border:1px solid var(--color-border);display:flex;align-items:center;justify-content:center}
-  .avatar img{width:28px;height:28px;opacity:.5}
+  .avatar{width:84px;height:84px;border-radius:var(--radius-pill);overflow:hidden;background:var(--color-surface-sunken);border:1px solid var(--color-border);box-shadow:var(--shadow-sm)}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
   .bio h3{margin:var(--space-5) 0 var(--space-1)}
   .bio .role{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary);margin-bottom:var(--space-4)}
   .bio p{color:var(--text-secondary);font-size:var(--text-body-sm);line-height:var(--leading-relaxed)}
@@ -309,7 +309,7 @@
     </div>
     <div class="bio">
       <div class="card">
-        <div class="avatar"><img src="https://unpkg.com/lucide-static@0.462.0/icons/user.svg" alt=""></div>
+        <div class="avatar"><img src="/assets/moraes.jpg" alt="Moraes" loading="lazy"></div>
         <h3>Moraes</h3>
         <div class="role">Fuzileiro naval · +30 anos</div>
         <p>Passou a vida cuidando da segurança de quem mais precisa dela. Aqui, ele traduz o que uma vida lidando com risco real ensina para a rotina de qualquer família — sem exagero.</p>
@@ -318,7 +318,7 @@
         </div>
       </div>
       <div class="card">
-        <div class="avatar"><img src="https://unpkg.com/lucide-static@0.462.0/icons/user.svg" alt=""></div>
+        <div class="avatar"><img src="/assets/andreia.jpg" alt="Andreia" loading="lazy"></div>
         <h3>Andreia</h3>
         <div class="role">Mãe de três · gestão da casa</div>
         <p>A prova de que isso funciona numa casa comum. Organiza a despensa e os recursos de casa há anos, sem nunca ter precisado de treinamento tático. Se você cuida da casa, ela mostra que preparação cabe na sua rotina.</p>
