@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sardume · Lista de espera</title>
+<meta name="description" content="Entre para a lista de espera da Sardume e receba acesso ao grupo.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/brand-mark-tight.png">
+<style>
+  :root{
+    --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
+    --blue-500:#276fc7; --blue-600:#1d63bb; --blue-700:#0f5aad; --blue-800:#064b9d;
+    --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6;
+    --neutral-200:#d8dbd4; --neutral-300:#c3c6bd; --neutral-400:#9a9d94;
+    --neutral-500:#787b73; --neutral-600:#5b5e56; --neutral-700:#41443d;
+    --neutral-800:#2b2d27; --neutral-900:#1a1b17;
+    --color-bg:var(--neutral-50); --color-surface:var(--neutral-0);
+    --color-surface-sunken:var(--neutral-100); --color-border:var(--neutral-200);
+    --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600); --text-muted:var(--neutral-500);
+    --text-on-brand:var(--neutral-0); --text-link:var(--blue-700);
+    --brand-primary:var(--blue-600); --brand-primary-hover:var(--blue-700); --brand-primary-active:var(--blue-800);
+    --surface-brand-subtle:var(--blue-50);
+    --state-success:#2f8f5b; --state-success-subtle:oklch(94% 0.05 150);
+    --state-danger:#c0392b;
+    --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --font-body:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --leading-tight:1.1; --leading-relaxed:1.6;
+    --tracking-tight:-0.02em; --tracking-wide:0.03em;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+    --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+    --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-pill:999px;
+    --shadow-sm:0 1px 2px oklch(20% 0.02 250 / 0.06),0 1px 1px oklch(20% 0.02 250 / 0.04);
+    --shadow-md:0 4px 12px oklch(20% 0.05 250 / 0.08),0 1px 2px oklch(20% 0.02 250 / 0.05);
+    --shadow-focus:0 0 0 3px oklch(65% 0.13 246 / 0.35);
+    --ease-standard:cubic-bezier(.25,.8,.4,1); --duration-base:200ms;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--color-bg);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--text-link);text-decoration:none}
+  h1{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight)}
+  :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+
+  .topbar{border-bottom:1px solid var(--color-border);background:var(--color-surface)}
+  .topbar .wrap{max-width:1080px;margin:0 auto;padding:0 var(--space-6);height:64px;display:flex;align-items:center;justify-content:space-between}
+  .topbar .logo{height:26px;width:auto;display:block}
+  .topbar .back{font-size:0.875rem;color:var(--text-muted)}
+  .topbar .back:hover{color:var(--brand-primary)}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-12) var(--space-5)}
+  .card{width:100%;max-width:480px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-10)}
+  .tag{display:inline-block;background:var(--surface-brand-subtle);color:var(--brand-primary-active);border-radius:var(--radius-pill);padding:4px 14px;font-size:0.8125rem;font-weight:700;margin-bottom:var(--space-4)}
+  .card h1{font-size:1.75rem;margin-bottom:var(--space-3)}
+  .card .sub{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-8)}
+
+  form{display:flex;flex-direction:column;gap:var(--space-5)}
+  .field{display:flex;flex-direction:column;gap:var(--space-2)}
+  label{font-size:0.875rem;font-weight:700;color:var(--text-primary)}
+  input[type=text],input[type=email],input[type=tel]{font-family:inherit;font-size:1rem;color:var(--text-primary);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px 16px;transition:border-color var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard)}
+  input::placeholder{color:var(--text-muted)}
+  input:hover{border-color:var(--neutral-300)}
+  input:focus-visible{border-color:var(--brand-primary)}
+  input[aria-invalid="true"]{border-color:var(--state-danger)}
+  .err{font-size:0.8125rem;color:var(--state-danger);display:none}
+  .field.invalid .err{display:block}
+
+  .consent{display:flex;gap:var(--space-3);align-items:flex-start;margin-top:calc(-1 * var(--space-1))}
+  .consent input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--brand-primary)}
+  .consent label{font-weight:400;font-size:0.8125rem;color:var(--text-muted);line-height:1.45}
+  .consent.invalid label{color:var(--state-danger)}
+
+  .btn{font-family:var(--font-body);font-weight:700;font-size:1rem;padding:15px 26px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--duration-base) var(--ease-standard);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-3)}
+  .btn-primary{background:var(--brand-primary);color:var(--text-on-brand)}
+  .btn-primary:hover{background:var(--brand-primary-hover)}
+  .btn-primary:active{background:var(--brand-primary-active)}
+  .btn-primary[disabled]{opacity:.6;cursor:progress}
+  .btn-block{width:100%}
+  .form-note{font-size:0.75rem;color:var(--text-muted);text-align:center;line-height:1.5}
+  .form-error{display:none;background:oklch(94% 0.05 25);color:var(--state-danger);border-radius:var(--radius-md);padding:12px 16px;font-size:0.875rem}
+  .form-error.show{display:block}
+
+  /* success state */
+  .success{display:none;text-align:center}
+  .success.show{display:block;animation:fade .3s var(--ease-standard) both}
+  .success .check{width:72px;height:72px;border-radius:var(--radius-pill);background:var(--state-success-subtle);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5)}
+  .success .check::after{content:"";width:26px;height:14px;border-left:4px solid var(--state-success);border-bottom:4px solid var(--state-success);transform:rotate(-45deg);margin-top:-6px;border-radius:2px}
+  .success h1{font-size:1.6rem;margin-bottom:var(--space-3)}
+  .success p{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-6)}
+  .success .redir{font-size:0.8125rem;color:var(--text-muted);margin-top:var(--space-4)}
+
+  footer{padding:var(--space-8) var(--space-5);text-align:center}
+  footer span{font-size:0.75rem;color:var(--text-muted)}
+
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="/"><img class="logo" src="/assets/logo-full-tight.png" alt="Sardume"></a>
+    <a class="back" href="/">← Voltar ao site</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <!-- ===== FORM ===== -->
+    <div id="formView">
+      <span class="tag">Lista de espera</span>
+      <h1>Entre para a lista de espera.</h1>
+      <p class="sub">Deixe seus dados e a gente te leva direto para o grupo. É por lá que você recebe os próximos passos — com calma, um de cada vez.</p>
+
+      <div class="form-error" id="formError">Não conseguimos enviar agora. Tente de novo em instantes.</div>
+
+      <form id="waitlistForm" novalidate>
+        <div class="field" id="f-nome">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome" required>
+          <span class="err">Escreva seu nome.</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@email.com" inputmode="email" required>
+          <span class="err">Digite um e-mail válido.</span>
+        </div>
+        <div class="field" id="f-telefone">
+          <label for="telefone">Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(11) 99999-9999" inputmode="numeric" required>
+          <span class="err">Digite um telefone com DDD.</span>
+        </div>
+        <div class="consent field" id="f-consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent">Concordo em receber contato da Sardume e ser adicionado(a) ao grupo. Seus dados são usados só para isso.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Entrar na lista de espera</button>
+        <p class="form-note">Leva menos de 30 segundos. Você não recebe spam.</p>
+      </form>
+    </div>
+
+    <!-- ===== SUCCESS ===== -->
+    <div class="success" id="successView">
+      <div class="check" aria-hidden="true"></div>
+      <h1>Tudo certo! Você está na lista.</h1>
+      <p>Agora é só entrar no grupo para receber as próximas missões e novidades.</p>
+      <a class="btn btn-primary btn-block" id="groupBtn" href="#">Entrar no grupo</a>
+      <p class="redir" id="redirNote"></p>
+    </div>
+  </div>
+</main>
+
+<footer><span>© Sardume · Preparação familiar</span></footer>
+
+<script>
+  /* ============================================================
+     CONFIG — trocar quando o grupo for definido
+     ============================================================
+     REDIRECT_URL: link do grupo de WhatsApp/Telegram para onde o
+     lead vai depois de se cadastrar. Deixe "" (vazio) enquanto não
+     houver link — a tela de sucesso aparece, mas sem redirecionar. */
+  const REDIRECT_URL = "";           // ex.: "https://chat.whatsapp.com/XXXX" ou "https://t.me/XXXX"
+  const REDIRECT_DELAY_MS = 2500;    // tempo na tela de sucesso antes de redirecionar
+  const API_ENDPOINT = "/api/subscribe";
+  /* ============================================================ */
+
+  const form = document.getElementById('waitlistForm');
+  const formView = document.getElementById('formView');
+  const successView = document.getElementById('successView');
+  const submitBtn = document.getElementById('submitBtn');
+  const formError = document.getElementById('formError');
+  const groupBtn = document.getElementById('groupBtn');
+  const redirNote = document.getElementById('redirNote');
+
+  /* ---- máscara de telefone brasileiro ---- */
+  const tel = document.getElementById('telefone');
+  tel.addEventListener('input', () => {
+    let d = tel.value.replace(/\D/g, '').slice(0, 11);
+    let out = d;
+    if (d.length > 2 && d.length <= 6) out = `(${d.slice(0,2)}) ${d.slice(2)}`;
+    else if (d.length > 6 && d.length <= 10) out = `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`;
+    else if (d.length > 10) out = `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+    else if (d.length > 0) out = `(${d}`;
+    tel.value = out;
+  });
+
+  /* ---- validação ---- */
+  function setInvalid(id, bad){
+    const f = document.getElementById(id);
+    f.classList.toggle('invalid', bad);
+    const input = f.querySelector('input');
+    if (input) input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    return !bad;
+  }
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  function digits(v){ return v.replace(/\D/g,''); }
+
+  function validate(){
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const fone = digits(tel.value);
+    const consent = document.getElementById('consent').checked;
+    let ok = true;
+    ok = setInvalid('f-nome', nome.length < 2) && ok;
+    ok = setInvalid('f-email', !validEmail(email)) && ok;
+    ok = setInvalid('f-telefone', fone.length < 10 || fone.length > 11) && ok;
+    document.getElementById('f-consent').classList.toggle('invalid', !consent);
+    if (!consent) ok = false;
+    return ok;
+  }
+
+  /* ---- sucesso + redirecionamento ---- */
+  function showSuccess(){
+    formView.style.display = 'none';
+    successView.classList.add('show');
+    const valid = /^https?:\/\//i.test(REDIRECT_URL);
+    if (valid){
+      groupBtn.href = REDIRECT_URL;
+      groupBtn.setAttribute('rel','noopener');
+      redirNote.textContent = 'Redirecionando para o grupo…';
+      setTimeout(() => { window.location.href = REDIRECT_URL; }, REDIRECT_DELAY_MS);
+    } else {
+      // link do grupo ainda não definido
+      groupBtn.textContent = 'Em breve: link do grupo';
+      groupBtn.setAttribute('aria-disabled','true');
+      groupBtn.style.opacity = '.6';
+      groupBtn.style.pointerEvents = 'none';
+      redirNote.textContent = 'O link do grupo é adicionado aqui assim que estiver pronto.';
+    }
+  }
+
+  /* ---- submit ---- */
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.remove('show');
+    if (!validate()) return;
+
+    const payload = {
+      nome: document.getElementById('nome').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: tel.value.trim(),
+      origem: 'form-lista-espera'
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    try {
+      const r = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await r.json().catch(() => ({}));
+      if (r.ok && data.ok){
+        showSuccess();
+      } else {
+        throw new Error(data.error || ('http ' + r.status));
+      }
+    } catch (err){
+      formError.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Entrar na lista de espera';
+    }
+  });
+
+  /* limpa o estado de erro ao editar */
+  ['nome','email','telefone','consent'].forEach(id => {
+    const el = document.getElementById(id);
+    const evt = id === 'consent' ? 'change' : 'input';
+    el.addEventListener(evt, () => {
+      const wrap = document.getElementById('f-' + id);
+      if (wrap) wrap.classList.remove('invalid');
+    });
+  });
+</script>
+</body>
+</html>
