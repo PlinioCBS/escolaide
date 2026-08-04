@@ -42,7 +42,11 @@ module.exports = async function handler(req, res) {
         data: new Date().toISOString()
       })
     });
-    if (!r.ok) throw new Error('sheet_status_' + r.status);
+    // o Apps Script sempre responde 200; o sucesso real está no corpo ({ok:true}).
+    const text = await r.text();
+    let upstream = {};
+    try { upstream = JSON.parse(text); } catch (_) {}
+    if (!r.ok || upstream.ok !== true) throw new Error('sheet_resp');
     // devolve o link do grupo só após salvar (fica na env var, fora do repo público)
     return res.status(200).json({ ok: true, redirect: process.env.REDIRECT_URL || '' });
   } catch (err) {
