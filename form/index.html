@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sardume · Lista de espera</title>
-<meta name="description" content="Entre para a lista de espera da Sardume e receba acesso ao grupo.">
+<title>Lista de espera</title>
+<meta name="description" content="Entre para a lista de espera e receba acesso ao grupo.">
 <meta name="robots" content="noindex">
-<link rel="icon" href="/assets/brand-mark-tight.png">
 <style>
   :root{
     --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
@@ -41,12 +40,6 @@
   a{color:var(--text-link);text-decoration:none}
   h1{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight)}
   :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
-
-  .topbar{border-bottom:1px solid var(--color-border);background:var(--color-surface)}
-  .topbar .wrap{max-width:1080px;margin:0 auto;padding:0 var(--space-6);height:64px;display:flex;align-items:center;justify-content:space-between}
-  .topbar .logo{height:26px;width:auto;display:block}
-  .topbar .back{font-size:0.875rem;color:var(--text-muted)}
-  .topbar .back:hover{color:var(--brand-primary)}
 
   main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-12) var(--space-5)}
   .card{width:100%;max-width:480px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-10)}
@@ -97,13 +90,6 @@
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap">
-    <a href="/"><img class="logo" src="/assets/logo-full-tight.png" alt="Sardume"></a>
-    <a class="back" href="/">← Voltar ao site</a>
-  </div>
-</header>
-
 <main>
   <div class="card">
     <!-- ===== FORM ===== -->
@@ -132,7 +118,7 @@
         </div>
         <div class="consent field" id="f-consent">
           <input type="checkbox" id="consent" name="consent" required>
-          <label for="consent">Concordo em receber contato da Sardume e ser adicionado(a) ao grupo. Seus dados são usados só para isso.</label>
+          <label for="consent">Concordo em receber contato e ser adicionado(a) ao grupo. Meus dados são usados só para isso.</label>
         </div>
         <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Entrar na lista de espera</button>
         <p class="form-note">Leva menos de 30 segundos. Você não recebe spam.</p>
@@ -150,7 +136,7 @@
   </div>
 </main>
 
-<footer><span>© Sardume · Preparação familiar</span></footer>
+<footer><span>escolaide preparação familiar</span></footer>
 
 <script>
   /* ============================================================
