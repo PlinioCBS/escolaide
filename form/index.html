@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lista de espera</title>
+<title>Antes de continuar</title>
 <meta name="description" content="Entre para a lista de espera e receba acesso ao grupo.">
 <meta name="robots" content="noindex">
 <style>
   :root{
     --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
     --blue-500:#276fc7; --blue-600:#1d63bb; --blue-700:#0f5aad; --blue-800:#064b9d;
+    --orange-50:oklch(96% 0.03 55); --orange-500:#ee6a1d; --orange-600:oklch(58% 0.17 42); --orange-700:oklch(48% 0.16 40);
     --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6;
     --neutral-200:#d8dbd4; --neutral-300:#c3c6bd; --neutral-400:#9a9d94;
     --neutral-500:#787b73; --neutral-600:#5b5e56; --neutral-700:#41443d;
@@ -36,16 +37,21 @@
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--color-bg);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  body{background:var(--orange-500);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
   a{color:var(--text-link);text-decoration:none}
   h1{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight)}
   :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
 
   main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-12) var(--space-5)}
   .card{width:100%;max-width:480px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-10)}
-  .tag{display:inline-block;background:var(--surface-brand-subtle);color:var(--brand-primary-active);border-radius:var(--radius-pill);padding:4px 14px;font-size:0.8125rem;font-weight:700;margin-bottom:var(--space-4)}
   .card h1{font-size:1.75rem;margin-bottom:var(--space-3)}
-  .card .sub{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-8)}
+  .card .sub{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-4)}
+  .sub-lead{color:var(--text-primary);font-weight:700;margin-bottom:var(--space-3)}
+  .benefits{list-style:none;display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-4)}
+  .benefits li{color:var(--text-secondary);font-size:0.9375rem;line-height:var(--leading-relaxed)}
+  .fineprint{color:var(--text-muted);font-size:0.8125rem;line-height:var(--leading-relaxed)}
+  .fineprint + .fineprint{margin-top:var(--space-2)}
+  .intro{margin-bottom:var(--space-6)}
 
   form{display:flex;flex-direction:column;gap:var(--space-5)}
   .field{display:flex;flex-direction:column;gap:var(--space-2)}
@@ -83,7 +89,7 @@
   .success .redir{font-size:0.8125rem;color:var(--text-muted);margin-top:var(--space-4)}
 
   footer{padding:var(--space-8) var(--space-5);text-align:center}
-  footer span{font-size:0.75rem;color:var(--text-muted)}
+  footer span{font-size:0.8125rem;font-weight:500;color:rgba(255,255,255,.9)}
 
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 </style>
@@ -94,9 +100,18 @@
   <div class="card">
     <!-- ===== FORM ===== -->
     <div id="formView">
-      <span class="tag">Lista de espera</span>
-      <h1>Entre para a lista de espera.</h1>
-      <p class="sub">Deixe seus dados e a gente te leva direto para o grupo. É por lá que você recebe os próximos passos — com calma, um de cada vez.</p>
+      <div class="intro">
+        <h1>Antes de continuar...</h1>
+        <p class="sub">Preencha seus dados abaixo para receber nosso material e entrar no nosso canal oficial do Telegram.</p>
+        <p class="sub-lead">Lá você receberá:</p>
+        <ul class="benefits">
+          <li>✅ O checklist gratuito (caso tenha solicitado o checklist);</li>
+          <li>✅ O link da aula gratuita "As Primeiras 72 Horas", que acontecerá ao vivo no dia 08 de agosto, às 19h;</li>
+          <li>✅ Avisos importantes e atualizações para que você não perca nada.</li>
+        </ul>
+        <p class="fineprint">O canal é silencioso: apenas nós enviamos mensagens, sem conversas ou spam.</p>
+        <p class="fineprint">Depois de preencher o formulário, você receberá o acesso ao canal.</p>
+      </div>
 
       <div class="form-error" id="formError">Não conseguimos enviar agora. Tente de novo em instantes.</div>
 
@@ -120,7 +135,7 @@
           <input type="checkbox" id="consent" name="consent" required>
           <label for="consent">Concordo em receber contato e ser adicionado(a) ao grupo. Meus dados são usados só para isso.</label>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Entrar na lista de espera</button>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Quero receber o acesso</button>
         <p class="form-note">Leva menos de 30 segundos. Você não recebe spam.</p>
       </form>
     </div>
@@ -248,7 +263,7 @@
     } catch (err){
       formError.classList.add('show');
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Entrar na lista de espera';
+      submitBtn.textContent = 'Quero receber o acesso';
     }
   });
 
