@@ -129,8 +129,8 @@
     <div class="success" id="successView">
       <div class="check" aria-hidden="true"></div>
       <h1>Tudo certo! Você está na lista.</h1>
-      <p>Agora é só entrar no grupo para receber as próximas missões e novidades.</p>
-      <a class="btn btn-primary btn-block" id="groupBtn" href="#">Entrar no grupo</a>
+      <p>Agora é só entrar no grupo do Telegram para receber as próximas missões e novidades.</p>
+      <a class="btn btn-primary btn-block" id="groupBtn" href="#">Entrar no grupo do Telegram</a>
       <p class="redir" id="redirNote"></p>
     </div>
   </div>
@@ -145,7 +145,9 @@
      REDIRECT_URL: link do grupo de WhatsApp/Telegram para onde o
      lead vai depois de se cadastrar. Deixe "" (vazio) enquanto não
      houver link — a tela de sucesso aparece, mas sem redirecionar. */
-  const REDIRECT_URL = "";           // ex.: "https://chat.whatsapp.com/XXXX" ou "https://t.me/XXXX"
+  // O link do grupo vem do servidor (env var REDIRECT_URL na Vercel), só após o
+  // cadastro ser salvo — assim o convite não fica exposto no código público.
+  const REDIRECT_FALLBACK = "";      // fallback opcional caso o servidor não envie
   const REDIRECT_DELAY_MS = 2500;    // tempo na tela de sucesso antes de redirecionar
   const API_ENDPOINT = "/api/subscribe";
   /* ============================================================ */
@@ -196,15 +198,16 @@
   }
 
   /* ---- sucesso + redirecionamento ---- */
-  function showSuccess(){
+  function showSuccess(url){
+    const dest = url || REDIRECT_FALLBACK;
     formView.style.display = 'none';
     successView.classList.add('show');
-    const valid = /^https?:\/\//i.test(REDIRECT_URL);
+    const valid = /^https?:\/\//i.test(dest);
     if (valid){
-      groupBtn.href = REDIRECT_URL;
+      groupBtn.href = dest;
       groupBtn.setAttribute('rel','noopener');
-      redirNote.textContent = 'Redirecionando para o grupo…';
-      setTimeout(() => { window.location.href = REDIRECT_URL; }, REDIRECT_DELAY_MS);
+      redirNote.textContent = 'Redirecionando para o Telegram…';
+      setTimeout(() => { window.location.href = dest; }, REDIRECT_DELAY_MS);
     } else {
       // link do grupo ainda não definido
       groupBtn.textContent = 'Em breve: link do grupo';
@@ -238,7 +241,7 @@
       });
       const data = await r.json().catch(() => ({}));
       if (r.ok && data.ok){
-        showSuccess();
+        showSuccess(data.redirect);
       } else {
         throw new Error(data.error || ('http ' + r.status));
       }

@@ -43,7 +43,8 @@ module.exports = async function handler(req, res) {
       })
     });
     if (!r.ok) throw new Error('sheet_status_' + r.status);
-    return res.status(200).json({ ok: true });
+    // devolve o link do grupo só após salvar (fica na env var, fora do repo público)
+    return res.status(200).json({ ok: true, redirect: process.env.REDIRECT_URL || '' });
   } catch (err) {
     return res.status(502).json({ ok: false, error: 'falha_ao_salvar' });
   }
