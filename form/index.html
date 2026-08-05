@@ -4,114 +4,152 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Antes de continuar</title>
-<meta name="description" content="Entre para a lista de espera e receba acesso ao grupo.">
+<meta name="description" content="Receba o checklist, o acesso à aula ao vivo e entre no canal oficial no Telegram.">
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#14110c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
-    --blue-500:#276fc7; --blue-600:#1d63bb; --blue-700:#0f5aad; --blue-800:#064b9d;
-    --orange-50:oklch(96% 0.03 55); --orange-500:#ee6a1d; --orange-600:oklch(58% 0.17 42); --orange-700:oklch(48% 0.16 40);
-    --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6;
-    --neutral-200:#d8dbd4; --neutral-300:#c3c6bd; --neutral-400:#9a9d94;
-    --neutral-500:#787b73; --neutral-600:#5b5e56; --neutral-700:#41443d;
-    --neutral-800:#2b2d27; --neutral-900:#1a1b17;
-    --color-bg:var(--neutral-50); --color-surface:var(--neutral-0);
-    --color-surface-sunken:var(--neutral-100); --color-border:var(--neutral-200);
-    --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600); --text-muted:var(--neutral-500);
-    --text-on-brand:var(--neutral-0); --text-link:var(--blue-700);
-    --brand-primary:var(--blue-600); --brand-primary-hover:var(--blue-700); --brand-primary-active:var(--blue-800);
-    --surface-brand-subtle:var(--blue-50);
-    --state-success:#2f8f5b; --state-success-subtle:oklch(94% 0.05 150);
-    --state-danger:#c0392b;
-    --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --font-body:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --leading-tight:1.1; --leading-relaxed:1.6;
-    --tracking-tight:-0.02em; --tracking-wide:0.03em;
-    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
-    --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
-    --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-pill:999px;
-    --shadow-sm:0 1px 2px oklch(20% 0.02 250 / 0.06),0 1px 1px oklch(20% 0.02 250 / 0.04);
-    --shadow-md:0 4px 12px oklch(20% 0.05 250 / 0.08),0 1px 2px oklch(20% 0.02 250 / 0.05);
-    --shadow-focus:0 0 0 3px oklch(65% 0.13 246 / 0.35);
-    --ease-standard:cubic-bezier(.25,.8,.4,1); --duration-base:200ms;
+    --bg:#14110c; --bg-2:#1a1611; --surface:#201b15; --surface-2:#17130e;
+    --line:rgba(236,231,218,.14); --line-2:rgba(236,231,218,.22);
+    --text:#ECE7DA; --text-2:#A8A891; --text-3:#7c7768;
+    --ember:#EE6A1D; --ember-2:#F0983F; --ember-dk:#c7551a;
+    --danger:#e0644f;
+    --disp:'Barlow Condensed',sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+    --radius:10px;
+    --ease:cubic-bezier(.25,.8,.4,1); --dur:200ms;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{background:var(--orange-500);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
-  a{color:var(--text-link);text-decoration:none}
-  h1{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight)}
-  :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+  body{
+    color:var(--text);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(1100px 540px at 50% -10%, rgba(238,106,29,.22), transparent 60%),
+      radial-gradient(760px 480px at 50% 118%, rgba(238,106,29,.07), transparent 60%),
+      linear-gradient(rgba(236,231,218,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236,231,218,.035) 1px, transparent 1px);
+    background-size: auto, auto, 46px 46px, 46px 46px;
+    background-attachment: fixed;
+  }
+  /* vinheta nas bordas */
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%)}
+  a{color:var(--ember);text-decoration:none}
+  :focus-visible{outline:none;box-shadow:0 0 0 3px rgba(238,106,29,.30)}
 
-  main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-12) var(--space-5)}
-  .card{width:100%;max-width:480px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-10)}
-  .card h1{font-size:1.75rem;margin-bottom:var(--space-3)}
-  .card .sub{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-4)}
-  .sub-lead{color:var(--text-primary);font-weight:700;margin-bottom:var(--space-3)}
-  .benefits{list-style:none;display:flex;flex-direction:column;gap:var(--space-3);margin-bottom:var(--space-4)}
-  .benefits li{color:var(--text-secondary);font-size:0.9375rem;line-height:var(--leading-relaxed)}
-  .fineprint{color:var(--text-muted);font-size:0.8125rem;line-height:var(--leading-relaxed)}
-  .fineprint + .fineprint{margin-top:var(--space-2)}
-  .intro{margin-bottom:var(--space-6)}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 20px;position:relative;z-index:1}
 
-  form{display:flex;flex-direction:column;gap:var(--space-5)}
-  .field{display:flex;flex-direction:column;gap:var(--space-2)}
-  label{font-size:0.875rem;font-weight:700;color:var(--text-primary)}
-  input[type=text],input[type=email],input[type=tel]{font-family:inherit;font-size:1rem;color:var(--text-primary);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px 16px;transition:border-color var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard)}
-  input::placeholder{color:var(--text-muted)}
-  input:hover{border-color:var(--neutral-300)}
-  input:focus-visible{border-color:var(--brand-primary)}
-  input[aria-invalid="true"]{border-color:var(--state-danger)}
-  .err{font-size:0.8125rem;color:var(--state-danger);display:none}
+  .card{position:relative;width:100%;max-width:500px;
+    background:linear-gradient(180deg,var(--surface),var(--bg-2));
+    border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 24px 70px rgba(0,0,0,.55), inset 0 1px 0 rgba(236,231,218,.05);
+    padding:40px}
+  /* marcas de registro (tático) */
+  .corner{position:absolute;width:16px;height:16px;border:2px solid var(--ember);z-index:2}
+  .corner.tl{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .corner.tr{top:-1px;right:-1px;border-left:none;border-bottom:none}
+  .corner.bl{bottom:-1px;left:-1px;border-right:none;border-top:none}
+  .corner.br{bottom:-1px;right:-1px;border-left:none;border-top:none}
+
+  /* badge topo */
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--ember);color:#1a1206;
+    font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;margin-bottom:22px}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#1a1206}
+
+  h1.headline{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:-.005em;
+    line-height:.98;font-size:clamp(34px,7vw,46px);color:var(--text);margin-bottom:18px}
+  h1.headline .em{color:var(--ember)}
+  .lead{color:var(--text-2);line-height:1.62;font-size:16.5px}
+  .lead + .lead{margin-top:14px}
+  .lead strong{color:var(--text);font-weight:600}
+
+  /* chips dos entregáveis */
+  .deliver{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
+  .chip{display:inline-flex;align-items:center;gap:7px;color:var(--ember);
+    background:rgba(238,106,29,.10);border:1px solid rgba(238,106,29,.28);
+    border-radius:8px;padding:7px 11px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+  .chip svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* divisória */
+  .rule{height:1px;background:var(--line);margin:26px 0}
+
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--text-2)}
+  input[type=text],input[type=email],input[type=tel]{font-family:var(--body);font-size:1rem;color:var(--text);
+    background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--radius);padding:14px 16px;
+    transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+  input::placeholder{color:#6d685d}
+  input:hover{border-color:rgba(236,231,218,.34)}
+  input:focus-visible{border-color:var(--ember)}
+  input[aria-invalid="true"]{border-color:var(--danger)}
+  .err{font-family:var(--mono);font-size:11.5px;color:var(--danger);display:none}
   .field.invalid .err{display:block}
 
-  .consent{display:flex;gap:var(--space-3);align-items:flex-start;margin-top:calc(-1 * var(--space-1))}
-  .consent input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--brand-primary)}
-  .consent label{font-weight:400;font-size:0.8125rem;color:var(--text-muted);line-height:1.45}
-  .consent.invalid label{color:var(--state-danger)}
+  .consent{display:flex;gap:12px;align-items:flex-start;margin-top:-2px}
+  .consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--ember)}
+  .consent label{font-family:var(--body);text-transform:none;letter-spacing:0;font-weight:400;font-size:13px;color:var(--text-3);line-height:1.5}
+  .consent.invalid label{color:var(--danger)}
 
-  .btn{font-family:var(--font-body);font-weight:700;font-size:1rem;padding:15px 26px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--duration-base) var(--ease-standard);display:inline-flex;align-items:center;justify-content:center;gap:var(--space-3)}
-  .btn-primary{background:var(--brand-primary);color:var(--text-on-brand)}
-  .btn-primary:hover{background:var(--brand-primary-hover)}
-  .btn-primary:active{background:var(--brand-primary-active)}
+  .btn{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:1.25rem;
+    padding:15px 26px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    transition:background var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .btn .arw{font-family:var(--body);font-weight:500;font-size:.95em}
+  .btn-primary{background:var(--ember);color:#1a1206}
+  .btn-primary:hover{background:var(--ember-2)}
+  .btn-primary:active{background:var(--ember-dk)}
   .btn-primary[disabled]{opacity:.6;cursor:progress}
   .btn-block{width:100%}
-  .form-note{font-size:0.75rem;color:var(--text-muted);text-align:center;line-height:1.5}
-  .form-error{display:none;background:oklch(94% 0.05 25);color:var(--state-danger);border-radius:var(--radius-md);padding:12px 16px;font-size:0.875rem}
+  .form-note{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--text-3);text-align:center;line-height:1.5}
+  .form-error{display:none;background:rgba(224,100,79,.12);border:1px solid rgba(224,100,79,.4);color:var(--danger);
+    border-radius:var(--radius);padding:12px 16px;font-size:13.5px;margin-bottom:18px}
   .form-error.show{display:block}
 
-  /* success state */
+  /* sucesso */
   .success{display:none;text-align:center}
-  .success.show{display:block;animation:fade .3s var(--ease-standard) both}
-  .success .check{width:72px;height:72px;border-radius:var(--radius-pill);background:var(--state-success-subtle);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5)}
-  .success .check::after{content:"";width:26px;height:14px;border-left:4px solid var(--state-success);border-bottom:4px solid var(--state-success);transform:rotate(-45deg);margin-top:-6px;border-radius:2px}
-  .success h1{font-size:1.6rem;margin-bottom:var(--space-3)}
-  .success p{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-6)}
-  .success .redir{font-size:0.8125rem;color:var(--text-muted);margin-top:var(--space-4)}
+  .success.show{display:block;animation:fade .3s var(--ease) both}
+  .success .check{width:76px;height:76px;border-radius:50%;background:rgba(238,106,29,.14);border:1.5px solid rgba(238,106,29,.5);
+    display:flex;align-items:center;justify-content:center;margin:4px auto 22px}
+  .success .check::after{content:"";width:26px;height:14px;border-left:3px solid var(--ember);border-bottom:3px solid var(--ember);
+    transform:rotate(-45deg);margin-top:-6px;border-radius:1px}
+  .success h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:-.005em;font-size:2rem;line-height:1;margin-bottom:14px}
+  .success p{color:var(--text-2);line-height:1.6;margin-bottom:26px}
+  .success .redir{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--text-3);margin-top:18px}
 
-  footer{padding:var(--space-8) var(--space-5);text-align:center}
-  footer span{font-size:0.8125rem;font-weight:500;color:rgba(255,255,255,.9)}
+  footer{padding:28px 20px;text-align:center;position:relative;z-index:1}
+  footer span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
 
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (max-width:520px){ .card{padding:30px 22px} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important} }
 </style>
 </head>
 <body>
 
 <main>
   <div class="card">
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
     <!-- ===== FORM ===== -->
     <div id="formView">
-      <div class="intro">
-        <h1>Antes de continuar...</h1>
-        <p class="sub">Preencha seus dados abaixo para receber nosso material e entrar no nosso canal oficial do Telegram.</p>
-        <p class="sub-lead">Lá você receberá:</p>
-        <ul class="benefits">
-          <li>✅ O checklist gratuito (caso tenha solicitado o checklist);</li>
-          <li>✅ O link da aula gratuita "As Primeiras 72 Horas", que acontecerá ao vivo no dia 08 de agosto, às 19h;</li>
-          <li>✅ Avisos importantes e atualizações para que você não perca nada.</li>
-        </ul>
-        <p class="fineprint">O canal é silencioso: apenas nós enviamos mensagens, sem conversas ou spam.</p>
-        <p class="fineprint">Depois de preencher o formulário, você receberá o acesso ao canal.</p>
+      <span class="badge">Material gratuito</span>
+      <h1 class="headline">Prepare sua <span class="em">família</span>.</h1>
+      <p class="lead">Você está a um passo de receber um dos materiais mais importantes para começar a preparar sua família para uma emergência.</p>
+      <p class="lead">Preencha seus dados abaixo para receber o checklist, o acesso à aula ao vivo e entrar no nosso canal oficial no Telegram.</p>
+
+      <div class="deliver">
+        <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8 12 3 3 5-6"/></svg>Checklist</span>
+        <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z" fill="currentColor" stroke="none"/></svg>Aula ao vivo</span>
+        <span class="chip"><svg viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>Canal no Telegram</span>
       </div>
+
+      <div class="rule"></div>
 
       <div class="form-error" id="formError">Não conseguimos enviar agora. Tente de novo em instantes.</div>
 
@@ -133,39 +171,36 @@
         </div>
         <div class="consent field" id="f-consent">
           <input type="checkbox" id="consent" name="consent" required>
-          <label for="consent">Concordo em receber contato e ser adicionado(a) ao grupo. Meus dados são usados só para isso.</label>
+          <label for="consent">Concordo em receber contato e ser adicionado(a) ao canal. Meus dados são usados só para isso.</label>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Quero receber o acesso</button>
-        <p class="form-note">Leva menos de 30 segundos. Você não recebe spam.</p>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Quero receber o material <span class="arw">→</span></button>
+        <p class="form-note">Leva menos de 30 segundos · sem spam</p>
       </form>
     </div>
 
     <!-- ===== SUCCESS ===== -->
     <div class="success" id="successView">
       <div class="check" aria-hidden="true"></div>
-      <h1>Tudo certo! Você está na lista.</h1>
-      <p>Agora é só entrar no grupo do Telegram para receber as próximas missões e novidades.</p>
-      <a class="btn btn-primary btn-block" id="groupBtn" href="#">Entrar no grupo do Telegram</a>
+      <h1>Acesso liberado.</h1>
+      <p>Seus dados foram registrados. Agora é só entrar no canal do Telegram para receber o checklist e o link da aula.</p>
+      <a class="btn btn-primary btn-block" id="groupBtn" href="#">Entrar no canal do Telegram <span class="arw">→</span></a>
       <p class="redir" id="redirNote"></p>
     </div>
   </div>
 </main>
 
-<footer><span>escolaide preparação familiar</span></footer>
+<footer><span>escolaide · preparação familiar</span></footer>
 
 <script>
   /* ============================================================
-     CONFIG — trocar quando o grupo for definido
-     ============================================================
-     REDIRECT_URL: link do grupo de WhatsApp/Telegram para onde o
-     lead vai depois de se cadastrar. Deixe "" (vazio) enquanto não
-     houver link — a tela de sucesso aparece, mas sem redirecionar. */
-  // O link do grupo vem do servidor (env var REDIRECT_URL na Vercel), só após o
-  // cadastro ser salvo — assim o convite não fica exposto no código público.
+     CONFIG
+     O link do grupo vem do servidor (env var REDIRECT_URL na Vercel),
+     só após o cadastro ser salvo — assim o convite não fica exposto
+     no código público.
+     ============================================================ */
   const REDIRECT_FALLBACK = "";      // fallback opcional caso o servidor não envie
   const REDIRECT_DELAY_MS = 2500;    // tempo na tela de sucesso antes de redirecionar
   const API_ENDPOINT = "/api/subscribe";
-  /* ============================================================ */
 
   const form = document.getElementById('waitlistForm');
   const formView = document.getElementById('formView');
@@ -174,6 +209,7 @@
   const formError = document.getElementById('formError');
   const groupBtn = document.getElementById('groupBtn');
   const redirNote = document.getElementById('redirNote');
+  const SUBMIT_LABEL = 'Quero receber o material';
 
   /* ---- máscara de telefone brasileiro ---- */
   const tel = document.getElementById('telefone');
@@ -224,12 +260,11 @@
       redirNote.textContent = 'Redirecionando para o Telegram…';
       setTimeout(() => { window.location.href = dest; }, REDIRECT_DELAY_MS);
     } else {
-      // link do grupo ainda não definido
-      groupBtn.textContent = 'Em breve: link do grupo';
+      groupBtn.innerHTML = 'Em breve: link do canal';
       groupBtn.setAttribute('aria-disabled','true');
       groupBtn.style.opacity = '.6';
       groupBtn.style.pointerEvents = 'none';
-      redirNote.textContent = 'O link do grupo é adicionado aqui assim que estiver pronto.';
+      redirNote.textContent = 'O link do canal é adicionado aqui assim que estiver pronto.';
     }
   }
 
@@ -243,7 +278,7 @@
       nome: document.getElementById('nome').value.trim(),
       email: document.getElementById('email').value.trim(),
       telefone: tel.value.trim(),
-      origem: 'form-lista-espera'
+      origem: 'form-material'
     };
 
     submitBtn.disabled = true;
@@ -263,7 +298,7 @@
     } catch (err){
       formError.classList.add('show');
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Quero receber o acesso';
+      submitBtn.innerHTML = SUBMIT_LABEL + ' <span class="arw">→</span>';
     }
   });
 
