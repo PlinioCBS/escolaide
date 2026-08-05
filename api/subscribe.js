@@ -33,23 +33,30 @@ module.exports = async function handler(req, res) {
     return res.status(503).json({ ok: false, error: 'nao_configurado' });
   }
 
-  try {
-    const r = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nome, email, telefone, origem,
-        data: new Date().toISOString()
-      })
-    });
-    // o Apps Script sempre responde 200; o sucesso real está no corpo ({ok:true}).
-    const text = await r.text();
-    let upstream = {};
-    try { upstream = JSON.parse(text); } catch (_) {}
-    if (!r.ok || upstream.ok !== true) throw new Error('sheet_resp');
-    // devolve o link do grupo só após salvar (fica na env var, fora do repo público)
-    return res.status(200).json({ ok: true, redirect: process.env.REDIRECT_URL || '' });
-  } catch (err) {
-    return res.status(502).json({ ok: false, error: 'falha_ao_salvar' });
+  const payload = JSON.stringify({
+    nome, email, telefone, origem,
+    data: new Date().toISOString()
+  });
+
+  // O Apps Script às vezes falha de forma transitória (hiccup/redirect do Google).
+  // Tentamos até 2 vezes antes de reportar erro, para não perder o lead num blip.
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      if (attempt > 1) await new Promise((resolve) => setTimeout(resolve, 500));
+      const r = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload
+      });
+      // o Apps Script sempre responde 200; o sucesso real está no corpo ({ok:true}).
+      const text = await r.text();
+      let upstream = {};
+      try { upstream = JSON.parse(text); } catch (_) {}
+      if (r.ok && upstream.ok === true) {
+        // devolve o link do grupo só após salvar (fica na env var, fora do repo público)
+        return res.status(200).json({ ok: true, redirect: process.env.REDIRECT_URL || '' });
+      }
+    } catch (_) { /* falha transitória — tenta de novo */ }
   }
+  return res.status(502).json({ ok: false, error: 'falha_ao_salvar' });
 };
