@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antes de continuar</title>
+<meta name="description" content="Receba o checklist, o acesso à aula ao vivo e entre no canal oficial no WhatsApp.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14110c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14110c; --bg-2:#1a1611; --surface:#201b15; --surface-2:#17130e;
+    --line:rgba(236,231,218,.14); --line-2:rgba(236,231,218,.22);
+    --text:#ECE7DA; --text-2:#A8A891; --text-3:#7c7768;
+    --ember:#EE6A1D; --ember-2:#F0983F; --ember-dk:#c7551a;
+    --danger:#e0644f;
+    --disp:'Barlow Condensed',sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+    --radius:10px;
+    --ease:cubic-bezier(.25,.8,.4,1); --dur:200ms;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    color:var(--text);font-family:var(--body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column;
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(1100px 540px at 50% -10%, rgba(238,106,29,.22), transparent 60%),
+      radial-gradient(760px 480px at 50% 118%, rgba(238,106,29,.07), transparent 60%),
+      linear-gradient(rgba(236,231,218,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236,231,218,.035) 1px, transparent 1px);
+    background-size: auto, auto, 46px 46px, 46px 46px;
+    background-attachment: fixed;
+  }
+  /* vinheta nas bordas */
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(120% 120% at 50% 40%, transparent 55%, rgba(0,0,0,.55) 100%)}
+  a{color:var(--ember);text-decoration:none}
+  :focus-visible{outline:none;box-shadow:0 0 0 3px rgba(238,106,29,.30)}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 20px;position:relative;z-index:1}
+
+  .card{position:relative;width:100%;max-width:500px;
+    background:linear-gradient(180deg,var(--surface),var(--bg-2));
+    border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 24px 70px rgba(0,0,0,.55), inset 0 1px 0 rgba(236,231,218,.05);
+    padding:40px}
+  /* marcas de registro (tático) */
+  .corner{position:absolute;width:16px;height:16px;border:2px solid var(--ember);z-index:2}
+  .corner.tl{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .corner.tr{top:-1px;right:-1px;border-left:none;border-bottom:none}
+  .corner.bl{bottom:-1px;left:-1px;border-right:none;border-top:none}
+  .corner.br{bottom:-1px;right:-1px;border-left:none;border-top:none}
+
+  /* badge topo */
+  .badge{display:inline-flex;align-items:center;gap:8px;background:var(--ember);color:#1a1206;
+    font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+    padding:6px 13px;border-radius:999px;margin-bottom:22px}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#1a1206}
+
+  h1.headline{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:-.005em;
+    line-height:.98;font-size:clamp(34px,7vw,46px);color:var(--text);margin-bottom:18px}
+  h1.headline .em{color:var(--ember)}
+  .lead{color:var(--text-2);line-height:1.62;font-size:16.5px}
+  .lead + .lead{margin-top:14px}
+  .lead strong{color:var(--text);font-weight:600}
+
+  /* chips dos entregáveis */
+  .deliver{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 4px}
+  .chip{display:inline-flex;align-items:center;gap:7px;color:var(--ember);
+    background:rgba(238,106,29,.10);border:1px solid rgba(238,106,29,.28);
+    border-radius:8px;padding:7px 11px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+  .chip svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+  /* divisória */
+  .rule{height:1px;background:var(--line);margin:26px 0}
+
+  form{display:flex;flex-direction:column;gap:18px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  label{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.10em;text-transform:uppercase;color:var(--text-2)}
+  input[type=text],input[type=email],input[type=tel]{font-family:var(--body);font-size:1rem;color:var(--text);
+    background:var(--surface-2);border:1px solid var(--line-2);border-radius:var(--radius);padding:14px 16px;
+    transition:border-color var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+  input::placeholder{color:#6d685d}
+  input:hover{border-color:rgba(236,231,218,.34)}
+  input:focus-visible{border-color:var(--ember)}
+  input[aria-invalid="true"]{border-color:var(--danger)}
+  .err{font-family:var(--mono);font-size:11.5px;color:var(--danger);display:none}
+  .field.invalid .err{display:block}
+
+  .consent{display:flex;gap:12px;align-items:flex-start;margin-top:-2px}
+  .consent input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--ember)}
+  .consent label{font-family:var(--body);text-transform:none;letter-spacing:0;font-weight:400;font-size:13px;color:var(--text-3);line-height:1.5}
+  .consent.invalid label{color:var(--danger)}
+
+  .btn{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:1.25rem;
+    padding:15px 26px;border-radius:var(--radius);border:1px solid transparent;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    transition:background var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .btn .arw{font-family:var(--body);font-weight:500;font-size:.95em}
+  .btn-primary{background:var(--ember);color:#1a1206}
+  .btn-primary:hover{background:var(--ember-2)}
+  .btn-primary:active{background:var(--ember-dk)}
+  .btn-primary[disabled]{opacity:.6;cursor:progress}
+  .btn-block{width:100%}
+  .form-note{font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--text-3);text-align:center;line-height:1.5}
+  .form-error{display:none;background:rgba(224,100,79,.12);border:1px solid rgba(224,100,79,.4);color:var(--danger);
+    border-radius:var(--radius);padding:12px 16px;font-size:13.5px;margin-bottom:18px}
+  .form-error.show{display:block}
+
+  /* sucesso */
+  .success{display:none;text-align:center}
+  .success.show{display:block;animation:fade .3s var(--ease) both}
+  .success .check{width:76px;height:76px;border-radius:50%;background:rgba(238,106,29,.14);border:1.5px solid rgba(238,106,29,.5);
+    display:flex;align-items:center;justify-content:center;margin:4px auto 22px}
+  .success .check::after{content:"";width:26px;height:14px;border-left:3px solid var(--ember);border-bottom:3px solid var(--ember);
+    transform:rotate(-45deg);margin-top:-6px;border-radius:1px}
+  .success h1{font-family:var(--disp);font-weight:700;text-transform:uppercase;letter-spacing:-.005em;font-size:2rem;line-height:1;margin-bottom:14px}
+  .success p{color:var(--text-2);line-height:1.6;margin-bottom:26px}
+  .success .redir{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--text-3);margin-top:18px}
+
+  footer{padding:28px 20px;text-align:center;position:relative;z-index:1}
+  footer span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (max-width:520px){ .card{padding:30px 22px} }
+  @media (prefers-reduced-motion:reduce){ *{animation:none!important} }
+</style>
+</head>
+<body>
+
+<main>
+  <div class="card">
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
+    <!-- ===== FORM ===== -->
+    <div id="formView">
+      <span class="badge">Material gratuito</span>
+      <h1 class="headline">Prepare sua <span class="em">família</span>.</h1>
+      <p class="lead">Você está a um passo de receber um dos materiais mais importantes para começar a preparar sua família para uma emergência.</p>
+      <p class="lead">Preencha seus dados abaixo para receber o checklist, o acesso à aula ao vivo e entrar no nosso canal oficial no WhatsApp.</p>
+
+      <div class="deliver">
+        <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="m8 12 3 3 5-6"/></svg>Checklist</span>
+        <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z" fill="currentColor" stroke="none"/></svg>Aula ao vivo</span>
+        <span class="chip"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>Canal no WhatsApp</span>
+      </div>
+
+      <div class="rule"></div>
+
+      <div class="form-error" id="formError">Não conseguimos enviar agora. Tente de novo em instantes.</div>
+
+      <form id="waitlistForm" novalidate>
+        <div class="field" id="f-nome">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome" required>
+          <span class="err">Escreva seu nome.</span>
+        </div>
+        <div class="field" id="f-email">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="voce@email.com" inputmode="email" required>
+          <span class="err">Digite um e-mail válido.</span>
+        </div>
+        <div class="field" id="f-telefone">
+          <label for="telefone">Telefone / WhatsApp</label>
+          <input type="tel" id="telefone" name="telefone" autocomplete="tel" placeholder="(11) 99999-9999" inputmode="numeric" required>
+          <span class="err">Digite um telefone com DDD.</span>
+        </div>
+        <div class="consent field" id="f-consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent">Concordo em receber contato e ser adicionado(a) ao canal. Meus dados são usados só para isso.</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">Quero receber o material <span class="arw">→</span></button>
+        <p class="form-note">Leva menos de 30 segundos · sem spam</p>
+      </form>
+    </div>
+
+    <!-- ===== SUCCESS ===== -->
+    <div class="success" id="successView">
+      <div class="check" aria-hidden="true"></div>
+      <h1>Acesso liberado.</h1>
+      <p>Seus dados foram registrados. Agora é só entrar no canal do WhatsApp para receber o checklist e o link da aula.</p>
+      <a class="btn btn-primary btn-block" id="groupBtn" href="#">Entrar no canal do WhatsApp <span class="arw">→</span></a>
+      <p class="redir" id="redirNote"></p>
+    </div>
+  </div>
+</main>
+
+<footer><span>escolaide · preparação familiar</span></footer>
+
+<script>
+  /* ============================================================
+     CONFIG
+     O link do grupo vem do servidor (env var REDIRECT_URL na Vercel),
+     só após o cadastro ser salvo — assim o convite não fica exposto
+     no código público.
+     ============================================================ */
+  const REDIRECT_FALLBACK = "";      // fallback opcional caso o servidor não envie
+  const REDIRECT_DELAY_MS = 2500;    // tempo na tela de sucesso antes de redirecionar
+  const API_ENDPOINT = "/api/subscribe";
+
+  const form = document.getElementById('waitlistForm');
+  const formView = document.getElementById('formView');
+  const successView = document.getElementById('successView');
+  const submitBtn = document.getElementById('submitBtn');
+  const formError = document.getElementById('formError');
+  const groupBtn = document.getElementById('groupBtn');
+  const redirNote = document.getElementById('redirNote');
+  const SUBMIT_LABEL = 'Quero receber o material';
+
+  /* ---- máscara de telefone brasileiro ---- */
+  const tel = document.getElementById('telefone');
+  tel.addEventListener('input', () => {
+    let d = tel.value.replace(/\D/g, '').slice(0, 11);
+    let out = d;
+    if (d.length > 2 && d.length <= 6) out = `(${d.slice(0,2)}) ${d.slice(2)}`;
+    else if (d.length > 6 && d.length <= 10) out = `(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}`;
+    else if (d.length > 10) out = `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+    else if (d.length > 0) out = `(${d}`;
+    tel.value = out;
+  });
+
+  /* ---- validação ---- */
+  function setInvalid(id, bad){
+    const f = document.getElementById(id);
+    f.classList.toggle('invalid', bad);
+    const input = f.querySelector('input');
+    if (input) input.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    return !bad;
+  }
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  function digits(v){ return v.replace(/\D/g,''); }
+
+  function validate(){
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const fone = digits(tel.value);
+    const consent = document.getElementById('consent').checked;
+    let ok = true;
+    ok = setInvalid('f-nome', nome.length < 2) && ok;
+    ok = setInvalid('f-email', !validEmail(email)) && ok;
+    ok = setInvalid('f-telefone', fone.length < 10 || fone.length > 11) && ok;
+    document.getElementById('f-consent').classList.toggle('invalid', !consent);
+    if (!consent) ok = false;
+    return ok;
+  }
+
+  /* ---- sucesso + redirecionamento ---- */
+  function showSuccess(url){
+    const dest = url || REDIRECT_FALLBACK;
+    formView.style.display = 'none';
+    successView.classList.add('show');
+    const valid = /^https?:\/\//i.test(dest);
+    if (valid){
+      groupBtn.href = dest;
+      groupBtn.setAttribute('rel','noopener');
+      redirNote.textContent = 'Redirecionando para o WhatsApp…';
+      setTimeout(() => { window.location.href = dest; }, REDIRECT_DELAY_MS);
+    } else {
+      groupBtn.innerHTML = 'Em breve: link do canal';
+      groupBtn.setAttribute('aria-disabled','true');
+      groupBtn.style.opacity = '.6';
+      groupBtn.style.pointerEvents = 'none';
+      redirNote.textContent = 'O link do canal é adicionado aqui assim que estiver pronto.';
+    }
+  }
+
+  /* ---- submit ---- */
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.remove('show');
+    if (!validate()) return;
+
+    const payload = {
+      nome: document.getElementById('nome').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: tel.value.trim(),
+      origem: 'form-whatsapp',
+      destino: 'whatsapp'
+    };
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+    try {
+      const r = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await r.json().catch(() => ({}));
+      if (r.ok && data.ok){
+        showSuccess(data.redirect);
+      } else {
+        throw new Error(data.error || ('http ' + r.status));
+      }
+    } catch (err){
+      formError.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = SUBMIT_LABEL + ' <span class="arw">→</span>';
+    }
+  });
+
+  /* limpa o estado de erro ao editar */
+  ['nome','email','telefone','consent'].forEach(id => {
+    const el = document.getElementById(id);
+    const evt = id === 'consent' ? 'change' : 'input';
+    el.addEventListener(evt, () => {
+      const wrap = document.getElementById('f-' + id);
+      if (wrap) wrap.classList.remove('invalid');
+    });
+  });
+</script>
+</body>
+</html>

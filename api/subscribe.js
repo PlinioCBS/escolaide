@@ -19,6 +19,7 @@ module.exports = async function handler(req, res) {
   const email = String(body.email || '').trim();
   const telefone = String(body.telefone || '').trim();
   const origem = String(body.origem || 'form').trim();
+  const destino = String(body.destino || 'telegram').trim().toLowerCase();
 
   // validação básica no servidor
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
@@ -53,8 +54,12 @@ module.exports = async function handler(req, res) {
       let upstream = {};
       try { upstream = JSON.parse(text); } catch (_) {}
       if (r.ok && upstream.ok === true) {
-        // devolve o link do grupo só após salvar (fica na env var, fora do repo público)
-        return res.status(200).json({ ok: true, redirect: process.env.REDIRECT_URL || '' });
+        // devolve o link do canal certo (Telegram ou WhatsApp) só após salvar;
+        // os links ficam em env vars, fora do repo público.
+        const redirect = destino === 'whatsapp'
+          ? (process.env.REDIRECT_URL_WHATSAPP || '')
+          : (process.env.REDIRECT_URL || '');
+        return res.status(200).json({ ok: true, redirect });
       }
     } catch (_) { /* falha transitória — tenta de novo */ }
   }
