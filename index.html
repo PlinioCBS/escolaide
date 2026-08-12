@@ -4,49 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sardume · Preparação familiar, com calma</title>
-<meta name="description" content="Entre para a Sardume e comece a preparar sua casa — água, alimentos e organização — com calma, no seu ritmo e com gente fazendo junto.">
+<meta name="description" content="Entre para a Sardume e comece a preparar sua casa — água, alimentos e organização — com calma, no seu ritmo e com gente fazendo junto. Condição especial: 12x de R$16,00.">
 <link rel="icon" href="/assets/brand-mark-tight.png">
 <style>
   /* ============================================================
-     SARDUME — DESIGN SYSTEM (tokens inlinados)
-     Layout azul da marca + acentos em laranja (botões/badges).
+     SARDUME — layout azul da marca + acentos em laranja.
+     Página de vendas (VSL) com oferta em destaque.
      ============================================================ */
   :root{
-    /* ---- blues ---- */
     --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
-    --blue-200:oklch(83% 0.07 238); --blue-300:oklch(74% 0.10 240);
-    --blue-400:oklch(65% 0.135 246); --blue-500:#276fc7; --blue-600:#1d63bb;
-    --blue-700:#0f5aad; --blue-800:#064b9d; --blue-900:oklch(32% 0.10 250);
-    /* ---- orange (acento) ---- */
-    --orange-50:oklch(96% 0.03 55); --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:oklch(48% 0.16 40);
-    /* ---- neutrals ---- */
+    --blue-200:oklch(83% 0.07 238); --blue-500:#276fc7; --blue-600:#1d63bb;
+    --blue-700:#0f5aad; --blue-800:#064b9d;
+    --orange-50:oklch(96% 0.03 55); --orange-100:oklch(91% 0.06 50);
+    --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:#b8500f;
     --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6;
     --neutral-200:#d8dbd4; --neutral-300:#c3c6bd; --neutral-400:#9a9d94;
     --neutral-500:#787b73; --neutral-600:#5b5e56; --neutral-700:#41443d;
-    --neutral-800:#2b2d27; --neutral-900:#1a1b17;
-    /* ---- semantic ---- */
+    --neutral-800:#2b2d27; --neutral-900:#15130f;
     --color-bg:var(--neutral-50); --color-surface:var(--neutral-0);
     --color-surface-sunken:var(--neutral-100); --color-border:var(--neutral-200);
-    --color-border-strong:var(--neutral-300);
     --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600);
     --text-muted:var(--neutral-500); --text-on-brand:var(--neutral-0);
-    --text-link:var(--blue-700); --text-link-hover:var(--blue-800);
+    --text-link:var(--blue-700);
     --brand-primary:var(--blue-600); --brand-primary-hover:var(--blue-700);
     --brand-primary-active:var(--blue-800); --brand-accent:var(--orange-500);
     --brand-accent-hover:var(--orange-600); --on-accent:#1a1206;
     --surface-brand:var(--blue-600); --surface-brand-subtle:var(--blue-50);
     --surface-accent-subtle:var(--orange-50);
     --state-success:#2f8f5b; --state-success-subtle:oklch(94% 0.05 150);
-    /* ---- type ---- */
     --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
     --font-body:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --text-display-1:clamp(2.4rem,4.4vw,3.6rem); --text-h1:2.25rem; --text-h2:1.75rem;
-    --text-h3:1.375rem; --text-body-lg:1.125rem; --text-body:1rem;
-    --text-body-sm:0.9375rem; --text-caption:0.8125rem;
+    --text-display-1:clamp(2.2rem,4vw,3.3rem); --text-h2:1.75rem; --text-h3:1.375rem;
+    --text-body-lg:1.125rem; --text-body:1rem; --text-body-sm:0.9375rem; --text-caption:0.8125rem;
     --leading-tight:1.06; --leading-snug:1.25; --leading-normal:1.5; --leading-relaxed:1.6;
     --weight-regular:400; --weight-medium:500; --weight-bold:700; --weight-display:900;
     --tracking-tight:-0.02em; --tracking-wide:0.03em;
-    /* ---- space / radius / shadow / motion ---- */
     --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
     --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
     --space-20:80px; --space-24:96px;
@@ -72,44 +64,52 @@
   /* ---- labels ---- */
   .tag{display:inline-block;background:var(--surface-brand-subtle);color:var(--brand-primary-active);border-radius:var(--radius-pill);padding:4px 14px;font-size:var(--text-caption);font-weight:var(--weight-bold)}
   .tag.accent{background:var(--surface-accent-subtle);color:var(--orange-700)}
+  .tag.pulse{background:var(--brand-accent);color:var(--on-accent);display:inline-flex;align-items:center;gap:8px}
+  .tag.pulse::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--on-accent);animation:blink 1.4s var(--ease-standard) infinite}
   .kicker{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary);letter-spacing:var(--tracking-wide)}
   .lead{font-size:var(--text-body-lg);line-height:var(--leading-relaxed);color:var(--text-secondary);max-width:60ch}
 
   /* ---- buttons ---- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-3);font-family:var(--font-body);font-weight:var(--weight-bold);font-size:16px;padding:14px 26px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background var(--duration-base) var(--ease-standard)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-3);font-family:var(--font-body);font-weight:var(--weight-bold);font-size:16px;padding:14px 26px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background var(--duration-base) var(--ease-standard),transform var(--duration-base) var(--ease-standard)}
   .btn-primary{background:var(--brand-primary);color:var(--text-on-brand)}
   .btn-primary:hover{background:var(--brand-primary-hover);color:var(--text-on-brand)}
   .btn-accent{background:var(--brand-accent);color:var(--on-accent)}
-  .btn-accent:hover{background:var(--brand-accent-hover);color:var(--on-accent)}
-  .btn-accent:active{background:var(--orange-700);color:var(--on-accent)}
-  .btn-lg{font-size:18px;padding:17px 34px}
+  .btn-accent:hover{background:var(--brand-accent-hover);color:var(--on-accent);transform:translateY(-1px)}
+  .btn-accent:active{background:var(--orange-700);color:var(--on-accent);transform:none}
+  .btn-lg{font-size:18px;padding:18px 36px}
   .btn-sm{font-size:14px;padding:9px 18px}
   .btn .arw{font-weight:var(--weight-regular)}
   .btn-note{display:block;font-size:var(--text-caption);color:var(--text-muted);margin-top:var(--space-3)}
 
   /* ---- topbar ---- */
-  .topbar{position:sticky;top:0;z-index:20;background:oklch(96% 0.004 90 / .88);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid var(--color-border)}
+  .topbar{position:sticky;top:0;z-index:20;background:oklch(96% 0.004 90 / .9);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid var(--color-border)}
   .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
   .topbar .logo{height:26px;width:auto;display:block}
   .topbar-right{display:flex;align-items:center;gap:var(--space-5)}
   .topbar .tag-txt{font-size:var(--text-caption);color:var(--text-muted)}
 
-  /* ---- hero (vendas, 2 colunas) ---- */
-  .hero{padding-top:var(--space-12);padding-bottom:var(--space-16)}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-12);align-items:center}
-  .hero-copy .tag{margin-bottom:var(--space-5)}
-  .hero h1{margin:var(--space-4) 0;max-width:15ch}
-  .hero .lead{margin-bottom:var(--space-8)}
-  .hero-cta{display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-2)}
-  .hero-trust{display:flex;flex-wrap:wrap;gap:var(--space-4);margin-top:var(--space-6)}
+  /* ---- hero (VSL de vendas) ---- */
+  .hero{text-align:center;padding-top:var(--space-10);padding-bottom:var(--space-16)}
+  .hero .tag.pulse{margin-bottom:var(--space-5)}
+  .hero h1{max-width:22ch;margin:0 auto var(--space-4)}
+  .hero .lead{margin:0 auto var(--space-8);text-align:center}
+  .hero-cta{display:flex;flex-direction:column;align-items:center;gap:var(--space-3);margin-top:var(--space-8)}
+  .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-4);margin-top:var(--space-6)}
   .trust-item{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-caption);color:var(--text-secondary)}
   .trust-item img{width:15px;height:15px;opacity:.7}
 
-  .hero-visual{position:relative;max-width:440px;margin-left:auto;width:100%}
-  .hero-visual::before{content:"";position:absolute;right:-16px;bottom:-16px;width:76%;height:58%;background:var(--surface-brand-subtle);border:1px solid var(--color-border);border-radius:var(--radius-lg);z-index:0}
-  .hero-photo{position:relative;z-index:1;aspect-ratio:4/5;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--color-border);box-shadow:var(--shadow-lg);background:var(--neutral-0)}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
-  .hero-badge{position:absolute;left:var(--space-5);bottom:var(--space-5);z-index:2;background:var(--brand-accent);color:var(--on-accent);font-weight:var(--weight-bold);font-size:var(--text-caption);padding:8px 15px;border-radius:var(--radius-pill);box-shadow:var(--shadow-md)}
+  /* price teaser (embaixo do CTA do hero) */
+  .price-teaser{font-size:var(--text-body-sm);color:var(--text-secondary)}
+  .price-teaser .old{text-decoration:line-through;color:var(--text-muted)}
+  .price-teaser .new{color:var(--orange-700);font-weight:var(--weight-bold)}
+
+  /* video */
+  .videowrap{max-width:840px;margin:0 auto}
+  .videoframe{position:relative;aspect-ratio:16/9;background:var(--neutral-900);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-4);overflow:hidden}
+  .videoframe .play{width:84px;height:84px;border-radius:var(--radius-pill);background:var(--brand-accent);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);transition:background var(--duration-base) var(--ease-standard)}
+  .videoframe:hover .play{background:var(--brand-accent-hover)}
+  .videoframe .play::after{content:"";border-left:26px solid var(--on-accent);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:7px}
+  .videoframe .ph{font-size:var(--text-body-sm);color:var(--neutral-400)}
 
   /* ---- section header ---- */
   .sec-head{max-width:64ch;margin-bottom:var(--space-10)}
@@ -138,14 +138,17 @@
   .band h2{color:#fff;margin:var(--space-4) auto var(--space-5);max-width:22ch}
   .band p{color:#fff;opacity:.92;font-size:var(--text-body-lg);line-height:var(--leading-relaxed);max-width:62ch;margin:0 auto}
 
-  /* ---- authority ---- */
-  .bio{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-5)}
-  .avatar{width:84px;height:84px;border-radius:var(--radius-pill);overflow:hidden;background:var(--color-surface-sunken);border:1px solid var(--color-border);box-shadow:var(--shadow-sm)}
-  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  .bio h3{margin:var(--space-5) 0 var(--space-1)}
-  .bio .role{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary);margin-bottom:var(--space-4)}
+  /* ---- authority (com foto do casal) ---- */
+  .authority-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--space-10);align-items:center}
+  .authority-photo{position:relative;max-width:380px;width:100%}
+  .authority-photo::before{content:"";position:absolute;right:-14px;bottom:-14px;width:70%;height:52%;background:var(--surface-brand-subtle);border:1px solid var(--color-border);border-radius:var(--radius-lg);z-index:0}
+  .authority-photo img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 18%;border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-lg);display:block;background:#fff}
+  .photo-badge{position:absolute;left:var(--space-4);bottom:var(--space-4);z-index:2;background:var(--brand-accent);color:var(--on-accent);font-weight:var(--weight-bold);font-size:var(--text-caption);padding:8px 14px;border-radius:var(--radius-pill);box-shadow:var(--shadow-md)}
+  .bios-stack{display:flex;flex-direction:column;gap:var(--space-5)}
+  .bio h3{margin-bottom:var(--space-1)}
+  .bio .role{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary);margin-bottom:var(--space-3)}
   .bio p{color:var(--text-secondary);font-size:var(--text-body-sm);line-height:var(--leading-relaxed)}
-  .creds{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-5)}
+  .creds{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}
   .creds span{font-size:var(--text-caption);color:var(--text-secondary);background:var(--color-surface-sunken);border-radius:var(--radius-pill);padding:5px 12px}
 
   /* ---- deliverables ---- */
@@ -154,6 +157,9 @@
   .checklist .mk{width:22px;height:22px;flex:none;margin-top:2px}
   .checklist strong{font-weight:var(--weight-bold)}
   .checklist p{color:var(--text-secondary);font-size:var(--text-body-sm);margin-top:2px;line-height:var(--leading-relaxed)}
+
+  /* ---- mid cta ---- */
+  .midcta{text-align:center;margin-top:var(--space-12)}
 
   /* ---- for / not for ---- */
   .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-5)}
@@ -165,17 +171,24 @@
   .badge.yes{color:var(--state-success);background:var(--state-success-subtle)}
   .badge.no{color:var(--text-muted);background:var(--color-surface-sunken)}
 
-  /* ---- offer ---- */
+  /* ---- offer (destaque) ---- */
   .offer{text-align:center}
-  .offercard{position:relative;max-width:540px;margin:0 auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-12) var(--space-10)}
-  .offercard .kicker{display:block;margin-bottom:var(--space-3)}
-  .price{font-family:var(--font-display);font-weight:var(--weight-display);line-height:1;letter-spacing:var(--tracking-tight);margin-bottom:var(--space-3)}
-  .price .cur{font-size:26px;vertical-align:super;color:var(--text-muted)}
-  .price .val{font-size:64px}
-  .price .per{font-size:22px;color:var(--text-muted);font-weight:var(--weight-bold)}
-  .price-note{color:var(--text-secondary);font-size:var(--text-body-sm);line-height:var(--leading-relaxed);margin-bottom:var(--space-6);max-width:38ch;margin-left:auto;margin-right:auto}
+  .offercard{position:relative;max-width:560px;margin:0 auto;background:var(--color-surface);border:2px solid var(--brand-accent);border-radius:var(--radius-xl);box-shadow:0 18px 50px oklch(50% 0.14 45 / .18);padding:var(--space-12) var(--space-10) var(--space-10)}
+  .disc-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--brand-accent);color:var(--on-accent);font-weight:var(--weight-bold);font-size:var(--text-body-sm);letter-spacing:.02em;padding:8px 20px;border-radius:var(--radius-pill);box-shadow:var(--shadow-md);white-space:nowrap}
+  .offercard .kicker{display:block;margin-bottom:var(--space-2)}
+  .price-from{font-size:var(--text-body);color:var(--text-muted);text-decoration:line-through;margin-bottom:var(--space-1)}
+  .price{font-family:var(--font-display);font-weight:var(--weight-display);line-height:1;letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2)}
+  .price .x{display:block;font-family:var(--font-body);font-size:16px;font-weight:var(--weight-bold);color:var(--text-secondary);letter-spacing:.02em;margin-bottom:var(--space-2)}
+  .price .cur{font-size:28px;vertical-align:super;color:var(--brand-accent);margin-right:2px}
+  .price .val{font-size:74px;color:var(--brand-accent)}
+  .price .cents{font-size:32px;color:var(--brand-accent);vertical-align:top}
+  .price-eq{font-size:var(--text-caption);color:var(--text-muted);margin-bottom:var(--space-6)}
+  .included{list-style:none;text-align:left;max-width:330px;margin:0 auto var(--space-8);display:flex;flex-direction:column;gap:var(--space-3)}
+  .included li{display:flex;gap:10px;font-size:var(--text-body-sm);color:var(--text-primary)}
+  .included li::before{content:"✓";color:var(--state-success);font-weight:var(--weight-bold);flex:none}
   .guarantee{display:flex;align-items:center;justify-content:center;gap:var(--space-2);font-size:var(--text-caption);color:var(--text-muted);margin-top:var(--space-5)}
   .guarantee img{width:15px;height:15px;opacity:.7}
+  .offer-urgency{margin-top:var(--space-5);font-size:var(--text-caption);color:var(--orange-700);font-weight:var(--weight-bold)}
 
   /* ---- faq ---- */
   .faq{max-width:760px;margin:0 auto}
@@ -189,6 +202,9 @@
   /* ---- final ---- */
   .final .band h2{max-width:24ch}
   .final .lead{color:#fff;opacity:.92;margin:0 auto var(--space-8);text-align:center}
+  .final .price-teaser{color:#fff;opacity:.9;margin-top:var(--space-4)}
+  .final .price-teaser .old{color:rgba(255,255,255,.6)}
+  .final .price-teaser .new{color:#fff}
 
   /* ---- footer ---- */
   footer{border-top:1px solid var(--color-border);padding:var(--space-10) 0}
@@ -200,19 +216,20 @@
   .ph-tag{color:var(--text-muted)}
 
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
   @media (max-width:860px){
     section{padding:var(--space-16) 0}
-    .hero-grid{grid-template-columns:1fr;gap:var(--space-12)}
-    .hero-visual{margin:0 auto;max-width:360px}
-    .hero-copy{text-align:center;display:flex;flex-direction:column;align-items:center}
-    .hero-cta{align-items:center}
     .split{grid-template-columns:1fr;gap:var(--space-8)}
+    .authority-grid{grid-template-columns:1fr;gap:var(--space-10);justify-items:center}
+    .authority-photo{margin:0 auto}
     .band{padding:var(--space-12) var(--space-6)}
     .topbar .tag-txt{display:none}
+    .offercard{padding:var(--space-10) var(--space-6) var(--space-8)}
   }
   @media (prefers-reduced-motion:no-preference){
-    .hero-copy>*{animation:fade .5s var(--ease-standard) both}
+    .hero>.wrap>*{animation:fade .5s var(--ease-standard) both}
   }
+  @media (prefers-reduced-motion:reduce){ .tag.pulse::before{animation:none} }
 </style>
 </head>
 <body>
@@ -228,28 +245,31 @@
   </div>
 </header>
 
-<!-- ============ 01 · HERO (VENDAS) ============ -->
+<!-- ============ 01 · HERO (VSL) ============ -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="tag">Preparação familiar</span>
-      <h1>Um pouco de atenção hoje, mais tranquilidade quando você mais precisar.</h1>
-      <p class="lead">Entre para a Sardume e comece a preparar sua casa — água, alimentos e organização — com calma, no seu ritmo e com gente fazendo junto.</p>
-      <div class="hero-cta">
-        <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Quero garantir meu acesso <span class="arw">→</span></a>
-        <span class="btn-note">R$ 34,90/mês · assinatura mensal</span>
-      </div>
-      <div class="hero-trust">
-        <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/shield-check.svg" alt="">7 dias de garantia</span>
-        <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/zap.svg" alt="">Acesso imediato</span>
-        <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/rotate-ccw.svg" alt="">Cancele quando quiser</span>
+  <div class="wrap">
+    <span class="tag pulse">Oferta especial · por tempo limitado</span>
+    <h1>Um pouco de atenção hoje, mais tranquilidade quando você mais precisar.</h1>
+    <p class="lead">Assista ao vídeo abaixo e veja como famílias comuns estão se organizando em casa — com calma, no seu ritmo e com gente fazendo junto.</p>
+
+    <div class="videowrap">
+      <div class="videoframe">
+        <!-- Insira aqui o embed do seu vídeo (YouTube/Vimeo/Panda/VTurb).
+             Ex.: <iframe src="..." style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe> -->
+        <div class="play" aria-hidden="true"></div>
+        <span class="ph">[ vídeo — inserir embed aqui ]</span>
       </div>
     </div>
-    <div class="hero-visual">
-      <div class="hero-photo">
-        <img src="/assets/casal.jpg" alt="Moraes e Andreia, fundadores da Sardume">
-      </div>
-      <span class="hero-badge">Moraes &amp; Andreia · +30 anos de experiência</span>
+
+    <div class="hero-cta">
+      <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Quero garantir meu acesso <span class="arw">→</span></a>
+      <span class="price-teaser"><span class="old">de R$ 34,90/mês</span> · por <span class="new">12x de R$ 16,00</span></span>
+    </div>
+
+    <div class="hero-trust">
+      <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/shield-check.svg" alt="">7 dias de garantia</span>
+      <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/zap.svg" alt="">Acesso imediato</span>
+      <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/rotate-ccw.svg" alt="">Cancele quando quiser</span>
     </div>
   </div>
 </section>
@@ -310,30 +330,34 @@
   </div>
 </section>
 
-<!-- ============ 05 · AUTORIDADE ============ -->
+<!-- ============ 05 · AUTORIDADE (foto do casal) ============ -->
 <section>
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="kicker">Quem está por trás</span>
-      <h2>As duas metades da mesma resposta.</h2>
+      <h2 style="margin-top:var(--space-3)">As duas metades da mesma resposta.</h2>
     </div>
-    <div class="bio">
-      <div class="card">
-        <div class="avatar"><img src="/assets/moraes.jpg" alt="Moraes" loading="lazy"></div>
-        <h3>Moraes</h3>
-        <div class="role">Fuzileiro naval · +30 anos</div>
-        <p>Passou a vida cuidando da segurança de quem mais precisa dela. Aqui, ele traduz o que uma vida lidando com risco real ensina para a rotina de qualquer família — sem exagero.</p>
-        <div class="creds">
-          <span>Fuzileiro naval</span><span>Treino SWAT (Texas)</span><span>Segurança de presidentes</span><span>Formou BOPE · COT · GAEP</span>
-        </div>
+    <div class="authority-grid">
+      <div class="authority-photo">
+        <img src="/assets/casal.jpg" alt="Moraes e Andreia, fundadores da Sardume">
+        <span class="photo-badge">Moraes &amp; Andreia</span>
       </div>
-      <div class="card">
-        <div class="avatar"><img src="/assets/andreia.jpg" alt="Andreia" loading="lazy"></div>
-        <h3>Andreia</h3>
-        <div class="role">Mãe de três · gestão da casa</div>
-        <p>A prova de que isso funciona numa casa comum. Organiza a despensa e os recursos de casa há anos, sem nunca ter precisado de treinamento tático. Se você cuida da casa, ela mostra que preparação cabe na sua rotina.</p>
-        <div class="creds">
-          <span>Rotina real</span><span>Despensa</span><span>Recursos da casa</span>
+      <div class="bios-stack">
+        <div class="card bio">
+          <h3>Moraes</h3>
+          <div class="role">Fuzileiro naval · +30 anos</div>
+          <p>Passou a vida cuidando da segurança de quem mais precisa dela. Aqui, ele traduz o que uma vida lidando com risco real ensina para a rotina de qualquer família — sem exagero.</p>
+          <div class="creds">
+            <span>Fuzileiro naval</span><span>Treino SWAT (Texas)</span><span>Segurança de presidentes</span><span>Formou BOPE · COT · GAEP</span>
+          </div>
+        </div>
+        <div class="card bio">
+          <h3>Andreia</h3>
+          <div class="role">Mãe de três · gestão da casa</div>
+          <p>A prova de que isso funciona numa casa comum. Organiza a despensa e os recursos de casa há anos, sem nunca ter precisado de treinamento tático. Se você cuida da casa, ela mostra que preparação cabe na sua rotina.</p>
+          <div class="creds">
+            <span>Rotina real</span><span>Despensa</span><span>Recursos da casa</span>
+          </div>
         </div>
       </div>
     </div>
@@ -356,6 +380,9 @@
       <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Desconto exclusivo nos cursos</strong><p>Condição de membro nos nossos cursos aprofundados.</p></div></li>
       <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Tudo pelo navegador + Telegram</strong><p>Sem instalar nada complicado. Você começa hoje.</p></div></li>
     </ul>
+    <div class="midcta">
+      <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Começar agora por 12x de R$ 16,00 <span class="arw">→</span></a>
+    </div>
   </div>
 </section>
 
@@ -386,16 +413,28 @@
   </div>
 </section>
 
-<!-- ============ 08 · OFERTA ============ -->
+<!-- ============ 08 · OFERTA (destaque) ============ -->
 <section class="offer" id="oferta">
   <div class="wrap">
-    <span class="tag" style="margin-bottom:var(--space-5)">O convite</span>
+    <span class="tag accent" style="margin-bottom:var(--space-6)">O convite</span>
     <div class="offercard">
-      <span class="kicker">Assinatura mensal</span>
-      <div class="price"><span class="cur">R$</span><span class="val">34,90</span><span class="per">/mês</span></div>
-      <p class="price-note">Menos de um cafezinho por dia por mais organização, autonomia e tranquilidade — toda semana.</p>
+      <span class="disc-badge">Oferta · mais de 50% OFF</span>
+      <span class="kicker">Condição especial de lançamento</span>
+      <div class="price-from">de R$ 34,90/mês</div>
+      <div class="price">
+        <span class="x">por apenas 12x de</span>
+        <span class="cur">R$</span><span class="val">16</span><span class="cents">,00</span>
+      </div>
+      <p class="price-eq">Menos da metade do valor mensal — por mais organização, autonomia e tranquilidade toda semana.</p>
+      <ul class="included">
+        <li>Missões práticas semanais e checklists prontas</li>
+        <li>Encontros ao vivo mensais com a equipe</li>
+        <li>Comunidade no Telegram, sem julgamento</li>
+        <li>Desconto exclusivo nos cursos aprofundados</li>
+      </ul>
       <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX" style="width:100%">Quero garantir meu acesso <span class="arw">→</span></a>
       <div class="guarantee"><img src="https://unpkg.com/lucide-static@0.462.0/icons/shield-check.svg" alt="">Garantia de 7 dias · reembolso total · cancele quando quiser</div>
+      <div class="offer-urgency">Condição por tempo limitado — aproveite enquanto está no ar.</div>
     </div>
   </div>
 </section>
@@ -410,10 +449,10 @@
     <div class="faq">
       <details open><summary>Nunca me preparei para isso. É para mim?</summary><p>Sim. Foi pensado exatamente para quem está começando — você não precisa saber nada de antemão. A proposta é dar pequenos passos.</p></details>
       <details><summary>Isso é um curso?</summary><p>Não. É um espaço de prática: missões, checklists, encontros ao vivo e uma rede de pessoas. Cursos aprofundam um tema; a Sardume transforma esse conhecimento em ação.</p></details>
+      <details><summary>Como funciona o pagamento de 12x de R$ 16,00?</summary><p>É a condição especial de lançamento: em vez de R$ 34,90 por mês, você garante o acesso por 12x de R$ 16,00 no cartão. Menos da metade do valor mensal, com 7 dias de garantia.</p></details>
       <details><summary>Preciso instalar algum aplicativo?</summary><p>Só o Telegram, onde o dia a dia acontece. As checklists ficam numa área de membros que você acessa pelo navegador, sem baixar nada.</p></details>
       <details><summary>Preciso comprar muitos equipamentos?</summary><p>Não. Esse é um dos maiores mitos. O que muda é usar melhor o que você já tem — muitas melhorias custam pouco ou nada.</p></details>
-      <details><summary>Moro em apartamento ou moro sozinho. Faz sentido?</summary><p>Faz. Preparação depende de organização e planejamento, não do tamanho da casa. Morar sozinho torna isso ainda mais importante.</p></details>
-      <details><summary>Tem garantia?</summary><p>Sim. Você tem 7 dias após a compra para cancelar e pedir reembolso total. Depois disso, cancela a assinatura quando quiser.</p></details>
+      <details><summary>Tem garantia?</summary><p>Sim. Você tem 7 dias após a compra para cancelar e pedir reembolso total. Depois disso, cancela quando quiser.</p></details>
     </div>
   </div>
 </section>
@@ -426,7 +465,7 @@
       <h2>Você não precisa mudar tudo hoje. Só dar o próximo passo.</h2>
       <p class="lead">Ninguém sabe quando a próxima falta vem. Mas você pode decidir, hoje, ter mais preparo — junto com gente que está fazendo o mesmo.</p>
       <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Quero garantir meu acesso <span class="arw">→</span></a>
-      <div class="btn-note" style="color:#fff;opacity:.85">R$ 34,90/mês · 7 dias de garantia · cancele quando quiser</div>
+      <div class="price-teaser"><span class="old">de R$ 34,90/mês</span> · por <span class="new">12x de R$ 16,00</span></div>
     </div>
   </div>
 </section>
