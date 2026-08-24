@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doar · Cardume</title>
+<meta name="description" content="Faça uma doação espontânea via PIX e ajude o Cardume a preparar mais famílias.">
+<link rel="icon" href="/assets/brand-mark-tight.png">
+<style>
+  :root{
+    --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
+    --blue-500:#276fc7; --blue-600:#1d63bb; --blue-700:#0f5aad; --blue-800:#064b9d;
+    --orange-50:oklch(96% 0.03 55); --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:#b8500f;
+    --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6; --neutral-200:#d8dbd4;
+    --neutral-300:#c3c6bd; --neutral-400:#9a9d94; --neutral-500:#787b73; --neutral-600:#5b5e56;
+    --neutral-700:#41443d; --neutral-800:#2b2d27; --neutral-900:#1a1b17;
+    --color-bg:var(--neutral-50); --color-surface:var(--neutral-0); --color-surface-sunken:var(--neutral-100);
+    --color-border:var(--neutral-200); --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600);
+    --text-muted:var(--neutral-500); --text-on-brand:#fff; --on-accent:#1a1206;
+    --brand-primary:var(--blue-600); --brand-accent:var(--orange-500); --brand-accent-hover:var(--orange-600);
+    --surface-brand-subtle:var(--blue-50); --state-success:#2f8f5b;
+    --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --font-body:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --font-mono:ui-monospace,"SFMono-Regular",Menlo,monospace;
+    --leading-tight:1.08; --leading-relaxed:1.6; --tracking-tight:-0.02em;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px;
+    --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+    --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-pill:999px;
+    --shadow-sm:0 1px 2px oklch(20% 0.02 250 / 0.06),0 1px 1px oklch(20% 0.02 250 / 0.04);
+    --shadow-md:0 4px 12px oklch(20% 0.05 250 / 0.08),0 1px 2px oklch(20% 0.02 250 / 0.05);
+    --shadow-lg:0 12px 32px oklch(20% 0.06 250 / 0.12),0 2px 6px oklch(20% 0.02 250 / 0.06);
+    --shadow-focus:0 0 0 3px oklch(65% 0.13 246 / 0.35);
+    --ease:cubic-bezier(.25,.8,.4,1); --dur:200ms;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--color-bg);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--blue-700);text-decoration:none}
+  h1{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight)}
+  :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+
+  .topbar{border-bottom:1px solid var(--color-border);background:var(--color-surface)}
+  .topbar .wrap{max-width:1080px;margin:0 auto;padding:0 var(--space-6);height:64px;display:flex;align-items:center;justify-content:space-between}
+  .topbar .logo{height:26px;width:auto;display:block}
+  .topbar .back{font-size:0.875rem;color:var(--text-muted)}
+  .topbar .back:hover{color:var(--brand-primary)}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-12) var(--space-5)}
+  .card{width:100%;max-width:520px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:var(--space-10)}
+  .tag{display:inline-flex;align-items:center;gap:var(--space-2);background:var(--surface-accent-subtle,var(--orange-50));color:var(--orange-700);border-radius:var(--radius-pill);padding:5px 14px;font-size:0.8125rem;font-weight:700;margin-bottom:var(--space-4)}
+  .tag svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  h1{font-size:1.75rem;margin-bottom:var(--space-3)}
+  .sub{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-8)}
+
+  .qr-wrap{display:flex;flex-direction:column;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6)}
+  .qr{width:220px;height:220px;padding:var(--space-3);background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-sm)}
+  .qr img{width:100%;height:100%;display:block}
+  .qr-cap{font-size:0.8125rem;color:var(--text-muted)}
+
+  .divider{display:flex;align-items:center;gap:var(--space-4);color:var(--text-muted);font-size:0.8125rem;margin:var(--space-6) 0}
+  .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--color-border)}
+
+  .label{font-size:0.8125rem;font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2)}
+  .code-box{background:var(--color-surface-sunken);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4);font-family:var(--font-mono);font-size:0.72rem;line-height:1.5;color:var(--text-secondary);word-break:break-all;max-height:96px;overflow:auto;margin-bottom:var(--space-3)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);font-family:var(--font-body);font-weight:700;font-size:1rem;padding:15px 26px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--dur) var(--ease)}
+  .btn-accent{background:var(--brand-accent);color:var(--on-accent)}
+  .btn-accent:hover{background:var(--brand-accent-hover);color:var(--on-accent)}
+  .btn-block{width:100%}
+  .btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+  .btn.copied{background:var(--state-success);color:#fff}
+
+  .payee{margin-top:var(--space-6);background:var(--surface-brand-subtle);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-4) var(--space-5)}
+  .payee .row{display:flex;justify-content:space-between;gap:var(--space-4);font-size:0.9375rem;padding:4px 0}
+  .payee .k{color:var(--text-muted)}
+  .payee .v{color:var(--text-primary);font-weight:600;text-align:right;word-break:break-all}
+  .payee .keycopy{background:none;border:none;color:var(--brand-primary);font-family:inherit;font-weight:700;font-size:0.8125rem;cursor:pointer;padding:0;margin-left:var(--space-2)}
+
+  .amounts{margin-top:var(--space-6);text-align:center;font-size:0.9375rem;color:var(--text-secondary);line-height:var(--leading-relaxed)}
+  .amounts strong{color:var(--text-primary)}
+  .note{margin-top:var(--space-5);display:flex;gap:var(--space-2);align-items:flex-start;font-size:0.8125rem;color:var(--text-muted);line-height:1.5}
+  .note svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;flex:none;margin-top:2px}
+
+  footer{padding:var(--space-8) var(--space-5);text-align:center}
+  footer span{font-size:0.8125rem;color:var(--text-muted)}
+  @media (max-width:520px){ .card{padding:var(--space-8) var(--space-5)} .qr{width:190px;height:190px} }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="/"><img class="logo" src="/assets/logo-full-tight.png" alt="Cardume"></a>
+    <a class="back" href="/">← Voltar ao site</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <span class="tag"><svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/></svg>Doação espontânea</span>
+    <h1>Ajude o Cardume a preparar mais famílias.</h1>
+    <p class="sub">O Cardume existe para ajudar famílias comuns a se prepararem com calma. Sua doação — de qualquer valor — ajuda a manter conteúdos gratuitos e a alcançar mais gente. Toda contribuição conta.</p>
+
+    <div class="qr-wrap">
+      <div class="qr"><img src="/assets/pix-qr.svg" alt="QR Code PIX para doação"></div>
+      <span class="qr-cap">Escaneie com a câmera do app do seu banco</span>
+    </div>
+
+    <div class="divider">ou</div>
+
+    <div class="label">PIX Copia e Cola</div>
+    <div class="code-box" id="pixCode">00020126480014BR.GOV.BCB.PIX0126andreiadiscipula@gmail.com5204000053039865802BR5925Andreia Alves Carlos de M6009SAO PAULO62140510mSMaOFEJVu6304A60A</div>
+    <button class="btn btn-accent btn-block" id="copyBtn" onclick="copyPix()">
+      <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      Copiar código Pix
+    </button>
+
+    <div class="payee">
+      <div class="row"><span class="k">Recebedor</span><span class="v">Andreia Alves Carlos</span></div>
+      <div class="row"><span class="k">Chave (e-mail)</span><span class="v">andreiadiscipula@gmail.com <button class="keycopy" onclick="copyKey()" id="keyBtn">copiar</button></span></div>
+    </div>
+
+    <p class="amounts">Doe <strong>o quanto quiser</strong> — R$ 10, R$ 25, R$ 50 ou o valor que fizer sentido pra você. O valor é escolhido no seu banco.</p>
+
+    <div class="note">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+      <span>Antes de confirmar, confira que o recebedor é <strong>Andreia Alves Carlos</strong>. Sua doação é voluntária e não dá acesso à comunidade paga.</span>
+    </div>
+  </div>
+</main>
+
+<footer><span>© Cardume · Preparação familiar</span></footer>
+
+<script>
+  const PIX = document.getElementById('pixCode').textContent.trim();
+  function flash(btn, ok, txt){
+    const orig = btn.dataset.orig || btn.innerHTML;
+    btn.dataset.orig = orig;
+    btn.classList.add('copied'); btn.textContent = txt;
+    setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2000);
+  }
+  async function copyText(t){
+    try { await navigator.clipboard.writeText(t); return true; }
+    catch(_){
+      const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      let ok=false; try{ ok=document.execCommand('copy'); }catch(e){}
+      document.body.removeChild(ta); return ok;
+    }
+  }
+  async function copyPix(){
+    const btn=document.getElementById('copyBtn');
+    const ok=await copyText(PIX);
+    flash(btn, ok, ok ? 'Código copiado!' : 'Copie manualmente');
+  }
+  async function copyKey(){
+    const btn=document.getElementById('keyBtn');
+    const ok=await copyText('andreiadiscipula@gmail.com');
+    const o=btn.textContent; btn.textContent = ok ? 'copiado!' : 'erro';
+    setTimeout(()=>btn.textContent=o, 1800);
+  }
+</script>
+</body>
+</html>
