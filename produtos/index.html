@@ -53,9 +53,15 @@
 
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);max-width:760px}
   .product{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column}
-  .product-img{position:relative;aspect-ratio:4/3;background:var(--surface-brand-subtle);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-3);color:var(--blue-500);border-bottom:1px solid var(--color-border)}
+  .product-img{position:relative;aspect-ratio:3/2;background:var(--surface-brand-subtle);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-3);color:var(--blue-500);border-bottom:1px solid var(--color-border)}
   .product-img svg{width:52px;height:52px;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.55}
   .product-img .ph{font-size:0.75rem;font-weight:700;letter-spacing:.02em;color:var(--brand-primary);opacity:.7;text-transform:uppercase}
+  .product-img.has-photo{padding:0;background:#1a1712;display:block}
+  .product-img .pimg{width:100%;height:100%;object-fit:cover;display:block}
+  .thumbs{display:flex;gap:var(--space-2);padding:10px 12px;background:var(--color-surface);border-bottom:1px solid var(--color-border)}
+  .thumb{width:56px;height:42px;border:2px solid var(--color-border);border-radius:6px;overflow:hidden;padding:0;cursor:pointer;background:none;transition:border-color var(--dur) var(--ease)}
+  .thumb.active{border-color:var(--brand-accent)}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
   .product-body{padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-3);flex:1}
   .product h3{font-size:1.25rem}
   .pdesc{color:var(--text-secondary);font-size:0.9375rem;line-height:var(--leading-relaxed);flex:1}
@@ -93,9 +99,12 @@
   <div class="grid">
     <!-- Produto 1 -->
     <article class="product">
-      <div class="product-img">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg>
-        <span class="ph">Imagem ilustrativa</span>
+      <div class="product-img has-photo">
+        <img class="pimg" id="facaMain" src="/assets/faca-ide-1.jpg" alt="Faca IDE — lâmina">
+      </div>
+      <div class="thumbs" id="faca-thumbs">
+        <button class="thumb active" onclick="setFaca('/assets/faca-ide-1.jpg',this)" aria-label="Foto da lâmina"><img src="/assets/faca-ide-1.jpg" alt=""></button>
+        <button class="thumb" onclick="setFaca('/assets/faca-ide-2.jpg',this)" aria-label="Foto na bainha"><img src="/assets/faca-ide-2.jpg" alt=""></button>
       </div>
       <div class="product-body">
         <h3>Faca IDE</h3>
@@ -127,5 +136,12 @@
   <div class="wrap"><span>© Cardume · Preparação familiar</span></div>
 </footer>
 
+<script>
+  function setFaca(src, el){
+    document.getElementById('facaMain').src = src;
+    document.querySelectorAll('#faca-thumbs .thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+</script>
 </body>
 </html>
