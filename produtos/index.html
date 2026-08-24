@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos · Cardume</title>
+<meta name="description" content="Equipamentos IDE — faca e caixinha de fogo para a sua preparação.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/brand-mark-tight.png">
+<style>
+  :root{
+    --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
+    --blue-500:#276fc7; --blue-600:#1d63bb; --blue-700:#0f5aad; --blue-800:#064b9d;
+    --orange-50:oklch(96% 0.03 55); --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:#b8500f;
+    --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6; --neutral-200:#d8dbd4;
+    --neutral-300:#c3c6bd; --neutral-400:#9a9d94; --neutral-500:#787b73; --neutral-600:#5b5e56;
+    --neutral-700:#41443d; --neutral-800:#2b2d27; --neutral-900:#1a1b17;
+    --color-bg:var(--neutral-50); --color-surface:var(--neutral-0); --color-surface-sunken:var(--neutral-100);
+    --color-border:var(--neutral-200); --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600);
+    --text-muted:var(--neutral-500); --on-accent:#1a1206;
+    --brand-primary:var(--blue-600); --brand-accent:var(--orange-500); --brand-accent-hover:var(--orange-600);
+    --surface-brand-subtle:var(--blue-50);
+    --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --font-body:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --leading-tight:1.08; --leading-relaxed:1.6; --tracking-tight:-0.02em;
+    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px;
+    --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+    --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-pill:999px;
+    --shadow-sm:0 1px 2px oklch(20% 0.02 250 / 0.06),0 1px 1px oklch(20% 0.02 250 / 0.04);
+    --shadow-md:0 4px 12px oklch(20% 0.05 250 / 0.08),0 1px 2px oklch(20% 0.02 250 / 0.05);
+    --shadow-focus:0 0 0 3px oklch(65% 0.13 246 / 0.35);
+    --ease:cubic-bezier(.25,.8,.4,1); --dur:200ms;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--color-bg);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:var(--blue-700);text-decoration:none}
+  h1{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);line-height:var(--leading-tight)}
+  h3{font-family:var(--font-display);font-weight:700;letter-spacing:var(--tracking-tight)}
+  :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+
+  .topbar{border-bottom:1px solid var(--color-border);background:var(--color-surface)}
+  .topbar .wrap{max-width:1080px;margin:0 auto;padding:0 var(--space-6);height:64px;display:flex;align-items:center;justify-content:space-between}
+  .topbar .logo{height:26px;width:auto;display:block}
+  .topbar .back{font-size:0.875rem;color:var(--text-muted)}
+  .topbar .back:hover{color:var(--brand-primary)}
+
+  main{flex:1;max-width:1080px;width:100%;margin:0 auto;padding:var(--space-12) var(--space-6)}
+  .head{max-width:60ch;margin-bottom:var(--space-10)}
+  .tag{display:inline-block;background:var(--surface-brand-subtle);color:var(--brand-primary);border-radius:var(--radius-pill);padding:4px 14px;font-size:0.8125rem;font-weight:700;margin-bottom:var(--space-4)}
+  .head h1{font-size:2rem;margin-bottom:var(--space-3)}
+  .head p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);max-width:760px}
+  .product{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column}
+  .product-img{position:relative;aspect-ratio:4/3;background:var(--surface-brand-subtle);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-3);color:var(--blue-500);border-bottom:1px solid var(--color-border)}
+  .product-img svg{width:52px;height:52px;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.55}
+  .product-img .ph{font-size:0.75rem;font-weight:700;letter-spacing:.02em;color:var(--brand-primary);opacity:.7;text-transform:uppercase}
+  .product-body{padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-3);flex:1}
+  .product h3{font-size:1.25rem}
+  .pdesc{color:var(--text-secondary);font-size:0.9375rem;line-height:var(--leading-relaxed);flex:1}
+  .pprice{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);color:var(--text-primary);line-height:1;margin-top:var(--space-2)}
+  .pprice .cur{font-size:1rem;font-weight:700;color:var(--text-muted);vertical-align:super;margin-right:2px}
+  .pprice .val{font-size:2.2rem}
+  .pprice .cents{font-size:1.1rem;vertical-align:top}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);font-family:var(--font-body);font-weight:700;font-size:1rem;padding:14px 22px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--dur) var(--ease);text-decoration:none;margin-top:var(--space-2)}
+  .btn-accent{background:var(--brand-accent);color:var(--on-accent)}
+  .btn-accent:hover{background:var(--brand-accent-hover);color:var(--on-accent)}
+  .btn .arw{font-weight:400}
+
+  .foot-note{margin-top:var(--space-10);font-size:0.8125rem;color:var(--text-muted)}
+  footer{border-top:1px solid var(--color-border);padding:var(--space-8) 0;margin-top:var(--space-12)}
+  footer .wrap{max-width:1080px;margin:0 auto;padding:0 var(--space-6)}
+  footer span{font-size:0.8125rem;color:var(--text-muted)}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="/"><img class="logo" src="/assets/logo-full-tight.png" alt="Cardume"></a>
+    <a class="back" href="/">← Voltar ao site</a>
+  </div>
+</header>
+
+<main>
+  <div class="head">
+    <span class="tag">Equipamentos IDE</span>
+    <h1>Produtos</h1>
+    <p>Equipamentos selecionados para a sua preparação. Escolha o seu e finalize a compra com segurança.</p>
+  </div>
+
+  <div class="grid">
+    <!-- Produto 1 -->
+    <article class="product">
+      <div class="product-img">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg>
+        <span class="ph">Imagem ilustrativa</span>
+      </div>
+      <div class="product-body">
+        <h3>Faca IDE</h3>
+        <p class="pdesc">Faca fixa de preparação IDE — lâmina resistente e cabo firme, para uso em campo e no dia a dia.</p>
+        <div class="pprice"><span class="cur">R$</span><span class="val">450</span><span class="cents">,00</span></div>
+        <a class="btn btn-accent" href="#" data-produto="faca-ide">Comprar <span class="arw">→</span></a>
+      </div>
+    </article>
+
+    <!-- Produto 2 -->
+    <article class="product">
+      <div class="product-img">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg>
+        <span class="ph">Imagem ilustrativa</span>
+      </div>
+      <div class="product-body">
+        <h3>Caixinha de fogo IDE</h3>
+        <p class="pdesc">Kit compacto para iniciar fogo com segurança — item essencial no seu kit de preparação.</p>
+        <div class="pprice"><span class="cur">R$</span><span class="val">85</span><span class="cents">,00</span></div>
+        <a class="btn btn-accent" href="#" data-produto="caixinha-fogo-ide">Comprar <span class="arw">→</span></a>
+      </div>
+    </article>
+  </div>
+
+  <p class="foot-note">Imagens meramente ilustrativas (provisórias). Página em construção.</p>
+</main>
+
+<footer>
+  <div class="wrap"><span>© Cardume · Preparação familiar</span></div>
+</footer>
+
+</body>
+</html>
