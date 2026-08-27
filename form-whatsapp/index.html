@@ -129,6 +129,7 @@
   @media (max-width:520px){ .card{padding:30px 22px} }
   @media (prefers-reduced-motion:reduce){ *{animation:none!important} }
 </style>
+<script src="/assets/track.js"></script>
 </head>
 <body>
 
@@ -292,6 +293,7 @@
       });
       const data = await r.json().catch(() => ({}));
       if (r.ok && data.ok){
+        if (window.cardumeTrack) window.cardumeTrack('lead', { destino: 'whatsapp' });
         showSuccess(data.redirect);
       } else {
         throw new Error(data.error || ('http ' + r.status));
