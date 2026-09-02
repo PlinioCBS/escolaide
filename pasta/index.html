@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasta de Emergência da Família — Cardume</title>
+<meta name="description" content="10 fichas para preencher e montar o plano de emergência da sua família em 20 minutos. PDF preenchível e imprimível. R$ 27.">
+
+<!-- =========================================================================
+     ESPAÇO PARA PIXEL DE RASTREAMENTO — DESATIVADO
+     Cole aqui o código do seu pixel (Meta / TikTok / Google) quando for ativar.
+     Está comentado de propósito para não disparar antes da hora.
+     -------------------------------------------------------------------------
+     <script>
+       // Ex.: Meta Pixel, GA4, GTM, TikTok...
+       // O checkout é na hub.la (off-site); a conversão final é rastreada lá
+       // ou na página de obrigado. Aqui dá para marcar begin_checkout no clique
+       // dos botões com [data-cta].
+     </script>
+     ========================================================================= -->
+
+<style>
+  :root{
+    --dark:#08233D;        /* fundo escuro: hero, rodapé, blocos de destaque */
+    --brand:#074EA0;       /* azul da marca */
+    --ink:#0F2740;         /* texto principal sobre claro */
+    --ink-soft:#5A6B7C;    /* texto auxiliar sobre claro */
+    --line:#D3DBE3;        /* linhas e divisórias */
+    --neutral:#E8EEF4;     /* fundo de bloco neutro */
+    --orange:#EE7B22;      /* laranja de alerta: botões, marcadores, destaques */
+    --orange-ink:#C25A11;  /* laranja para texto pequeno sobre fundo claro */
+    --alert-bg:#FDF3E9;    /* fundo de bloco de alerta */
+    --on-dark:#FFFFFF;     /* texto sobre escuro — principal */
+    --on-dark-soft:#C2D2E2;/* texto sobre escuro — apoio */
+    --font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px}
+  body{
+    font-family:var(--font);font-weight:400;font-style:normal;
+    color:var(--ink);background:#fff;line-height:1.5;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  strong,b{font-weight:700}
+  h1,h2,h3{font-weight:700;line-height:1.25;font-style:normal}
+
+  .wrap{max-width:660px;margin:0 auto;padding:0 20px}
+  section{padding:52px 0}
+
+  /* ---- botões ---- */
+  .btn{
+    display:block;width:100%;text-align:center;text-decoration:none;
+    background:var(--orange);color:var(--ink);font-weight:700;font-size:1.0625rem;
+    padding:17px 22px;border-radius:8px;border:0;cursor:pointer;line-height:1.2;
+  }
+  .btn:hover{background:#e06f16}
+  .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+  .btn-sub{font-size:0.875rem;margin-top:12px;line-height:1.5}
+
+  /* ---- hero ---- */
+  .hero{background:var(--dark);color:var(--on-dark);padding:40px 0 56px}
+  .hero .logo{width:100%;max-width:180px;height:auto;display:block;margin-bottom:36px}
+  .hero h1{font-size:1.9rem;color:var(--on-dark);margin-bottom:16px}
+  .hero .sub{font-size:1.15rem;color:var(--on-dark-soft);margin-bottom:20px;font-weight:400}
+  .hero p{color:var(--on-dark);margin-bottom:28px}
+  .hero .btn-sub{color:var(--on-dark-soft)}
+
+  /* ---- seções claras ---- */
+  .light{background:#fff}
+  .light h2{font-size:1.5rem;color:var(--ink);margin-bottom:18px}
+  .light p{color:var(--ink-soft);margin-bottom:16px}
+  .light p:last-child{margin-bottom:0}
+  .divider{border:0;border-top:1px solid var(--line);margin:0}
+
+  /* ---- lista de fichas ---- */
+  .fichas{list-style:none;margin-top:8px}
+  .fichas li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .fichas li:first-child{border-top:1px solid var(--line)}
+  .fichas .n{flex:none;min-width:30px;color:var(--orange);font-weight:700;font-size:1.1rem;font-variant-numeric:tabular-nums}
+  .fichas .txt{color:var(--ink-soft)}
+  .fichas .txt b{color:var(--ink)}
+
+  .extra{background:var(--neutral);border-radius:8px;padding:20px;margin-top:24px;color:var(--ink)}
+  .extra b{color:var(--ink)}
+
+  /* ---- passos ---- */
+  .steps{list-style:none;counter-reset:s;margin-bottom:32px}
+  .steps li{display:flex;gap:14px;padding:14px 0}
+  .steps .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--dark);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.95rem}
+  .steps .txt{color:var(--ink-soft)}
+  .steps .txt b{color:var(--ink)}
+
+  /* ---- bloco de alerta (o que não é) ---- */
+  .alert{background:var(--alert-bg);border-left:5px solid var(--orange);border-radius:0 8px 8px 0;padding:24px}
+  .alert h2{font-size:1.35rem;color:var(--ink);margin-bottom:14px}
+  .alert ul{list-style:none}
+  .alert li{position:relative;padding-left:20px;margin-bottom:10px;color:var(--ink)}
+  .alert li:last-child{margin-bottom:0}
+  .alert li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;background:var(--orange);border-radius:2px}
+
+  /* ---- quem fez ---- */
+  .makers{background:var(--dark);color:var(--on-dark)}
+  .makers h2{color:var(--on-dark);font-size:1.5rem;margin-bottom:28px}
+  .makers .grid{display:grid;gap:28px}
+  .makers .person .name{font-weight:700;font-size:1.15rem;color:var(--on-dark);letter-spacing:.02em}
+  .makers .person .handle{color:var(--on-dark-soft);font-size:0.95rem;margin:2px 0 12px}
+  .makers .person p{color:var(--on-dark-soft)}
+  @media(min-width:620px){ .makers .grid{grid-template-columns:1fr 1fr;gap:32px} }
+
+  /* ---- oferta ---- */
+  .offer .box{border:1px solid var(--line);border-radius:12px;padding:36px 24px;text-align:center}
+  .offer .price{font-size:3rem;font-weight:700;color:var(--ink);line-height:1;margin-bottom:12px}
+  .offer .terms{color:var(--ink-soft);margin-bottom:26px}
+  .offer .btn{max-width:420px;margin:0 auto}
+  .offer .btn-sub{color:var(--ink-soft);max-width:420px;margin-left:auto;margin-right:auto}
+
+  /* ---- FAQ ---- */
+  .faq h2{font-size:1.5rem;margin-bottom:20px;color:var(--ink)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq details:first-of-type{border-top:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font-weight:700;color:var(--ink)}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:4px;top:16px;font-size:1.5rem;color:var(--orange);font-weight:700;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq .answer{padding:0 0 20px;color:var(--ink-soft)}
+
+  /* ---- CTA final ---- */
+  .final-cta{background:var(--neutral)}
+  .final-cta .btn{max-width:420px;margin:0 auto}
+
+  /* ---- rodapé ---- */
+  footer{background:var(--dark);color:var(--on-dark)}
+  footer .logo{width:100%;max-width:180px;height:auto;display:block;margin-bottom:28px}
+  footer .note{background:rgba(255,255,255,.06);border-radius:8px;padding:22px;margin-bottom:20px}
+  footer .note p{color:var(--on-dark)}
+  footer .emerg{color:var(--on-dark-soft);margin-bottom:22px}
+  footer .emerg b{color:var(--on-dark)}
+  footer .fine{color:var(--on-dark-soft);font-size:0.85rem}
+
+  /* ---- CTA fixo no rodapé (mobile) ---- */
+  .fixed{position:fixed;left:0;right:0;bottom:0;background:var(--dark);
+    padding:10px 16px;border-top:1px solid rgba(255,255,255,.15);z-index:60;display:none}
+  .fixed .btn{max-width:660px;margin:0 auto;padding:14px 22px;font-size:1rem}
+  @media(max-width:767px){
+    .fixed{display:block}
+    body{padding-bottom:76px}
+  }
+
+  @media(max-width:400px){
+    .hero h1{font-size:1.65rem}
+    .offer .price{font-size:2.5rem}
+    section{padding:44px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="logo-cardume-branco.png" alt="Cardume">
+    <h1>Sua família tem um plano de emergência escrito?</h1>
+    <p class="sub">A maioria não tem. Tem a intenção de ter.</p>
+    <p>A Pasta de Emergência da Família são 10 fichas em branco para você preencher. Você senta uma vez, preenche, imprime e cola na geladeira. Vinte minutos e sua família passa a ter um plano.</p>
+    <a class="btn" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-cta="hero">Quero a Pasta — R$ 27</a>
+    <p class="btn-sub">Pagamento único. Acesso imediato por e-mail.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- 2. O PROBLEMA -->
+  <section class="light">
+    <div class="wrap">
+      <h2>Não é falta de vontade. É que a tarefa parece grande.</h2>
+      <p>Todo mundo já pensou "preciso organizar isso um dia". O dia não chega porque ninguém sabe por onde começar, e organizar a segurança da família inteira parece coisa de fim de semana perdido.</p>
+      <p>Esta pasta existe para tornar a tarefa pequena o suficiente para caber em uma tarde. As perguntas já estão escritas. Você só preenche as respostas.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 3. O QUE VOCÊ RECEBE -->
+  <section class="light">
+    <div class="wrap">
+      <h2>10 fichas para preencher</h2>
+      <ol class="fichas">
+        <li><span class="n">1</span><span class="txt"><b>Ficha de cada membro da família</b> — tipo sanguíneo, alergia, medicação de uso contínuo, plano de saúde</span></li>
+        <li><span class="n">2</span><span class="txt"><b>Árvore de contatos</b> — para quem ligar quando a linha local congestionar</span></li>
+        <li><span class="n">3</span><span class="txt"><b>Três pontos de encontro</b> — fora de casa, fora do bairro, fora da cidade</span></li>
+        <li><span class="n">4</span><span class="txt"><b>Planta da casa</b> — onde ficam o registro de gás, o de água e o disjuntor</span></li>
+        <li><span class="n">5</span><span class="txt"><b>Inventário 72 horas: água</b> — quanto vocês precisam e quanto já têm</span></li>
+        <li><span class="n">6</span><span class="txt"><b>Inventário 72 horas: alimento</b> — o que guardar, quanto, e como rotacionar</span></li>
+        <li><span class="n">7</span><span class="txt"><b>Inventário 72 horas: luz e energia</b> — lanterna, pilha, carregador, e as regras de segurança</span></li>
+        <li><span class="n">8</span><span class="txt"><b>Documentos</b> — o que fotografar e onde guardar as cópias</span></li>
+        <li><span class="n">9</span><span class="txt"><b>Mochila de evacuação</b> — o que vai dentro e o que não vai</span></li>
+        <li><span class="n">10</span><span class="txt"><b>Registro do simulado</b> — quanto tempo sua família leva para sair de casa</span></li>
+      </ol>
+      <div class="extra"><b>Ainda acompanha:</b> 18 etiquetas de rotação de estoque e 6 cartões de bolso para recortar e distribuir — carteira, mochila da escola, porta-luvas.</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 4. COMO FUNCIONA -->
+  <section class="light">
+    <div class="wrap">
+      <h2>Como funciona</h2>
+      <ol class="steps">
+        <li><span class="n">1</span><span class="txt"><b>Você compra e recebe o PDF na hora</b>, por e-mail. Sem cadastro, sem senha, sem aplicativo.</span></li>
+        <li><span class="n">2</span><span class="txt"><b>Preenche na tela e salva, ou imprime e escreve à mão.</b> As duas coisas funcionam.</span></li>
+        <li><span class="n">3</span><span class="txt"><b>Imprime e deixa num lugar que todo mundo da casa sabe qual é.</b> Reimprime qualquer ficha sempre que algo mudar.</span></li>
+      </ol>
+      <a class="btn" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-cta="meio">Comprar agora — R$ 27</a>
+    </div>
+  </section>
+
+  <!-- 5. O QUE ISTO NÃO É -->
+  <section class="light">
+    <div class="wrap">
+      <div class="alert">
+        <h2>Para não haver surpresa</h2>
+        <ul>
+          <li>Não é curso. Não tem aula e não tem vídeo.</li>
+          <li>Não é comunidade. Não tem grupo e não tem senha.</li>
+          <li>Não é assinatura. Você paga uma vez.</li>
+          <li>Não é um livro para ler. É um arquivo para preencher.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. QUEM FEZ -->
+  <section class="makers">
+    <div class="wrap">
+      <h2>Quem está do outro lado desta pasta</h2>
+      <div class="grid">
+        <div class="person">
+          <div class="name">MORAES</div>
+          <div class="handle">@moraes.preparacao</div>
+          <p>Fuzileiro Naval. Passou a vida treinando para o que a maioria das pessoas espera que nunca aconteça. Hoje ensina preparação familiar para mais de 160 mil pessoas.</p>
+        </div>
+        <div class="person">
+          <div class="name">ANDREIA</div>
+          <div class="handle">@andreia.preparacao</div>
+          <p>Cuida da parte que faz o plano funcionar no dia a dia: casa, estoque, alimentação e rotina. Preparação que não cabe na rotina não sobrevive à primeira semana.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. OFERTA -->
+  <section class="light offer">
+    <div class="wrap">
+      <div class="box">
+        <div class="price">R$ 27</div>
+        <p class="terms">pagamento único · Pix ou cartão · acesso imediato</p>
+        <a class="btn" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-cta="oferta">Quero a Pasta da minha família</a>
+        <p class="btn-sub">PDF de 15 páginas, preenchível e imprimível. Enviado para o seu e-mail assim que o pagamento for confirmado.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 8. PERGUNTAS -->
+  <section class="light faq">
+    <div class="wrap">
+      <h2>Perguntas</h2>
+      <details>
+        <summary>Preciso de algum programa especial para preencher?</summary>
+        <div class="answer">Não. Qualquer leitor de PDF abre e preenche — no celular ou no computador. Se preferir, imprime e escreve à mão.</div>
+      </details>
+      <details>
+        <summary>Posso imprimir mais de uma vez?</summary>
+        <div class="answer">Pode. Reimprima quantas vezes quiser, inclusive fichas separadas quando algo mudar.</div>
+      </details>
+      <details>
+        <summary>Serve para quem mora em apartamento?</summary>
+        <div class="answer">Serve. As fichas de planta, registros, evacuação e estoque valem para casa e para apartamento.</div>
+      </details>
+      <details>
+        <summary>Em quanto tempo recebo?</summary>
+        <div class="answer">Assim que o pagamento é confirmado, o arquivo chega no e-mail cadastrado na compra.</div>
+      </details>
+      <details>
+        <summary>É um pagamento por mês?</summary>
+        <div class="answer">Não. É um pagamento único de R$ 27.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <div class="wrap">
+      <a class="btn" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-cta="final">Quero a Pasta — R$ 27</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- 9. RODAPÉ -->
+<footer>
+  <section>
+    <div class="wrap">
+      <img class="logo" src="logo-cardume-azul.png" alt="Cardume">
+      <div class="note">
+        <p><strong>Este material organiza o plano da sua família. Ele não substitui o serviço público de emergência.</strong></p>
+      </div>
+      <p class="emerg">Em qualquer ocorrência real, ligue primeiro: <b>193 Bombeiros · 192 SAMU · 190 Polícia · 199 Defesa Civil</b></p>
+      <p class="fine">Cardume · @moraes.preparacao · @andreia.preparacao</p>
+    </div>
+  </section>
+</footer>
+
+<!-- CTA fixo (telas < 768px) -->
+<div class="fixed">
+  <a class="btn" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-cta="fixo">Quero a Pasta — R$ 27</a>
+</div>
+
+<script>
+  // Repassa os parâmetros UTM da URL de origem para o checkout, na mesma aba.
+  // Sem UTM na URL, o link vai limpo. Vale para todos os botões [data-cta].
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var hasUtm = false;
+    params.forEach(function (v, k) { if (k.indexOf("utm_") === 0) hasUtm = true; });
+    if (!hasUtm) return; // link permanece limpo
+    var qs = params.toString();
+    var ctas = document.querySelectorAll("a[data-cta]");
+    for (var i = 0; i < ctas.length; i++) {
+      var base = ctas[i].getAttribute("href");
+      ctas[i].setAttribute("href", base + (base.indexOf("?") > -1 ? "&" : "?") + qs);
+    }
+  })();
+</script>
+</body>
+</html>
