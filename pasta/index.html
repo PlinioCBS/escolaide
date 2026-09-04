@@ -319,21 +319,11 @@
   <a class="btn" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-cta="fixo">Quero a Pasta — R$ 27</a>
 </div>
 
+<!-- Repasse de UTMs + sck para o checkout — código OFICIAL da hub.la.
+     Decora qualquer link para domínios hub.la com as UTMs da URL de origem e
+     monta o parâmetro sck (atribuição da venda na hub.la). Sem UTM, o link vai limpo. -->
 <script>
-  // Repassa os parâmetros UTM da URL de origem para o checkout, na mesma aba.
-  // Sem UTM na URL, o link vai limpo. Vale para todos os botões [data-cta].
-  (function () {
-    var params = new URLSearchParams(location.search);
-    var hasUtm = false;
-    params.forEach(function (v, k) { if (k.indexOf("utm_") === 0) hasUtm = true; });
-    if (!hasUtm) return; // link permanece limpo
-    var qs = params.toString();
-    var ctas = document.querySelectorAll("a[data-cta]");
-    for (var i = 0; i < ctas.length; i++) {
-      var base = ctas[i].getAttribute("href");
-      ctas[i].setAttribute("href", base + (base.indexOf("?") > -1 ? "&" : "?") + qs);
-    }
-  })();
+(function () { if (window.__hublaUtm) return; window.__hublaUtm = true; var HOSTS = ['pay.hub.la', 'invoice.hub.la', 'app.hub.la', 'hub.la']; var UTMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']; function decorate() { var params = new URLSearchParams(window.location.search); if (!params.toString()) return; var values = UTMS.map(function (key) { return params.get(key) || ''; }); var sck = values.some(Boolean) ? values.join('|') : ''; var links = document.querySelectorAll('a[href]'); for (var i = 0; i < links.length; i++) { var url; try { url = new URL(links[i].href, window.location.href); } catch (error) { continue; } var host = url.hostname.replace(/^www\./, ''); if (HOSTS.indexOf(host) === -1) continue; params.forEach(function (value, key) { if (!url.searchParams.has(key)) url.searchParams.set(key, value); }); if (sck && !url.searchParams.has('sck')) url.searchParams.set('sck', sck); links[i].href = url.toString(); } } if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', decorate); } else { decorate(); } })();
 </script>
 </body>
 </html>
