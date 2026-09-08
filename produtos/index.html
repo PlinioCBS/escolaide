@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Produtos · Cardume</title>
-<meta name="description" content="Equipamentos IDE — faca e caixinha de fogo para a sua preparação.">
+<meta name="description" content="Comunidade, Pasta de Emergência da Família e Ebook Mochila de Emergência — materiais para preparar a sua família.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/assets/brand-mark-tight.png">
 <style>
@@ -51,30 +51,32 @@
   .head h1{font-size:2rem;margin-bottom:var(--space-3)}
   .head p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--space-6);max-width:760px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-6);max-width:1040px}
   .product{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;display:flex;flex-direction:column}
-  .product-img{position:relative;aspect-ratio:3/2;background:var(--surface-brand-subtle);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-3);color:var(--blue-500);border-bottom:1px solid var(--color-border)}
-  .product-img svg{width:52px;height:52px;stroke:currentColor;fill:none;stroke-width:1.5;opacity:.55}
-  .product-img .ph{font-size:0.75rem;font-weight:700;letter-spacing:.02em;color:var(--brand-primary);opacity:.7;text-transform:uppercase}
-  .product-img.has-photo{padding:0;background:#1a1712;display:block}
-  .product-img .pimg{width:100%;height:100%;object-fit:cover;display:block}
-  .thumbs{display:flex;gap:var(--space-2);padding:10px 12px;background:var(--color-surface);border-bottom:1px solid var(--color-border)}
-  .thumb{width:56px;height:42px;border:2px solid var(--color-border);border-radius:6px;overflow:hidden;padding:0;cursor:pointer;background:none;transition:border-color var(--dur) var(--ease)}
-  .thumb.active{border-color:var(--brand-accent)}
-  .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+  .product.soon{opacity:.92}
+
+  .card-head{position:relative;background:var(--surface-brand-subtle);border-bottom:1px solid var(--color-border);padding:var(--space-8) var(--space-6);display:flex;flex-direction:column;align-items:center;gap:var(--space-3);color:var(--brand-primary)}
+  .card-head svg{width:44px;height:44px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .card-head .kind{font-size:0.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;opacity:.85}
+  .badge-soon{position:absolute;top:12px;right:12px;background:var(--neutral-200);color:var(--text-secondary);font-size:0.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 10px;border-radius:var(--radius-pill)}
+
   .product-body{padding:var(--space-6);display:flex;flex-direction:column;gap:var(--space-3);flex:1}
-  .product h3{font-size:1.25rem}
+  .product h3{font-size:1.2rem}
   .pdesc{color:var(--text-secondary);font-size:0.9375rem;line-height:var(--leading-relaxed);flex:1}
   .pprice{font-family:var(--font-display);font-weight:900;letter-spacing:var(--tracking-tight);color:var(--text-primary);line-height:1;margin-top:var(--space-2)}
   .pprice .cur{font-size:1rem;font-weight:700;color:var(--text-muted);vertical-align:super;margin-right:2px}
-  .pprice .val{font-size:2.2rem}
-  .pprice .cents{font-size:1.1rem;vertical-align:top}
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);font-family:var(--font-body);font-weight:700;font-size:1rem;padding:14px 22px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--dur) var(--ease);text-decoration:none;margin-top:var(--space-2)}
+  .pprice .val{font-size:2.1rem}
+  .pprice .cents{font-size:1.05rem;vertical-align:top}
+  .pprice .per{font-size:0.95rem;font-weight:700;color:var(--text-muted);margin-left:2px}
+  .psub{font-size:0.8125rem;color:var(--text-muted);margin-top:4px}
+  .soon-price{font-family:var(--font-display);font-weight:700;color:var(--text-muted);font-size:1.2rem;margin-top:var(--space-2)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);font-family:var(--font-body);font-weight:700;font-size:1rem;padding:14px 22px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--dur) var(--ease);text-decoration:none;margin-top:var(--space-3)}
   .btn-accent{background:var(--brand-accent);color:var(--on-accent)}
   .btn-accent:hover{background:var(--brand-accent-hover);color:var(--on-accent)}
+  .btn-disabled{background:var(--neutral-100);color:var(--text-muted);border-color:var(--color-border);cursor:not-allowed;pointer-events:none}
   .btn .arw{font-weight:400}
 
-  .foot-note{margin-top:var(--space-10);font-size:0.8125rem;color:var(--text-muted)}
   footer{border-top:1px solid var(--color-border);padding:var(--space-8) 0;margin-top:var(--space-12)}
   footer .wrap{max-width:1080px;margin:0 auto;padding:0 var(--space-6)}
   footer span{font-size:0.8125rem;color:var(--text-muted)}
@@ -92,57 +94,64 @@
 
 <main>
   <div class="head">
-    <span class="tag">Equipamentos IDE</span>
+    <span class="tag">Produtos Cardume</span>
     <h1>Produtos</h1>
-    <p>Equipamentos selecionados para a sua preparação. Escolha o seu e finalize a compra com segurança.</p>
+    <p>Materiais e comunidade para preparar a sua família. Escolha o seu e finalize a compra com segurança.</p>
   </div>
 
   <div class="grid">
-    <!-- Produto 1 -->
+
+    <!-- 1. Comunidade Cardume -->
     <article class="product">
-      <div class="product-img has-photo">
-        <img class="pimg" id="facaMain" src="/assets/faca-ide-1.jpg" alt="Faca IDE — lâmina">
-      </div>
-      <div class="thumbs" id="faca-thumbs">
-        <button class="thumb active" onclick="setFaca('/assets/faca-ide-1.jpg',this)" aria-label="Foto da lâmina"><img src="/assets/faca-ide-1.jpg" alt=""></button>
-        <button class="thumb" onclick="setFaca('/assets/faca-ide-2.jpg',this)" aria-label="Foto na bainha"><img src="/assets/faca-ide-2.jpg" alt=""></button>
+      <div class="card-head">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span class="kind">Comunidade</span>
       </div>
       <div class="product-body">
-        <h3>Faca IDE</h3>
-        <p class="pdesc">Faca fixa de preparação IDE — lâmina resistente e cabo firme, para uso em campo e no dia a dia.</p>
-        <div class="pprice"><span class="cur">R$</span><span class="val">450</span><span class="cents">,00</span></div>
-        <a class="btn btn-accent" href="#" data-produto="faca-ide">Comprar <span class="arw">→</span></a>
+        <h3>Comunidade Cardume</h3>
+        <p class="pdesc">A comunidade de preparação familiar do Moraes e da Andreia: lives mensais, suporte no grupo, descontos em produtos e cursos, e conteúdo prático pra proteger a sua família.</p>
+        <div class="pprice"><span class="cur">R$</span><span class="val">34</span><span class="cents">,90</span><span class="per">/mês</span></div>
+        <div class="psub">Assinatura · cancele quando quiser</div>
+        <a class="btn btn-accent" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX" data-produto="comunidade-cardume">Assinar <span class="arw">→</span></a>
       </div>
     </article>
 
-    <!-- Produto 2 -->
+    <!-- 2. Pasta de Emergência da Família -->
     <article class="product">
-      <div class="product-img">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></svg>
-        <span class="ph">Imagem ilustrativa</span>
+      <div class="card-head">
+        <svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h4"/></svg>
+        <span class="kind">Material em PDF</span>
       </div>
       <div class="product-body">
-        <h3>Caixinha de fogo IDE</h3>
-        <p class="pdesc">Kit compacto para iniciar fogo com segurança — item essencial no seu kit de preparação.</p>
-        <div class="pprice"><span class="cur">R$</span><span class="val">85</span><span class="cents">,00</span></div>
-        <a class="btn btn-accent" href="#" data-produto="caixinha-fogo-ide">Comprar <span class="arw">→</span></a>
+        <h3>Pasta de Emergência da Família</h3>
+        <p class="pdesc">10 fichas para preencher, imprimir e colar na geladeira. O plano de emergência da sua família pronto em 20 minutos. PDF preenchível.</p>
+        <div class="pprice"><span class="cur">R$</span><span class="val">27</span><span class="cents">,00</span></div>
+        <div class="psub">Pagamento único · acesso imediato</div>
+        <a class="btn btn-accent" href="https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3" data-produto="pasta-emergencia">Comprar <span class="arw">→</span></a>
       </div>
     </article>
+
+    <!-- 3. Ebook Mochila de Emergência (em breve) -->
+    <article class="product soon">
+      <div class="card-head">
+        <span class="badge-soon">Em breve</span>
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span class="kind">Ebook</span>
+      </div>
+      <div class="product-body">
+        <h3>Ebook Mochila de Emergência</h3>
+        <p class="pdesc">O guia do que colocar — e do que não colocar — na mochila de emergência da família. Prático e direto ao ponto.</p>
+        <div class="soon-price">Lançamento em breve</div>
+        <span class="btn btn-disabled" aria-disabled="true">Em breve</span>
+      </div>
+    </article>
+
   </div>
-
-  <p class="foot-note">Imagens meramente ilustrativas (provisórias). Página em construção.</p>
 </main>
 
 <footer>
   <div class="wrap"><span>© Cardume · Preparação familiar</span></div>
 </footer>
 
-<script>
-  function setFaca(src, el){
-    document.getElementById('facaMain').src = src;
-    document.querySelectorAll('#faca-thumbs .thumb').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-  }
-</script>
 </body>
 </html>
