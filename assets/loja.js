@@ -36,6 +36,23 @@
     document.querySelectorAll(".cart-count").forEach(function (el) { el.textContent = n; el.hidden = n <= 0; });
   }
 
+  // ---------- frete (estimativa por região, pelo 1º dígito do CEP) ----------
+  var FRETE_KEY = "ide_frete";
+  function digitsOnly(s) { return String(s == null ? "" : s).replace(/\D/g, ""); }
+  function cepMask(v) { var c = digitsOnly(v).slice(0, 8); return c.length > 5 ? c.slice(0, 5) + "-" + c.slice(5) : c; }
+  function getFrete() { try { return JSON.parse(localStorage.getItem(FRETE_KEY)) || null; } catch (e) { return null; } }
+  function saveFrete(f) { try { f ? localStorage.setItem(FRETE_KEY, JSON.stringify(f)) : localStorage.removeItem(FRETE_KEY); } catch (e) {} }
+  function calcFrete(data, cep, subtotal) {
+    var c = digitsOnly(cep);
+    if (c.length !== 8) return { ok: false, error: "cep_invalido" };
+    var conf = (data && data.frete) || {};
+    if (conf.gratis_acima_de != null && subtotal >= conf.gratis_acima_de) return { ok: true, cep: c, faixa: "Frete grátis", valor: 0 };
+    var d = parseInt(c.charAt(0), 10), faixa = null, valor = null;
+    (conf.tabela || []).forEach(function (t) { if (t.digitos && t.digitos.indexOf(d) > -1) { faixa = t.faixa; valor = t.valor; } });
+    if (valor == null) return { ok: false, error: "regiao" };
+    return { ok: true, cep: c, faixa: faixa, valor: valor };
+  }
+
   // ---------- dados ----------
   function load() {
     if (_cache) return Promise.resolve(_cache);
@@ -222,12 +239,25 @@
             '<div class="cart-line">' + brl(line) + "</div></div></div>";
       }).join("");
 
+      // frete guardado (revalida contra o subtotal atual)
+      var frete = getFrete();
+      if (frete && frete.cep) { var rc = calcFrete(data, frete.cep, subtotal); frete = rc.ok ? rc : null; saveFrete(frete); }
+      var total = subtotal + (frete ? frete.valor : 0);
+      var freteLinha = frete
+        ? (frete.valor === 0 ? '<span style="color:var(--green-600);font-weight:700">Grátis</span>' : brl(frete.valor))
+        : '<span class="muted">calcule abaixo</span>';
+
       host.innerHTML =
         '<div class="cart-grid"><div class="cart-list"><h1>Seu carrinho</h1>' + rows + "</div>" +
         '<aside class="cart-summary"><h2>Resumo</h2>' +
           '<div class="sum-row"><span>Subtotal</span><span>' + brl(subtotal) + "</span></div>" +
-          '<div class="sum-row"><span>Frete</span><span class="muted">a combinar</span></div>' +
-          '<div class="sum-total"><span>Total</span><span>' + brl(subtotal) + "</span></div>" +
+          '<div class="frete-calc"><label for="cep">Calcular frete</label>' +
+            '<div class="frete-input"><input id="cep" inputmode="numeric" maxlength="9" placeholder="Digite seu CEP" value="' + (frete ? cepMask(frete.cep) : "") + '">' +
+            '<button class="btn btn-ghost btn-sm" id="calc-frete" type="button">Calcular</button></div>' +
+            '<div id="frete-result" class="frete-result"' + (frete ? "" : " hidden") + ">" + (frete ? "Entrega para " + esc(frete.faixa) : "") + "</div>" +
+          "</div>" +
+          '<div class="sum-row"><span>Frete</span><span>' + freteLinha + "</span></div>" +
+          '<div class="sum-total"><span>Total</span><span>' + brl(total) + "</span></div>" +
           (temEncomenda ? '<div class="aviso">Há itens <strong>feitos sob encomenda</strong> — produção e envio em até 10 dias após o pagamento.</div>' : "") +
           '<button class="btn btn-accent btn-block" id="checkout">Finalizar compra</button>' +
           '<div id="checkout-msg" class="checkout-msg" hidden></div>' +
@@ -245,6 +275,21 @@
       host.querySelectorAll(".cart-remove").forEach(function (b) {
         b.addEventListener("click", function () { removeFromCart(b.getAttribute("data-slug")); renderCart(); });
       });
+      // frete
+      var cepInput = document.getElementById("cep"), freteResult = document.getElementById("frete-result");
+      if (cepInput) cepInput.addEventListener("input", function () { cepInput.value = cepMask(cepInput.value); });
+      function doCalc() {
+        var r = calcFrete(data, cepInput.value, subtotal);
+        if (r.ok) { saveFrete(r); renderCart(); return; }
+        freteResult.hidden = false;
+        freteResult.className = "frete-result erro";
+        freteResult.textContent = r.error === "cep_invalido"
+          ? "Digite um CEP válido (8 números)."
+          : "Não atendemos esse CEP pelo cálculo automático — fale no WhatsApp.";
+      }
+      var calcBtn = document.getElementById("calc-frete");
+      if (calcBtn) calcBtn.addEventListener("click", doCalc);
+      if (cepInput) cepInput.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); doCalc(); } });
       document.getElementById("checkout").addEventListener("click", startCheckout);
     }).catch(function () { host.innerHTML = "<p>Não foi possível carregar o carrinho.</p>"; });
   }
@@ -255,7 +300,7 @@
     btn.disabled = true; btn.textContent = "Preparando pagamento...";
     fetch("/api/checkout", {
       method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ itens: getCart() })
+      body: JSON.stringify({ itens: getCart(), cep: (getFrete() || {}).cep || "" })
     }).then(function (r) { return r.json(); }).then(function (res) {
       if (res && res.init_point) { location.href = res.init_point; return; }
       msg.hidden = false;

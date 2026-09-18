@@ -51,6 +51,16 @@ module.exports = async function handler(req, res) {
   });
   if (!mpItems.length) return res.status(400).json({ ok: false, error: 'sem_itens_validos' });
 
+  // frete recalculado no servidor (a partir do CEP + config), nunca do cliente
+  const subtotal = mpItems.reduce((s, i) => s + i.unit_price * i.quantity, 0);
+  const cep = String(body.cep || '').replace(/\D/g, '');
+  const fconf = catalogo.frete || {};
+  let frete = 0;
+  if (cep.length === 8) {
+    if (fconf.gratis_acima_de != null && subtotal >= fconf.gratis_acima_de) frete = 0;
+    else { const d = parseInt(cep.charAt(0), 10); (fconf.tabela || []).forEach((t) => { if (t.digitos && t.digitos.indexOf(d) > -1) frete = Number(t.valor); }); }
+  }
+
   const token = process.env.MP_ACCESS_TOKEN;
   if (!token) {
     // ainda não configurado — o site oferece fechar pelo WhatsApp
@@ -64,6 +74,7 @@ module.exports = async function handler(req, res) {
 
   const preference = {
     items: mpItems,
+    shipments: { cost: frete, mode: 'not_specified' },
     back_urls: {
       success: base + '/obrigado-pedido',
       pending: base + '/obrigado-pedido',

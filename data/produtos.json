@@ -1,6 +1,18 @@
 {
   "_comentario": "Fonte de dados do marketplace IDE Preparação Familiar. Para adicionar um produto, copie um bloco e edite. Campos: slug (URL única, sem espaços), categoria, tipo (fisico|digital), destaque (true no carro-chefe), preco (número ou null p/ 'sob consulta'), preco_promo, sob_encomenda, prazo_producao_dias, resumo, descricao, caracteristicas[], imagens[], checkout (mercadopago|whatsapp|hubla|soon), link (usado quando checkout=hubla), disponivel.",
   "categorias": ["Facas", "Kits de Fogo", "Bushcraft e Equipamentos", "Materiais Digitais"],
+  "frete": {
+    "_comentario": "Frete estimado por região, calculado pelo 1º dígito do CEP. EDITE os valores conforme seu custo real. gratis_acima_de: subtotal a partir do qual o frete fica grátis (null = desativado). Para frete exato dos Correios/transportadora, integrar uma API (ex.: Melhor Envio) depois.",
+    "gratis_acima_de": null,
+    "tabela": [
+      { "faixa": "São Paulo", "digitos": [0, 1], "valor": 30.00 },
+      { "faixa": "Sudeste (RJ, MG, ES)", "digitos": [2, 3], "valor": 35.00 },
+      { "faixa": "Sul (PR, SC, RS)", "digitos": [8, 9], "valor": 40.00 },
+      { "faixa": "Centro-Oeste (DF, GO, MT, MS)", "digitos": [7], "valor": 45.00 },
+      { "faixa": "Nordeste", "digitos": [4, 5], "valor": 50.00 },
+      { "faixa": "Norte", "digitos": [6], "valor": 60.00 }
+    ]
+  },
   "produtos": [
     {
       "slug": "faca-ide",
@@ -8,7 +20,7 @@
       "categoria": "Facas",
       "tipo": "fisico",
       "destaque": true,
-      "preco": 450.00,
+      "preco": 480.00,
       "preco_promo": null,
       "sob_encomenda": true,
       "prazo_producao_dias": 10,
