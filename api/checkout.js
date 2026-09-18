@@ -24,6 +24,16 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
   }
 
+  // --- proteção: bloqueia requisições de outros sites e corpos gigantes ---
+  const _orig = req.headers.origin || req.headers.referer || '';
+  if (_orig) {
+    let _h = '';
+    try { _h = new URL(_orig).hostname; } catch (e) {}
+    const _ok = _h === 'preparacaofamiliar.com.br' || _h === 'www.preparacaofamiliar.com.br' || _h === 'escolaide.vercel.app' || _h === 'localhost' || (_h.indexOf('escolaide') === 0 && _h.endsWith('.vercel.app'));
+    if (!_ok) return res.status(403).json({ ok: false, error: 'origem_nao_permitida' });
+  }
+  if (parseInt(req.headers['content-length'] || '0', 10) > 10000) return res.status(413).json({ ok: false, error: 'payload_grande' });
+
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body); } catch { body = {}; } }
   if (!body || typeof body !== 'object') body = {};
