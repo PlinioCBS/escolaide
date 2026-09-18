@@ -3,497 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cardume · Preparação familiar, com calma</title>
-<meta name="description" content="Entre para o Cardume e comece a preparar sua casa — água, alimentos e organização — com calma, no seu ritmo e com gente fazendo junto. Condição especial: 12x de R$16,00.">
+<title>IDE Preparação Familiar — Academia IDE</title>
+<meta name="description" content="Comunidade, equipamentos e treinamentos de preparação familiar, sobrevivência e bushcraft — com quem vive isso de verdade.">
 <link rel="icon" href="/assets/brand-mark-tight.png">
+<link rel="stylesheet" href="/assets/store.css">
 <style>
-  /* ============================================================
-     CARDUME — layout azul da marca + acentos em laranja.
-     Página de vendas (VSL) com oferta em destaque.
-     ============================================================ */
-  :root{
-    --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
-    --blue-200:oklch(83% 0.07 238); --blue-500:#276fc7; --blue-600:#1d63bb;
-    --blue-700:#0f5aad; --blue-800:#064b9d;
-    --orange-50:oklch(96% 0.03 55); --orange-100:oklch(91% 0.06 50);
-    --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:#b8500f;
-    --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6;
-    --neutral-200:#d8dbd4; --neutral-300:#c3c6bd; --neutral-400:#9a9d94;
-    --neutral-500:#787b73; --neutral-600:#5b5e56; --neutral-700:#41443d;
-    --neutral-800:#2b2d27; --neutral-900:#15130f;
-    --color-bg:var(--neutral-50); --color-surface:var(--neutral-0);
-    --color-surface-sunken:var(--neutral-100); --color-border:var(--neutral-200);
-    --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600);
-    --text-muted:var(--neutral-500); --text-on-brand:var(--neutral-0);
-    --text-link:var(--blue-700);
-    --brand-primary:var(--blue-600); --brand-primary-hover:var(--blue-700);
-    --brand-primary-active:var(--blue-800); --brand-accent:var(--orange-500);
-    --brand-accent-hover:var(--orange-600); --on-accent:#1a1206;
-    --surface-brand:var(--blue-600); --surface-brand-subtle:var(--blue-50);
-    --surface-accent-subtle:var(--orange-50);
-    --state-success:#2f8f5b; --state-success-subtle:oklch(94% 0.05 150);
-    --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --font-body:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
-    --text-display-1:clamp(2.2rem,4vw,3.3rem); --text-h2:1.75rem; --text-h3:1.375rem;
-    --text-body-lg:1.125rem; --text-body:1rem; --text-body-sm:0.9375rem; --text-caption:0.8125rem;
-    --leading-tight:1.06; --leading-snug:1.25; --leading-normal:1.5; --leading-relaxed:1.6;
-    --weight-regular:400; --weight-medium:500; --weight-bold:700; --weight-display:900;
-    --tracking-tight:-0.02em; --tracking-wide:0.03em;
-    --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
-    --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
-    --space-20:80px; --space-24:96px;
-    --radius-sm:8px; --radius-md:14px; --radius-lg:20px; --radius-xl:28px; --radius-pill:999px;
-    --shadow-sm:0 1px 2px oklch(20% 0.02 250 / 0.06),0 1px 1px oklch(20% 0.02 250 / 0.04);
-    --shadow-md:0 4px 12px oklch(20% 0.05 250 / 0.08),0 1px 2px oklch(20% 0.02 250 / 0.05);
-    --shadow-lg:0 12px 32px oklch(20% 0.06 250 / 0.12),0 2px 6px oklch(20% 0.02 250 / 0.06);
-    --shadow-focus:0 0 0 3px oklch(65% 0.13 246 / 0.35);
-    --ease-standard:cubic-bezier(.25,.8,.4,1); --duration-base:200ms;
-    --wrap:1080px;
-  }
+  /* ---- home institucional ---- */
+  .hero{background:var(--dark, #0f2740);position:relative;overflow:hidden}
+  .hero{background:linear-gradient(180deg, #123 0%, #0e2136 100%)}
+  .hero .wrap{padding:var(--space-16) var(--space-6) var(--space-12);position:relative;z-index:2}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.1);color:#dbe6f2;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-pill);padding:5px 14px;font-size:0.8rem;font-weight:700;letter-spacing:.03em;margin-bottom:var(--space-5)}
+  .hero h1{color:#fff;font-size:2.6rem;line-height:1.05;max-width:16ch;margin-bottom:var(--space-4)}
+  .hero p.sub{color:#c2d2e2;font-size:1.15rem;line-height:1.55;max-width:52ch;margin-bottom:var(--space-8)}
+  .hero .hero-ctas{display:flex;gap:var(--space-3);flex-wrap:wrap}
+  @media(max-width:520px){ .hero h1{font-size:2rem} }
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--color-bg);color:var(--text-primary);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-normal);-webkit-font-smoothing:antialiased}
-  h1,h2,h3{font-family:var(--font-display);letter-spacing:var(--tracking-tight);font-weight:var(--weight-display);line-height:var(--leading-tight)}
-  h1{font-size:var(--text-display-1)} h2{font-size:var(--text-h2)} h3{font-size:var(--text-h3);font-weight:var(--weight-bold)}
-  a{color:var(--text-link);text-decoration:none}
-  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--space-6)}
-  section{padding:var(--space-20) 0}
-  :focus-visible{outline:none;box-shadow:var(--shadow-focus)}
+  .section{padding:var(--space-16) 0}
+  .section .wrap{max-width:1120px}
+  .section-head{max-width:60ch;margin-bottom:var(--space-10)}
+  .section-head .kicker{color:var(--brand-primary);font-weight:800;font-size:0.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--space-3)}
+  .section-head h2{font-size:2rem;margin-bottom:var(--space-3)}
+  .section-head p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
 
-  /* ---- labels ---- */
-  .tag{display:inline-block;background:var(--surface-brand-subtle);color:var(--brand-primary-active);border-radius:var(--radius-pill);padding:4px 14px;font-size:var(--text-caption);font-weight:var(--weight-bold)}
-  .tag.accent{background:var(--surface-accent-subtle);color:var(--orange-700)}
-  .tag.pulse{background:var(--brand-accent);color:var(--on-accent);display:inline-flex;align-items:center;gap:8px}
-  .tag.pulse::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--on-accent);animation:blink 1.4s var(--ease-standard) infinite}
-  .kicker{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary);letter-spacing:var(--tracking-wide)}
-  .lead{font-size:var(--text-body-lg);line-height:var(--leading-relaxed);color:var(--text-secondary);max-width:60ch}
+  /* pilares */
+  .pillars{display:grid;grid-template-columns:1fr;gap:var(--space-6)}
+  @media(min-width:820px){ .pillars{grid-template-columns:repeat(3,1fr)} }
+  .pillar{display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-8);box-shadow:var(--shadow-sm);color:inherit;transition:box-shadow var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .pillar:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+  .pillar .pico{width:54px;height:54px;border-radius:14px;background:var(--surface-brand-subtle);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-5)}
+  .pillar .pico svg{width:28px;height:28px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .pillar h3{font-size:1.3rem;margin-bottom:var(--space-3)}
+  .pillar p{color:var(--text-secondary);line-height:var(--leading-relaxed);flex:1;margin-bottom:var(--space-5)}
+  .pillar .go{font-weight:800;color:var(--brand-primary)}
+  .pillar.accent .pico{background:color-mix(in oklab,var(--orange-500) 14%,white);color:var(--orange-700)}
+  .pillar.accent .go{color:var(--orange-700)}
 
-  /* ---- buttons ---- */
-  .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-3);font-family:var(--font-body);font-weight:var(--weight-bold);font-size:16px;padding:14px 26px;border-radius:var(--radius-pill);border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background var(--duration-base) var(--ease-standard),transform var(--duration-base) var(--ease-standard)}
-  .btn-primary{background:var(--brand-primary);color:var(--text-on-brand)}
-  .btn-primary:hover{background:var(--brand-primary-hover);color:var(--text-on-brand)}
-  .btn-accent{background:var(--brand-accent);color:var(--on-accent)}
-  .btn-accent:hover{background:var(--brand-accent-hover);color:var(--on-accent);transform:translateY(-1px)}
-  .btn-accent:active{background:var(--orange-700);color:var(--on-accent);transform:none}
-  .btn-lg{font-size:18px;padding:18px 36px}
-  .btn-sm{font-size:14px;padding:9px 18px}
-  .btn .arw{font-weight:var(--weight-regular)}
-  .btn-note{display:block;font-size:var(--text-caption);color:var(--text-muted);margin-top:var(--space-3)}
+  /* quem somos */
+  .about{background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
+  .about .cols{display:grid;grid-template-columns:1fr;gap:var(--space-8);align-items:center}
+  @media(min-width:820px){ .about .cols{grid-template-columns:1.2fr 1fr} }
+  .about img{border-radius:var(--radius-lg);width:100%;object-fit:cover;aspect-ratio:4/3}
+  .about p{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-4)}
 
-  /* ---- topbar ---- */
-  .topbar{position:sticky;top:0;z-index:20;background:oklch(96% 0.004 90 / .9);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid var(--color-border)}
-  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .topbar .logo{height:26px;width:auto;display:block}
-  .topbar-right{display:flex;align-items:center;gap:var(--space-5)}
-  .topbar .tag-txt{font-size:var(--text-caption);color:var(--text-muted)}
-  .topbar .nav-link{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary)}
-  .topbar .nav-link:hover{color:var(--brand-primary-hover)}
+  /* instrutores */
+  .team{display:grid;grid-template-columns:1fr;gap:var(--space-6)}
+  @media(min-width:640px){ .team{grid-template-columns:1fr 1fr} }
+  .person{display:flex;gap:var(--space-5);background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6)}
+  .person img{width:88px;height:88px;border-radius:50%;object-fit:cover;flex:none}
+  .person .nome{font-weight:800;font-size:1.1rem}
+  .person .handle{color:var(--brand-primary);font-size:0.9rem;font-weight:700;margin:2px 0 8px}
+  .person p{color:var(--text-secondary);font-size:0.9rem;line-height:1.55}
 
-  /* ---- hero (VSL de vendas) ---- */
-  .hero{text-align:center;padding-top:var(--space-10);padding-bottom:var(--space-16)}
-  .hero .tag.pulse{margin-bottom:var(--space-5)}
-  .hero h1{max-width:26ch;margin:0 auto var(--space-4)}
-  .hero .lead{margin:0 auto var(--space-8);text-align:center}
-  .hero-cta{display:flex;flex-direction:column;align-items:center;gap:var(--space-3);margin-top:var(--space-8)}
-  .hero-trust{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-4);margin-top:var(--space-6)}
-  .trust-item{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-caption);color:var(--text-secondary)}
-  .trust-item img{width:15px;height:15px;opacity:.7}
+  /* contato / redes */
+  .contact{background:linear-gradient(180deg,#123 0%,#0e2136 100%);color:#fff}
+  .contact h2{color:#fff;font-size:1.9rem;margin-bottom:var(--space-4)}
+  .contact p{color:#c2d2e2;line-height:var(--leading-relaxed);margin-bottom:var(--space-6);max-width:52ch}
+  .contact .links{display:flex;gap:var(--space-3);flex-wrap:wrap}
+  .contact .chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:var(--radius-pill);padding:10px 18px;font-weight:700;font-size:0.95rem}
+  .contact .chip:hover{background:rgba(255,255,255,.16)}
 
-  /* price teaser (embaixo do CTA do hero) */
-  .price-teaser{font-size:var(--text-body-sm);color:var(--text-secondary)}
-  .price-teaser .old{text-decoration:line-through;color:var(--text-muted)}
-  .price-teaser .new{color:var(--orange-700);font-weight:var(--weight-bold)}
-
-  /* video */
-  .videowrap{max-width:840px;margin:0 auto}
-  .videoframe{position:relative;aspect-ratio:16/9;background:var(--neutral-900);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-4);overflow:hidden}
-  .videoframe .play{width:84px;height:84px;border-radius:var(--radius-pill);background:var(--brand-accent);display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md);transition:background var(--duration-base) var(--ease-standard)}
-  .videoframe:hover .play{background:var(--brand-accent-hover)}
-  .videoframe .play::after{content:"";border-left:26px solid var(--on-accent);border-top:15px solid transparent;border-bottom:15px solid transparent;margin-left:7px}
-  .videoframe .ph{font-size:var(--text-body-sm);color:var(--neutral-400)}
-  .videoframe .vid{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-  /* ---- section header ---- */
-  .sec-head{max-width:64ch;margin-bottom:var(--space-10)}
-  .sec-head .kicker{display:inline-block;margin-bottom:var(--space-3)}
-  .sec-head h2{margin-bottom:var(--space-4)}
-
-  /* ---- cards ---- */
-  .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-5)}
-  .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-6)}
-  .card .ico{width:26px;height:26px;margin-bottom:var(--space-4)}
-  .card h3{margin-bottom:var(--space-2)}
-  .card p{color:var(--text-secondary);font-size:var(--text-body-sm);line-height:var(--leading-relaxed)}
-
-  /* ---- story / split ---- */
-  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--space-12);align-items:center}
-  .quote{font-family:var(--font-display);font-weight:var(--weight-bold);font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:var(--leading-snug);letter-spacing:var(--tracking-tight)}
-  .quote em{color:var(--brand-primary);font-style:normal}
-  .panel{background:var(--surface-brand-subtle);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-8)}
-  .panel .kicker{display:block;margin-bottom:var(--space-4)}
-  .panel p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
-  .panel p + p{margin-top:var(--space-4)}
-
-  /* ---- concept band ---- */
-  .band{background:var(--surface-brand);color:#fff;border-radius:var(--radius-lg);padding:var(--space-16) var(--space-12);text-align:center}
-  .band .kicker{color:#fff;opacity:.8}
-  .band h2{color:#fff;margin:var(--space-4) auto var(--space-5);max-width:22ch}
-  .band p{color:#fff;opacity:.92;font-size:var(--text-body-lg);line-height:var(--leading-relaxed);max-width:62ch;margin:0 auto}
-
-  /* ---- authority (com foto do casal) ---- */
-  .authority-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--space-10);align-items:center}
-  .authority-photo{position:relative;max-width:380px;width:100%}
-  .authority-photo::before{content:"";position:absolute;right:-14px;bottom:-14px;width:70%;height:52%;background:var(--surface-brand-subtle);border:1px solid var(--color-border);border-radius:var(--radius-lg);z-index:0}
-  .authority-photo img{position:relative;z-index:1;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 18%;border-radius:var(--radius-lg);border:1px solid var(--color-border);box-shadow:var(--shadow-lg);display:block;background:#fff}
-  .photo-badge{position:absolute;left:var(--space-4);bottom:var(--space-4);z-index:2;background:var(--brand-accent);color:var(--on-accent);font-weight:var(--weight-bold);font-size:var(--text-caption);padding:8px 14px;border-radius:var(--radius-pill);box-shadow:var(--shadow-md)}
-  .bios-stack{display:flex;flex-direction:column;gap:var(--space-5)}
-  .bio h3{margin-bottom:var(--space-1)}
-  .bio .role{font-size:var(--text-body-sm);font-weight:var(--weight-bold);color:var(--brand-primary);margin-bottom:var(--space-3)}
-  .bio p{color:var(--text-secondary);font-size:var(--text-body-sm);line-height:var(--leading-relaxed)}
-  .creds{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-4)}
-  .creds span{font-size:var(--text-caption);color:var(--text-secondary);background:var(--color-surface-sunken);border-radius:var(--radius-pill);padding:5px 12px}
-
-  /* ---- deliverables ---- */
-  .checklist{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-4)}
-  .checklist li{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-md);box-shadow:var(--shadow-sm);padding:var(--space-5);display:flex;gap:var(--space-4);align-items:flex-start}
-  .checklist .mk{width:22px;height:22px;flex:none;margin-top:2px}
-  .checklist strong{font-weight:var(--weight-bold)}
-  .checklist p{color:var(--text-secondary);font-size:var(--text-body-sm);margin-top:2px;line-height:var(--leading-relaxed)}
-
-  /* ---- mid cta ---- */
-  .midcta{text-align:center;margin-top:var(--space-12)}
-
-  /* ---- for / not for ---- */
-  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--space-5)}
-  .two .card h3{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-3)}
-  .two ul{list-style:none}
-  .two li{padding:11px 0;color:var(--text-secondary);font-size:var(--text-body-sm);border-top:1px solid var(--color-border)}
-  .two li:first-child{border-top:none}
-  .badge{font-size:var(--text-caption);font-weight:var(--weight-bold);padding:4px 12px;border-radius:var(--radius-pill)}
-  .badge.yes{color:var(--state-success);background:var(--state-success-subtle)}
-  .badge.no{color:var(--text-muted);background:var(--color-surface-sunken)}
-
-  /* ---- offer (destaque) ---- */
-  .offer{text-align:center}
-  .offercard{position:relative;max-width:560px;margin:0 auto;background:var(--color-surface);border:2px solid var(--brand-accent);border-radius:var(--radius-xl);box-shadow:0 18px 50px oklch(50% 0.14 45 / .18);padding:var(--space-12) var(--space-10) var(--space-10)}
-  .disc-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--brand-accent);color:var(--on-accent);font-weight:var(--weight-bold);font-size:var(--text-body-sm);letter-spacing:.02em;padding:8px 20px;border-radius:var(--radius-pill);box-shadow:var(--shadow-md);white-space:nowrap}
-  .offercard .kicker{display:block;margin-bottom:var(--space-2)}
-  .price-from{font-size:var(--text-body);color:var(--text-muted);text-decoration:line-through;margin-bottom:var(--space-1)}
-  .price{font-family:var(--font-display);font-weight:var(--weight-display);line-height:1;letter-spacing:var(--tracking-tight);margin-bottom:var(--space-2)}
-  .price .x{display:block;font-family:var(--font-body);font-size:16px;font-weight:var(--weight-bold);color:var(--text-secondary);letter-spacing:.02em;margin-bottom:var(--space-2)}
-  .price .cur{font-size:28px;vertical-align:super;color:var(--brand-accent);margin-right:2px}
-  .price .val{font-size:74px;color:var(--brand-accent)}
-  .price .cents{font-size:32px;color:var(--brand-accent);vertical-align:top}
-  .price-eq{font-size:var(--text-caption);color:var(--text-muted);margin-bottom:var(--space-6)}
-  .included{list-style:none;text-align:left;max-width:330px;margin:0 auto var(--space-8);display:flex;flex-direction:column;gap:var(--space-3)}
-  .included li{display:flex;gap:10px;font-size:var(--text-body-sm);color:var(--text-primary)}
-  .included li::before{content:"✓";color:var(--state-success);font-weight:var(--weight-bold);flex:none}
-  .guarantee{display:flex;align-items:center;justify-content:center;gap:var(--space-2);font-size:var(--text-caption);color:var(--text-muted);margin-top:var(--space-5)}
-  .guarantee img{width:15px;height:15px;opacity:.7}
-  .offer-urgency{margin-top:var(--space-5);font-size:var(--text-caption);color:var(--orange-700);font-weight:var(--weight-bold)}
-
-  /* ---- faq ---- */
-  .faq{max-width:760px;margin:0 auto}
+  /* faq */
   .faq details{border-bottom:1px solid var(--color-border)}
-  .faq summary{cursor:pointer;list-style:none;padding:var(--space-5) 0;font-family:var(--font-display);font-size:var(--text-h3);font-weight:var(--weight-bold);letter-spacing:var(--tracking-tight);display:flex;justify-content:space-between;gap:var(--space-5);align-items:center}
+  .faq details:first-of-type{border-top:1px solid var(--color-border)}
+  .faq summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font-weight:700;color:var(--text-primary)}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";color:var(--brand-primary);font-family:var(--font-body);font-weight:var(--weight-regular);font-size:26px;flex:none;line-height:1}
+  .faq summary::after{content:"+";position:absolute;right:6px;top:14px;font-size:1.5rem;color:var(--brand-accent);font-weight:700}
   .faq details[open] summary::after{content:"–"}
-  .faq p{color:var(--text-secondary);padding:0 0 var(--space-6);font-size:var(--text-body);line-height:var(--leading-relaxed);max-width:66ch}
+  .faq .ans{padding:0 0 18px;color:var(--text-secondary);line-height:var(--leading-relaxed);max-width:70ch}
 
-  /* ---- final ---- */
-  .final .band h2{max-width:24ch}
-  .final .lead{color:#fff;opacity:.92;margin:0 auto var(--space-8);text-align:center}
-  .final .price-teaser{color:#fff;opacity:.9;margin-top:var(--space-4)}
-  .final .price-teaser .old{color:rgba(255,255,255,.6)}
-  .final .price-teaser .new{color:#fff}
-
-  /* ---- footer ---- */
-  footer{border-top:1px solid var(--color-border);padding:var(--space-10) 0}
-  footer .wrap{display:flex;flex-wrap:wrap;gap:var(--space-5);justify-content:space-between;align-items:center}
-  footer .fmark{height:24px;width:auto}
-  footer .copy{font-size:var(--text-caption);color:var(--text-muted)}
-  footer nav a{color:var(--text-secondary);font-size:var(--text-caption);margin-left:var(--space-5)}
-  footer nav a:hover{color:var(--brand-primary)}
-  .ph-tag{color:var(--text-muted)}
-  footer .copy .foot-support{display:block;margin-top:2px}
-  footer .copy a{color:var(--text-secondary)}
-  footer .copy a:hover{color:var(--brand-primary)}
-
-  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-  @media (max-width:860px){
-    section{padding:var(--space-16) 0}
-    .split{grid-template-columns:1fr;gap:var(--space-8)}
-    .authority-grid{grid-template-columns:1fr;gap:var(--space-10);justify-items:center}
-    .authority-photo{margin:0 auto}
-    .band{padding:var(--space-12) var(--space-6)}
-    .topbar .tag-txt{display:none}
-    .offercard{padding:var(--space-10) var(--space-6) var(--space-8)}
-  }
-  @media (prefers-reduced-motion:no-preference){
-    .hero>.wrap>*{animation:fade .5s var(--ease-standard) both}
-  }
-  @media (prefers-reduced-motion:reduce){ .tag.pulse::before{animation:none} }
+  .note-placeholder{margin-top:var(--space-6);font-size:0.8rem;color:var(--text-muted)}
 </style>
 <script src="/assets/track.js"></script>
 </head>
 <body>
 
-<!-- ============ TOPBAR ============ -->
 <header class="topbar">
   <div class="wrap">
-    <img class="logo" src="/assets/logo-full-tight.png" alt="Cardume">
-    <div class="topbar-right">
-      <span class="tag-txt">Preparação familiar, sem alarmismo</span>
-      <a class="nav-link" href="/doar">Ajude nosso projeto</a>
-      <a class="btn btn-accent btn-sm" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Assinar</a>
+    <a href="/"><img class="logo" src="/assets/logo-full-tight.png" alt="IDE Preparação Familiar"></a>
+    <div class="navlinks">
+      <a href="/cardume">Comunidade</a>
+      <a href="/loja">Produtos</a>
+      <a href="/cursos">Cursos</a>
+      <a class="btn btn-accent btn-sm" href="https://wa.me/5561993461237" target="_blank" rel="noopener">Fale conosco</a>
     </div>
   </div>
 </header>
 
-<!-- ============ 01 · HERO (VSL) ============ -->
+<!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <span class="tag pulse">Oferta especial · por tempo limitado</span>
-    <h1>Você não controla o imprevisto. Mas controla o quanto a sua família está pronta.</h1>
-    <p class="lead">No vídeo abaixo, o Moraes apresenta a comunidade e te convida para entrar — com descontos em produtos e cursos, suporte no grupo e muitas dicas práticas.</p>
-
-    <div class="videowrap">
-      <div class="videoframe">
-        <iframe class="vid" id="vsl" src="https://www.youtube.com/embed/7Xl1TiZV4T8?rel=0&amp;playsinline=1&amp;enablejsapi=1" title="Vídeo — Cardume · Moraes" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
-      </div>
-    </div>
-
-    <div class="hero-cta">
-      <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Quero deixar minha família pronta <span class="arw">→</span></a>
-      <span class="price-teaser"><span class="old">de R$ 34,90/mês</span> · por <span class="new">12x de R$ 16,00</span></span>
-    </div>
-
-    <div class="hero-trust">
-      <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/shield-check.svg" alt="">7 dias de garantia</span>
-      <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/zap.svg" alt="">Acesso imediato</span>
-      <span class="trust-item"><img src="https://unpkg.com/lucide-static@0.462.0/icons/rotate-ccw.svg" alt="">Cancele quando quiser</span>
+    <span class="tag">Academia IDE</span>
+    <h1>Prepare sua família para o que a maioria evita pensar.</h1>
+    <p class="sub">Comunidade, equipamentos e treinamentos de preparação familiar, sobrevivência e bushcraft — com quem vive isso de verdade.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-accent" href="/cardume">Conheça a comunidade</a>
+      <a class="btn btn-ghost" href="/loja" style="color:#fff;border-color:rgba(255,255,255,.3)">Ver a loja</a>
     </div>
   </div>
 </section>
 
-<!-- ============ 02 · O PROBLEMA ============ -->
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">Por que se organizar</span>
-      <h2>A falta não avisa. E raramente vem sozinha.</h2>
-      <p class="lead">Energia, água e comida falham com mais frequência do que a maioria imagina. Quando falham, quem já estava organizado atravessa com calma. Quem não estava, entra na fila.</p>
-    </div>
-    <div class="grid-3">
-      <div class="card">
-        <img class="ico" src="https://unpkg.com/lucide-static@0.462.0/icons/zap.svg" alt="">
-        <h3>Energia</h3>
-        <p>A geladeira desliga e a comida começa a estragar. O que a sua família comeria nos próximos dias?</p>
-      </div>
-      <div class="card">
-        <img class="ico" src="https://unpkg.com/lucide-static@0.462.0/icons/droplet.svg" alt="">
-        <h3>Água</h3>
-        <p>Só em 2022 o Brasil teve mais de 75 mil paralisações completas de abastecimento. Rodízios e cortes voltam mês após mês.</p>
-      </div>
-      <div class="card">
-        <img class="ico" src="https://unpkg.com/lucide-static@0.462.0/icons/shopping-basket.svg" alt="">
-        <h3>Comida</h3>
-        <p>Uma quebra na distribuição e o preço sobe de uma vez. A despensa que parecia suficiente vira pouca da noite pro dia.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<main class="container">
 
-<!-- ============ 03 · A VIRADA (HISTÓRIA) ============ -->
-<section>
-  <div class="wrap">
-    <div class="split">
-      <div>
-        <span class="kicker">O que a preparação muda</span>
-        <p class="quote" style="margin-top:var(--space-4)">Imagine acordar de madrugada com um aviso para sair de casa. A mochila já está pronta ao lado da porta. Você acorda a família, pega o essencial e vai. Do outro lado da rua, o vizinho ainda tenta decidir o que levar. <em>A diferença entre vocês não foi sorte. Foi tempo.</em></p>
+  <!-- 3 PILARES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Por onde começar</div>
+        <h2>Três caminhos, um mesmo propósito</h2>
+        <p>Escolha por onde entrar. Cada área tem a sua própria página, com tudo o que você precisa.</p>
       </div>
-      <div class="panel">
-        <span class="kicker">O que a preparação compra</span>
-        <p>A preparação não muda o que acontece lá fora. Ela muda a maneira como você atravessa.</p>
-        <p>Ela compra o tempo que você tem para responder. E, num momento apertado, tempo é o recurso mais valioso que existe: é ele que compra boas decisões.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <div class="pillars">
 
-<!-- ============ 04 · O CONCEITO (CARDUME) ============ -->
-<section>
-  <div class="wrap">
-    <div class="band">
-      <span class="kicker">O conceito</span>
-      <h2>Cardume: ninguém se prepara sozinho.</h2>
-      <p>Uma sardinha sozinha é fácil de pegar. Um cardume, não. É daí que vem o nome: preparar-se não precisa ser coisa de especialista trancado no bunker. É gente comum se organizando junto, trocando o que funciona e avançando um passo de cada vez. Com calma, na prática, e sempre acompanhada.</p>
-    </div>
-  </div>
-</section>
+        <a class="pillar" href="/cardume">
+          <div class="pico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Comunidade Cardume</h3>
+          <p>A comunidade de preparação familiar: lives mensais, suporte no grupo, descontos e conteúdo prático para proteger a sua família.</p>
+          <span class="go">Entrar na comunidade →</span>
+        </a>
 
-<!-- ============ 05 · AUTORIDADE (foto do casal) ============ -->
-<section>
-  <div class="wrap">
-    <div class="sec-head" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="kicker">Quem está por trás</span>
-      <h2 style="margin-top:var(--space-3)">As duas metades da mesma resposta.</h2>
-    </div>
-    <div class="authority-grid">
-      <div class="authority-photo">
-        <img src="/assets/casal.jpg" alt="Moraes e Andreia, fundadores do Cardume">
-        <span class="photo-badge">Moraes &amp; Andreia</span>
+        <a class="pillar accent" href="/loja">
+          <div class="pico"><svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+          <h3>Produtos e Serviços</h3>
+          <p>A Faca IDE, kits de fogo, equipamentos de bushcraft e materiais digitais — feitos à mão, com a possibilidade de comprar direto pelo site.</p>
+          <span class="go">Ver a loja →</span>
+        </a>
+
+        <a class="pillar" href="/cursos">
+          <div class="pico"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <h3>Cursos e Treinamentos</h3>
+          <p>Sobrevivência, preparação familiar, bushcraft, orientação e navegação, técnicas de fogo e treinamentos para grupos, empresas e instituições.</p>
+          <span class="go">Ver cursos →</span>
+        </a>
+
       </div>
-      <div class="bios-stack">
-        <div class="card bio">
-          <h3>Moraes</h3>
-          <div class="role">Fuzileiro naval · +30 anos</div>
-          <p>Passou a vida cuidando da segurança de quem mais precisa dela. Aqui, ele traduz o que uma vida lidando com risco real ensina para a rotina de qualquer família — sem exagero.</p>
-          <div class="creds">
-            <span>Fuzileiro naval</span><span>Treino SWAT (Texas)</span><span>Segurança de presidentes</span><span>Formou BOPE · COT · GAEP</span>
+    </div>
+  </section>
+
+  <!-- QUEM SOMOS -->
+  <section class="section about">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <div class="kicker" style="color:var(--brand-primary);font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">Quem somos</div>
+          <h2 style="font-size:2rem;margin-bottom:16px">Academia IDE</h2>
+          <p>A Academia IDE nasceu para levar preparação de verdade para as famílias — sem alarmismo e sem complicação. Ensinamos o que fazer antes que a emergência aconteça: preparar a casa, o estoque, o plano e as pessoas.</p>
+          <p>Unimos experiência de campo com o dia a dia real de uma família. É preparação que cabe na rotina — e por isso funciona.</p>
+        </div>
+        <img src="/assets/casal.jpg" alt="Moraes e Andreia — Academia IDE">
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUTORES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Instrutores</div>
+        <h2>Quem está do outro lado</h2>
+      </div>
+      <div class="team">
+        <div class="person">
+          <img src="/assets/moraes.jpg" alt="Moraes">
+          <div>
+            <div class="nome">Moraes</div>
+            <div class="handle">@moraes.preparacao</div>
+            <p>Fuzileiro Naval. Passou a vida treinando para o que a maioria das pessoas espera que nunca aconteça. Hoje ensina preparação familiar para mais de 160 mil pessoas.</p>
           </div>
         </div>
-        <div class="card bio">
-          <h3>Andreia</h3>
-          <div class="role">Mãe de três · gestão da casa</div>
-          <p>A prova de que isso funciona numa casa comum. Organiza a despensa e os recursos de casa há anos, sem nunca ter precisado de treinamento tático. Se você cuida da casa, ela mostra que preparação cabe na sua rotina.</p>
-          <div class="creds">
-            <span>Rotina real</span><span>Despensa</span><span>Recursos da casa</span>
+        <div class="person">
+          <img src="/assets/andreia.jpg" alt="Andreia">
+          <div>
+            <div class="nome">Andreia</div>
+            <div class="handle">@andreia.preparacao</div>
+            <p>Cuida da parte que faz o plano funcionar no dia a dia: casa, estoque, alimentação e rotina. Preparação que não cabe na rotina não sobrevive à primeira semana.</p>
           </div>
         </div>
       </div>
+      <p class="note-placeholder">Em breve: depoimentos de alunos, agenda de eventos e galeria de fotos e vídeos.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 06 · O QUE VOCÊ RECEBE ============ -->
-<section>
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">O que você recebe</span>
-      <h2>Um espaço de prática. Não mais um curso.</h2>
-      <p class="lead">Informação sozinha não muda comportamento. Por isso o Cardume é ação, dentro de um grupo no Telegram.</p>
+  <!-- FAQ -->
+  <section class="section faq" style="background:var(--color-surface);border-top:1px solid var(--color-border)">
+    <div class="wrap" style="max-width:820px">
+      <div class="section-head"><div class="kicker">Dúvidas</div><h2>Perguntas frequentes</h2></div>
+      <details>
+        <summary>Preciso ter experiência para começar?</summary>
+        <div class="ans">Não. Tudo é pensado para famílias comuns. Você começa pelo que faz sentido para a sua realidade — a comunidade, um material ou um curso.</div>
+      </details>
+      <details>
+        <summary>Os produtos são feitos à mão?</summary>
+        <div class="ans">Sim. A maioria das peças, como a Faca IDE, é confeccionada sob encomenda e enviada em até 10 dias após a confirmação do pagamento.</div>
+      </details>
+      <details>
+        <summary>Vocês fazem treinamentos presenciais?</summary>
+        <div class="ans">Sim — cursos de sobrevivência, bushcraft, preparação familiar e treinamentos para grupos, empresas e instituições, inclusive em outras cidades. Veja a área de Cursos e Treinamentos.</div>
+      </details>
+      <details>
+        <summary>Como falo com vocês?</summary>
+        <div class="ans">Pelo WhatsApp (61) 99346-1237 ou pelas nossas redes. Respondemos por lá.</div>
+      </details>
     </div>
-    <ul class="checklist">
-      <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Missões práticas semanais</strong><p>Pequenos passos que viram hábito, no seu ritmo.</p></div></li>
-      <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Checklists prontas</strong><p>Organização, mochila de emergência, armazenamento de alimentos e mais.</p></div></li>
-      <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Encontros ao vivo mensais</strong><p>Com a nossa equipe, para tirar dúvidas e avançar juntos.</p></div></li>
-      <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Comunidade sem julgamento</strong><p>Um lugar para perguntar e errar, com diretrizes claras de convivência.</p></div></li>
-      <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Desconto exclusivo nos cursos</strong><p>Condição de membro nos nossos cursos aprofundados.</p></div></li>
-      <li><img class="mk" src="https://unpkg.com/lucide-static@0.462.0/icons/square-check.svg" alt=""><div><strong>Tudo pelo navegador + Telegram</strong><p>Sem instalar nada complicado. Você começa hoje.</p></div></li>
-    </ul>
-    <div class="midcta">
-      <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Começar agora por 12x de R$ 16,00 <span class="arw">→</span></a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 07 · PARA QUEM É / NÃO É ============ -->
-<section>
-  <div class="wrap">
-    <div class="two">
-      <div class="card">
-        <h3><span class="badge yes">É para você</span></h3>
-        <ul>
-          <li>Se você prefere prevenir a improvisar</li>
-          <li>Se pensa um passo à frente, mesmo sem ninguém pedir</li>
-          <li>Se alguém, na sua casa, conta com você para saber o que fazer</li>
-          <li>Se está começando do zero — foi pensado para isso</li>
-          <li>Mora sozinho, em apartamento ou casa: se aplica igual</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3><span class="badge no">Não é para você</span></h3>
-        <ul>
-          <li>Se procura curso técnico com certificado</li>
-          <li>Se espera treinamento militar ou algo extremo</li>
-          <li>Se quer resposta mágica, sem prática</li>
-          <li>Se acha que preparação é comprar equipamento caro</li>
-        </ul>
+  <!-- CONTATO / REDES -->
+  <section class="section contact">
+    <div class="wrap">
+      <div class="kicker" style="color:#9fb8d4;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px">Contato</div>
+      <h2>Vamos conversar</h2>
+      <p>Tem uma dúvida sobre a comunidade, um produto ou um curso? Chama a gente.</p>
+      <div class="links">
+        <a class="chip" href="https://wa.me/5561993461237" target="_blank" rel="noopener">WhatsApp (61) 99346-1237</a>
+        <a class="chip" href="https://instagram.com/moraes.preparacao" target="_blank" rel="noopener">Instagram @moraes.preparacao</a>
+        <a class="chip" href="https://instagram.com/andreia.preparacao" target="_blank" rel="noopener">Instagram @andreia.preparacao</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ 08 · OFERTA (destaque) ============ -->
-<section class="offer" id="oferta">
-  <div class="wrap">
-    <span class="tag accent" style="margin-bottom:var(--space-6)">O convite</span>
-    <div class="offercard">
-      <span class="disc-badge">Oferta · mais de 50% OFF</span>
-      <span class="kicker">Condição especial de lançamento</span>
-      <div class="price-from">de R$ 34,90/mês</div>
-      <div class="price">
-        <span class="x">por apenas 12x de</span>
-        <span class="cur">R$</span><span class="val">16</span><span class="cents">,00</span>
-      </div>
-      <p class="price-eq">Menos da metade do valor mensal — por mais organização, autonomia e tranquilidade toda semana.</p>
-      <ul class="included">
-        <li>Missões práticas semanais e checklists prontas</li>
-        <li>Encontros ao vivo mensais com a equipe</li>
-        <li>Comunidade no Telegram, sem julgamento</li>
-        <li>Desconto exclusivo nos cursos aprofundados</li>
-      </ul>
-      <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX" style="width:100%">Quero garantir meu acesso <span class="arw">→</span></a>
-      <div class="guarantee"><img src="https://unpkg.com/lucide-static@0.462.0/icons/shield-check.svg" alt="">Garantia de 7 dias · reembolso total · cancele quando quiser</div>
-      <div class="offer-urgency">Condição por tempo limitado — aproveite enquanto está no ar.</div>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- ============ 09 · FAQ ============ -->
-<section>
+<footer class="foot">
   <div class="wrap">
-    <div class="sec-head" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="kicker">Talvez você esteja pensando</span>
-      <h2 style="margin-top:var(--space-3)">Perguntas frequentes</h2>
-    </div>
-    <div class="faq">
-      <details open><summary>Nunca me preparei para isso. É para mim?</summary><p>Sim. Foi pensado exatamente para quem está começando — você não precisa saber nada de antemão. A proposta é dar pequenos passos.</p></details>
-      <details><summary>Isso é um curso?</summary><p>Não. É um espaço de prática: missões, checklists, encontros ao vivo e uma rede de pessoas. Cursos aprofundam um tema; o Cardume transforma esse conhecimento em ação.</p></details>
-      <details><summary>Como funciona o pagamento de 12x de R$ 16,00?</summary><p>É a condição especial de lançamento: em vez de R$ 34,90 por mês, você garante o acesso por 12x de R$ 16,00 no cartão. Menos da metade do valor mensal, com 7 dias de garantia.</p></details>
-      <details><summary>Preciso instalar algum aplicativo?</summary><p>Só o Telegram, onde o dia a dia acontece. As checklists ficam numa área de membros que você acessa pelo navegador, sem baixar nada.</p></details>
-      <details><summary>Preciso comprar muitos equipamentos?</summary><p>Não. Esse é um dos maiores mitos. O que muda é usar melhor o que você já tem — muitas melhorias custam pouco ou nada.</p></details>
-      <details><summary>Tem garantia?</summary><p>Sim. Você tem 7 dias após a compra para cancelar e pedir reembolso total. Depois disso, cancela quando quiser.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 10 · CTA FINAL ============ -->
-<section class="final">
-  <div class="wrap">
-    <div class="band">
-      <span class="kicker">A porta está aberta</span>
-      <h2>Você não precisa mudar tudo hoje. Só dar o próximo passo.</h2>
-      <p class="lead">Ninguém sabe quando a próxima falta vem. Mas você pode decidir, hoje, ter mais preparo — junto com gente que está fazendo o mesmo.</p>
-      <a class="btn btn-accent btn-lg" href="https://pay.hub.la/QF9mQUV4MUF2gfBycXKX">Quero garantir meu acesso <span class="arw">→</span></a>
-      <div class="price-teaser"><span class="old">de R$ 34,90/mês</span> · por <span class="new">12x de R$ 16,00</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer>
-  <div class="wrap">
-    <img class="fmark" src="/assets/logo-full-tight.png" alt="Cardume">
-    <span class="copy">© Cardume · Preparação familiar<span class="foot-support">Suporte: <a href="https://wa.me/5561993461237" target="_blank" rel="noopener">(61) 99346-1237</a></span></span>
-    <nav>
-      <a href="#"><span class="ph-tag">diretrizes</span></a>
-      <a href="#"><span class="ph-tag">termos</span></a>
-      <a href="#"><span class="ph-tag">contato</span></a>
-    </nav>
+    <span>© IDE Preparação Familiar</span>
+    <span>Suporte: <a href="https://wa.me/5561993461237" target="_blank" rel="noopener">(61) 99346-1237</a></span>
   </div>
 </footer>
 
-<!-- Repasse de UTMs + sck para o checkout da Comunidade — código OFICIAL da hub.la.
-     Decora todos os botões que apontam para domínios hub.la com as UTMs da URL de
-     origem e monta o parâmetro sck (atribuição da venda na hub.la). Sem UTM, link limpo.
-     Convive com o /assets/track.js (um cuida do dataLayer/GTM, o outro do link da hub.la). -->
-<script>
-(function () { if (window.__hublaUtm) return; window.__hublaUtm = true; var HOSTS = ['pay.hub.la', 'invoice.hub.la', 'app.hub.la', 'hub.la']; var UTMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content']; function decorate() { var params = new URLSearchParams(window.location.search); if (!params.toString()) return; var values = UTMS.map(function (key) { return params.get(key) || ''; }); var sck = values.some(Boolean) ? values.join('|') : ''; var links = document.querySelectorAll('a[href]'); for (var i = 0; i < links.length; i++) { var url; try { url = new URL(links[i].href, window.location.href); } catch (error) { continue; } var host = url.hostname.replace(/^www\./, ''); if (HOSTS.indexOf(host) === -1) continue; params.forEach(function (value, key) { if (!url.searchParams.has(key)) url.searchParams.set(key, value); }); if (sck && !url.searchParams.has('sck')) url.searchParams.set('sck', sck); links[i].href = url.toString(); } } if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', decorate); } else { decorate(); } })();
-</script>
 </body>
 </html>
