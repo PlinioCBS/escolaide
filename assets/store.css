@@ -38,10 +38,16 @@ h3{font-weight:700}
 /* ---- topo / navegação ---- */
 .topbar{border-bottom:1px solid var(--color-border);background:var(--color-surface);position:sticky;top:0;z-index:40}
 .topbar .wrap{max-width:1120px;margin:0 auto;padding:0 var(--space-6);height:64px;display:flex;align-items:center;justify-content:space-between;gap:var(--space-4)}
-.topbar .logo{height:26px;width:auto}
+.topbar .logo{height:42px;width:auto}
 .topbar .navlinks{display:flex;align-items:center;gap:var(--space-5)}
 .topbar .navlinks a{font-size:0.9rem;color:var(--text-secondary)}
 .topbar .navlinks a:hover{color:var(--brand-primary)}
+@media(max-width:760px){
+  .topbar .wrap{flex-wrap:wrap;height:auto;min-height:54px;padding-top:8px;padding-bottom:8px;gap:6px}
+  .topbar .logo{height:34px}
+  .topbar .navlinks{order:2;width:100%;justify-content:center;flex-wrap:wrap;gap:10px 16px}
+  .topbar .navlinks a{font-size:0.85rem}
+}
 .cart-link{position:relative;display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--text-primary)!important}
 .cart-link svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7}
 .cart-count{position:absolute;top:-8px;right:-10px;min-width:18px;height:18px;padding:0 5px;border-radius:var(--radius-pill);background:var(--brand-accent);color:var(--on-accent);font-size:0.68rem;font-weight:800;display:flex;align-items:center;justify-content:center}
