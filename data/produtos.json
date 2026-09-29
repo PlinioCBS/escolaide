@@ -118,11 +118,48 @@
       "sob_encomenda": false,
       "prazo_producao_dias": 0,
       "resumo": "O guia do que colocar — e do que não colocar — na mochila de emergência da família.",
-      "descricao": "Ebook prático sobre a mochila de emergência da família. Lançamento em breve.",
-      "caracteristicas": ["Material digital", "Lançamento em breve"],
+      "descricao": "Ebook prático sobre a mochila de emergência da família: o que levar, como organizar e manter pronta. Acesso imediato por e-mail após a compra.",
+      "caracteristicas": ["Material digital em PDF", "Acesso imediato por e-mail"],
       "imagens": [],
-      "checkout": "soon",
-      "disponivel": false
+      "checkout": "hubla",
+      "link": "https://pay.hub.la/FQqpKh5cf1GVSMmzyV5P",
+      "disponivel": true
+    },
+    {
+      "slug": "comida-que-dura",
+      "nome": "Comida que Dura",
+      "categoria": "Materiais Digitais",
+      "tipo": "digital",
+      "destaque": false,
+      "preco": null,
+      "preco_promo": null,
+      "sob_encomenda": false,
+      "prazo_producao_dias": 0,
+      "resumo": "Como montar e manter um estoque de alimentos que dura — o guia da Andreia Moraes.",
+      "descricao": "Ebook da Andreia Moraes sobre alimentação de emergência: o que guardar, como armazenar e rotacionar para que a comida dure. Acesso imediato por e-mail após a compra.",
+      "caracteristicas": ["Material digital em PDF", "Por Andreia Moraes", "Acesso imediato por e-mail"],
+      "imagens": [],
+      "checkout": "hubla",
+      "link": "https://pay.hub.la/CkUqU00vHNm3vWBYkiF6",
+      "disponivel": true
+    },
+    {
+      "slug": "mochila-emergencia-pet",
+      "nome": "Ebook Mochila de Emergência do PET",
+      "categoria": "Materiais Digitais",
+      "tipo": "digital",
+      "destaque": false,
+      "preco": null,
+      "preco_promo": null,
+      "sob_encomenda": false,
+      "prazo_producao_dias": 0,
+      "resumo": "O que o seu animal precisa numa emergência — a mochila de emergência do pet.",
+      "descricao": "Ebook sobre a mochila de emergência do seu pet: itens essenciais, documentos, alimentação e cuidados para não deixar ninguém da família para trás. Acesso imediato por e-mail após a compra.",
+      "caracteristicas": ["Material digital em PDF", "Para o seu pet", "Acesso imediato por e-mail"],
+      "imagens": [],
+      "checkout": "hubla",
+      "link": "https://pay.hub.la/gqwrMzyPcj1Zc14Jnxoz",
+      "disponivel": true
     }
   ]
 }

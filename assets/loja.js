@@ -76,7 +76,7 @@
     return '<div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>';
   }
   function precoHTML(p) {
-    if (p.preco == null) return '<span class="price-consulta">Sob consulta</span>';
+    if (p.preco == null) return p.checkout === "hubla" ? "" : '<span class="price-consulta">Sob consulta</span>';
     var cents = (p.preco % 1 === 0) ? ",00" : ("," + p.preco.toFixed(2).split(".")[1]);
     var reais = Math.floor(p.preco);
     return '<span class="price" style="font-size:1.7rem"><span class="cur">R$</span>' + reais + '<span style="font-size:.6em;vertical-align:top">' + cents + "</span></span>";
@@ -160,7 +160,9 @@
       // preço
       var precoBloco = p.preco != null
         ? '<div class="p-price">' + precoHTML(p) + (p.sob_encomenda ? '<span class="p-price-note">+ frete a combinar</span>' : "") + "</div>"
-        : '<div class="p-price"><span class="price-consulta">Valor sob consulta</span></div>';
+        : (p.checkout === "hubla"
+            ? '<div class="p-price"><span class="p-price-note">Veja o preço na página de pagamento segura.</span></div>'
+            : '<div class="p-price"><span class="price-consulta">Valor sob consulta</span></div>');
 
       // CTA conforme tipo de checkout
       var cta = "";
