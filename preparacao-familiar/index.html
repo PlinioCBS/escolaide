@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preparação Familiar — Curso para Escolas · IDE</title>
+<meta name="description" content="A casa pronta antes do imprevisto. Experiência de preparação familiar para escolas: estoque, kit, plano de reencontro e simulações — encerrando com um plano escrito que a família usa.">
+<link rel="icon" href="/assets/favicon-ide.png">
+<link rel="stylesheet" href="/assets/store.css">
+<style>
+  .hero{background:linear-gradient(180deg,#123 0%,#0e2136 100%)}
+  .hero .wrap{padding:var(--space-16) var(--space-6) var(--space-12)}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.1);color:#dbe6f2;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-pill);padding:5px 14px;font-size:0.8rem;font-weight:700;letter-spacing:.03em;margin-bottom:var(--space-5)}
+  .hero h1{color:#fff;font-size:2.8rem;line-height:1.03;margin-bottom:var(--space-3)}
+  .hero .lead{color:#fff;font-size:1.3rem;font-weight:700;margin-bottom:var(--space-4)}
+  .hero .meta{color:#9fb8d4;font-size:0.95rem;line-height:1.6;margin-bottom:var(--space-8);max-width:60ch}
+  .hero .hero-ctas{display:flex;gap:var(--space-3);flex-wrap:wrap}
+  @media(max-width:520px){ .hero h1{font-size:2.1rem} .hero .lead{font-size:1.1rem} }
+
+  .section{padding:var(--space-12) 0}
+  .section .wrap{max-width:860px}
+  .kicker{color:var(--brand-primary);font-weight:800;font-size:0.78rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--space-3)}
+  .section h2{font-size:1.7rem;margin-bottom:var(--space-4)}
+  .section p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
+  .divider{border:0;border-top:1px solid var(--color-border)}
+
+  /* lista "o que os alunos fazem" */
+  .do-list{list-style:none;display:grid;gap:var(--space-3);margin-top:var(--space-2)}
+  .do-list li{position:relative;padding-left:34px;color:var(--text-primary);line-height:1.5}
+  .do-list li::before{content:"";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:6px;background:var(--surface-brand-subtle)}
+  .do-list li::after{content:"";position:absolute;left:6px;top:7px;width:8px;height:5px;border-left:2px solid var(--brand-primary);border-bottom:2px solid var(--brand-primary);transform:rotate(-45deg)}
+
+  /* cards "o que desenvolve" */
+  .skills{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-2)}
+  @media(min-width:640px){ .skills{grid-template-columns:1fr 1fr} }
+  .skill{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+  .skill .sico{width:42px;height:42px;border-radius:11px;background:var(--surface-brand-subtle);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-4)}
+  .skill .sico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .skill h3{font-size:1.05rem;margin-bottom:6px}
+  .skill p{color:var(--text-secondary);font-size:0.92rem;line-height:1.5}
+
+  /* tabela público/turma/estrutura */
+  .deflist{border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;margin-top:var(--space-2)}
+  .deflist .row{display:grid;grid-template-columns:1fr;gap:4px;padding:var(--space-5);border-bottom:1px solid var(--color-border)}
+  .deflist .row:last-child{border-bottom:0}
+  @media(min-width:640px){ .deflist .row{grid-template-columns:200px 1fr;gap:var(--space-5)} }
+  .deflist dt{font-weight:800;color:var(--text-primary)}
+  .deflist dd{color:var(--text-secondary);line-height:1.55}
+  blockquote.note{margin-top:var(--space-5);border-left:4px solid var(--brand-accent);background:var(--color-surface);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:var(--space-4) var(--space-5);color:var(--text-secondary);font-style:normal;line-height:1.55}
+
+  /* currículo */
+  .curriculo{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-2)}
+  @media(min-width:720px){ .curriculo{grid-template-columns:repeat(3,1fr)} }
+  .disc{background:var(--surface-brand-subtle);border-radius:var(--radius-md);padding:var(--space-5)}
+  .disc h3{font-size:1rem;color:var(--brand-primary);margin-bottom:6px}
+  .disc p{color:var(--text-secondary);font-size:0.9rem;line-height:1.5}
+
+  /* segurança */
+  .safe{background:color-mix(in oklab,var(--green-500) 7%,white);border:1px solid color-mix(in oklab,var(--green-500) 22%,white);border-radius:var(--radius-lg);padding:var(--space-6)}
+  .safe h2{font-size:1.3rem;margin-bottom:var(--space-3)}
+  .safe p{color:var(--neutral-700)}
+
+  /* cta band */
+  .ctaband{background:linear-gradient(180deg,#123 0%,#0e2136 100%);color:#fff;text-align:center}
+  .ctaband .wrap{padding:var(--space-12) var(--space-6)}
+  .ctaband h2{color:#fff;font-size:1.8rem;margin-bottom:var(--space-3)}
+  .ctaband p{color:#c2d2e2;margin-bottom:var(--space-6);max-width:50ch;margin-left:auto;margin-right:auto}
+
+  /* contato */
+  .contato .wrap{max-width:860px}
+  .contato .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-8);box-shadow:var(--shadow-sm)}
+  .contato .org{font-weight:800;font-size:1.1rem;margin-bottom:var(--space-2)}
+  .contato .lines{color:var(--text-secondary);line-height:1.8}
+  .contato .lines a{color:var(--brand-primary);font-weight:600}
+</style>
+<script src="/assets/track.js"></script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="/"><img class="logo" src="/assets/logo-ide.png" alt="IDE Preparação Familiar"></a>
+    <div class="navlinks">
+      <a href="/cardume">Comunidade</a>
+      <a href="/loja">Produtos</a>
+      <a href="/cursos">Cursos</a>
+      <a class="btn btn-accent btn-sm" href="https://wa.me/5561985641912" target="_blank" rel="noopener">Falar com a gente</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <span class="tag">Cursos e Experiências para Escolas</span>
+    <h1>Preparação Familiar</h1>
+    <p class="lead">A casa pronta antes do imprevisto</p>
+    <p class="meta">IDE Preparação Familiar — Cursos e Experiências para Escolas<br>Modalidade 05 de 08 · Realização no CLAT, Santo Antônio do Descoberto (GO)</p>
+    <div class="hero-ctas">
+      <a class="btn btn-accent" href="https://wa.me/5561985641912" target="_blank" rel="noopener">Levar para a minha escola</a>
+      <a class="btn btn-ghost" href="#estrutura" style="color:#fff;border-color:rgba(255,255,255,.3)">Ver estrutura</a>
+    </div>
+  </div>
+</section>
+
+<main class="container">
+
+  <!-- OBJETIVO -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">Objetivo</div>
+      <h2>Da emergência à escala da casa do aluno</h2>
+      <p>Levar a emergência para a escala da casa do aluno — falta de água, blecaute, enchente, evacuação — e encerrar com um plano escrito que a família pode usar.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- O QUE OS ALUNOS FAZEM -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">O que os alunos fazem</div>
+      <h2>Mão na massa, do início ao plano</h2>
+      <ul class="do-list">
+        <li>O que é emergência doméstica e com que frequência acontece</li>
+        <li>Estoque de água e alimento: o que guardar, onde e por quanto tempo</li>
+        <li>Kit básico e documentos organizados</li>
+        <li>Plano de reencontro da família e lista de contatos</li>
+        <li>Simulação de blecaute e de saída rápida de casa</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- O QUE DESENVOLVE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">O que a atividade desenvolve</div>
+      <h2>Competências para a vida</h2>
+      <div class="skills">
+        <div class="skill">
+          <div class="sico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <h3>Autonomia</h3>
+          <p>A criança sabe o que fazer se o adulto não estiver por perto.</p>
+        </div>
+        <div class="skill">
+          <div class="sico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+          <h3>Cooperação</h3>
+          <p>O plano só funciona se todos de casa souberem.</p>
+        </div>
+        <div class="skill">
+          <div class="sico"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3z"/></svg></div>
+          <h3>Responsabilidade</h3>
+          <p>Cuidar de quem depende: irmão menor, idoso, animal.</p>
+        </div>
+        <div class="skill">
+          <div class="sico"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+          <h3>Respeito à natureza</h3>
+          <p>Compreende eventos climáticos com informação, sem medo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- PÚBLICO, TURMA E ESTRUTURA -->
+  <section class="section" id="estrutura">
+    <div class="wrap">
+      <div class="kicker">Público, turma e estrutura</div>
+      <h2>Como a experiência acontece</h2>
+      <dl class="deflist">
+        <div class="row"><dt>Público indicado</dt><dd>Todas as idades. Linguagem e profundidade ajustadas por segmento.</dd></div>
+        <div class="row"><dt>Turma e equipe</dt><dd>Até 30 alunos. Ou 15 famílias, no formato que envolve os responsáveis.</dd></div>
+        <div class="row"><dt>Ambiente no CLAT</dt><dd>Salão coberto e área externa. Recurso multimídia para a parte expositiva.</dd></div>
+      </dl>
+      <blockquote class="note">Duração, número de participantes e faixa etária são propostas de partida — ajustáveis ao segmento e ao calendário da escola.</blockquote>
+    </div>
+  </section>
+
+  <!-- DIÁLOGO COM O CURRÍCULO -->
+  <section class="section">
+    <div class="wrap">
+      <div class="kicker">Diálogo com o currículo</div>
+      <h2>Conecta com o que já se aprende</h2>
+      <div class="curriculo">
+        <div class="disc"><h3>Ciências</h3><p>Clima, eventos extremos e prevenção.</p></div>
+        <div class="disc"><h3>Geografia</h3><p>Riscos do território e defesa civil.</p></div>
+        <div class="disc"><h3>Educação financeira</h3><p>Estoque, consumo e planejamento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUPERVISÃO E SEGURANÇA -->
+  <section class="section">
+    <div class="wrap">
+      <div class="safe">
+        <h2>Supervisão e segurança</h2>
+        <p>Atividade de baixo risco físico. O conteúdo é tratado sem imagens ou relatos que assustem a criança: o foco é o que se pode fazer, nunca o que se pode perder.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CTA BAND -->
+<section class="ctaband">
+  <div class="wrap">
+    <h2>Quer levar a Preparação Familiar para a sua escola?</h2>
+    <p>Montamos a experiência junto com você, ajustada ao segmento e ao calendário da escola.</p>
+    <a class="btn btn-accent" href="https://wa.me/5561985641912" target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="section contato">
+  <div class="wrap">
+    <div class="kicker">Contato</div>
+    <div class="card">
+      <div class="org">Academia IDE Bushcraft &amp; Sobrevivência — Brasília, DF</div>
+      <div class="lines">
+        <a href="https://wa.me/5561985641912" target="_blank" rel="noopener">(61) 98564-1912</a><br>
+        @moraes.preparacao · @andreia.preparacao
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© IDE Preparação Familiar</span>
+    <a href="/cursos">Ver todos os cursos</a>
+    <span>Contato: <a href="https://wa.me/5561985641912" target="_blank" rel="noopener">(61) 98564-1912</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
