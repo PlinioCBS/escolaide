@@ -126,7 +126,13 @@
   .oferta .price{font-family:var(--font-display);font-weight:900;color:var(--text-primary);line-height:1}
   .oferta .price .cur{font-size:1.2rem;vertical-align:baseline;color:var(--text-muted);margin-right:4px}
   .oferta .price .val{font-size:3.4rem}
-  .oferta .price-note{color:var(--text-secondary);margin:var(--space-2) 0 var(--space-6)}
+  .oferta .price-note{color:var(--text-secondary);margin:var(--space-2) 0 var(--space-5)}
+  .oferta .price-note strong{color:var(--text-primary)}
+  .oferta .incl{list-style:none;text-align:left;max-width:380px;margin:0 auto var(--space-6);display:grid;gap:10px}
+  .oferta .incl li{position:relative;padding-left:30px;color:var(--text-secondary);line-height:1.45;font-size:0.95rem}
+  .oferta .incl li b{color:var(--text-primary)}
+  .oferta .incl li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;background:color-mix(in oklab,var(--green-500) 16%,white)}
+  .oferta .incl li::after{content:"";position:absolute;left:6px;top:7px;width:7px;height:4px;border-left:2px solid var(--green-600);border-bottom:2px solid var(--green-600);transform:rotate(-45deg)}
   .oferta .box .btn{max-width:420px;margin:0 auto}
   .oferta .fine{margin-top:var(--space-4);font-size:0.85rem;color:var(--text-muted)}
 
@@ -440,7 +446,12 @@
       <div class="sec-head center"><div class="kicker">Inscrição</div><h2>Garanta a sua vaga</h2></div>
       <div class="box">
         <div class="price"><span class="cur">R$</span><span class="val">1.500</span></div>
-        <p class="price-note">à vista</p>
+        <p class="price-note"><strong>por pessoa</strong> · à vista · tudo incluído</p>
+        <ul class="incl">
+          <li><b>Programa completo</b> — as 8 modalidades</li>
+          <li><b>Hospedagem</b> no CLAT</li>
+          <li><b>Alimentação completa</b> — café da manhã, almoço, jantar e ceia</li>
+        </ul>
         <a class="btn btn-accent btn-block" href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20nos%20Cursos%20e%20Experi%C3%AAncias%20da%20IDE%20(R%24%201.500)." target="_blank" rel="noopener">Quero garantir minha vaga</a>
         <p class="fine">Envie quantas pessoas, a faixa de idade e o período pretendido. Confirmamos a data, a duração e o plano da atividade.</p>
       </div>
@@ -473,7 +484,7 @@
 
 <!-- CTA fixo mobile -->
 <div class="sticky-cta">
-  <a class="btn btn-accent" href="#inscrever">Garantir vaga — R$ 1.500</a>
+  <a class="btn btn-accent" href="#inscrever">Garantir vaga — R$ 1.500/pessoa</a>
 </div>
 
 </body>
