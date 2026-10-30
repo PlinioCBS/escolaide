@@ -3,225 +3,483 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preparação Familiar — Curso para Escolas · IDE</title>
-<meta name="description" content="A casa pronta antes do imprevisto. Experiência de preparação familiar para escolas: estoque, kit, plano de reencontro e simulações — encerrando com um plano escrito que a família usa.">
+<title>Cursos e Experiências para Escolas · IDE Preparação Familiar</title>
+<meta name="description" content="Oito modalidades de formação prática ao ar livre para escolas, conduzidas por instrutores com experiência militar e de campo, em estrutura própria a 1h25 de Brasília (CLAT).">
 <link rel="icon" href="/assets/favicon-ide.png">
 <link rel="stylesheet" href="/assets/store.css">
 <style>
-  .hero{background:linear-gradient(180deg,#123 0%,#0e2136 100%)}
-  .hero .wrap{padding:var(--space-16) var(--space-6) var(--space-12)}
-  .hero .tag{display:inline-block;background:rgba(255,255,255,.1);color:#dbe6f2;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius-pill);padding:5px 14px;font-size:0.8rem;font-weight:700;letter-spacing:.03em;margin-bottom:var(--space-5)}
-  .hero h1{color:#fff;font-size:2.8rem;line-height:1.03;margin-bottom:var(--space-3)}
-  .hero .lead{color:#fff;font-size:1.3rem;font-weight:700;margin-bottom:var(--space-4)}
-  .hero .meta{color:#9fb8d4;font-size:0.95rem;line-height:1.6;margin-bottom:var(--space-8);max-width:60ch}
-  .hero .hero-ctas{display:flex;gap:var(--space-3);flex-wrap:wrap}
-  @media(max-width:520px){ .hero h1{font-size:2.1rem} .hero .lead{font-size:1.1rem} }
+  /* ====== cores do brochure ====== */
+  :root{ --nav:#0e2136; --nav2:#0b1b2e; --ink2:#1b3a57; }
 
-  .section{padding:var(--space-12) 0}
-  .section .wrap{max-width:860px}
-  .kicker{color:var(--brand-primary);font-weight:800;font-size:0.78rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--space-3)}
-  .section h2{font-size:1.7rem;margin-bottom:var(--space-4)}
-  .section p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
-  .divider{border:0;border-top:1px solid var(--color-border)}
+  .pf-hero{background:linear-gradient(180deg,#123049 0%,var(--nav) 100%);color:#fff;position:relative;overflow:hidden}
+  .pf-hero .wrap{padding:var(--space-12) var(--space-6) var(--space-12);position:relative;z-index:2;max-width:1120px}
+  .pf-hero .brand{display:flex;align-items:center;gap:12px;margin-bottom:var(--space-8)}
+  .pf-hero .brand img{height:52px;width:auto}
+  .pf-hero .brand span{color:#e9a24a;font-weight:800;font-size:0.78rem;letter-spacing:.14em;text-transform:uppercase}
+  .pf-hero h1{color:#fff;font-size:3rem;line-height:1.02;max-width:16ch;margin-bottom:var(--space-5)}
+  .pf-hero .sub{color:#c2d2e2;font-size:1.15rem;line-height:1.6;max-width:56ch;margin-bottom:var(--space-8)}
+  .pf-hero .ctas{display:flex;gap:var(--space-3);flex-wrap:wrap;margin-bottom:var(--space-10)}
+  .pf-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-md);overflow:hidden;max-width:720px}
+  @media(min-width:720px){ .pf-stats{grid-template-columns:repeat(4,1fr)} }
+  .pf-stats .st{background:var(--nav);padding:var(--space-5) var(--space-4);text-align:center}
+  .pf-stats .st b{display:block;font-family:var(--font-display);font-size:1.7rem;color:#fff;line-height:1}
+  .pf-stats .st span{display:block;margin-top:6px;color:#9fb8d4;font-size:0.72rem;letter-spacing:.06em;text-transform:uppercase}
+  @media(max-width:520px){ .pf-hero h1{font-size:2.1rem} }
 
-  /* lista "o que os alunos fazem" */
-  .do-list{list-style:none;display:grid;gap:var(--space-3);margin-top:var(--space-2)}
-  .do-list li{position:relative;padding-left:34px;color:var(--text-primary);line-height:1.5}
-  .do-list li::before{content:"";position:absolute;left:0;top:2px;width:20px;height:20px;border-radius:6px;background:var(--surface-brand-subtle)}
-  .do-list li::after{content:"";position:absolute;left:6px;top:7px;width:8px;height:5px;border-left:2px solid var(--brand-primary);border-bottom:2px solid var(--brand-primary);transform:rotate(-45deg)}
+  .section-light{padding:var(--space-16) 0;background:#fff}
+  .section-soft{padding:var(--space-16) 0;background:var(--neutral-50)}
+  .sec-head{max-width:62ch;margin-bottom:var(--space-10)}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .kicker{color:var(--brand-accent);font-weight:800;font-size:0.76rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:var(--space-3)}
+  .sec-head h2{font-size:2rem;margin-bottom:var(--space-3)}
+  .sec-head p{color:var(--text-secondary);line-height:var(--leading-relaxed)}
+  .lead-big{font-size:1.25rem;color:var(--text-primary);line-height:1.55;max-width:60ch}
 
-  /* cards "o que desenvolve" */
-  .skills{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-2)}
-  @media(min-width:640px){ .skills{grid-template-columns:1fr 1fr} }
-  .skill{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-6);box-shadow:var(--shadow-sm)}
-  .skill .sico{width:42px;height:42px;border-radius:11px;background:var(--surface-brand-subtle);color:var(--brand-primary);display:flex;align-items:center;justify-content:center;margin-bottom:var(--space-4)}
-  .skill .sico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-  .skill h3{font-size:1.05rem;margin-bottom:6px}
-  .skill p{color:var(--text-secondary);font-size:0.92rem;line-height:1.5}
+  /* como funciona */
+  .steps3{display:grid;grid-template-columns:1fr;gap:var(--space-5);margin-top:var(--space-2)}
+  @media(min-width:760px){ .steps3{grid-template-columns:repeat(3,1fr)} }
+  .step{background:var(--neutral-50);border-top:3px solid var(--brand-accent);border-radius:0 0 var(--radius-md) var(--radius-md);padding:var(--space-6)}
+  .step .n{color:var(--brand-accent);font-weight:800;font-size:0.76rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--space-2)}
+  .step p{color:var(--text-secondary);line-height:1.55}
 
-  /* tabela público/turma/estrutura */
-  .deflist{border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;margin-top:var(--space-2)}
-  .deflist .row{display:grid;grid-template-columns:1fr;gap:4px;padding:var(--space-5);border-bottom:1px solid var(--color-border)}
-  .deflist .row:last-child{border-bottom:0}
-  @media(min-width:640px){ .deflist .row{grid-template-columns:200px 1fr;gap:var(--space-5)} }
-  .deflist dt{font-weight:800;color:var(--text-primary)}
-  .deflist dd{color:var(--text-secondary);line-height:1.55}
-  blockquote.note{margin-top:var(--space-5);border-left:4px solid var(--brand-accent);background:var(--color-surface);border-radius:0 var(--radius-md) var(--radius-md) 0;padding:var(--space-4) var(--space-5);color:var(--text-secondary);font-style:normal;line-height:1.55}
+  /* formatos */
+  .fmts{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-2)}
+  @media(min-width:640px){ .fmts{grid-template-columns:1fr 1fr} }
+  .fmt{display:flex;gap:var(--space-3)}
+  .fmt .dot{flex:none;width:11px;height:11px;border-radius:50%;background:var(--brand-accent);margin-top:6px}
+  .fmt b{display:block;color:var(--text-primary)}
+  .fmt span{color:var(--text-secondary);font-size:0.95rem}
 
-  /* currículo */
-  .curriculo{display:grid;grid-template-columns:1fr;gap:var(--space-4);margin-top:var(--space-2)}
-  @media(min-width:720px){ .curriculo{grid-template-columns:repeat(3,1fr)} }
-  .disc{background:var(--surface-brand-subtle);border-radius:var(--radius-md);padding:var(--space-5)}
-  .disc h3{font-size:1rem;color:var(--brand-primary);margin-bottom:6px}
-  .disc p{color:var(--text-secondary);font-size:0.9rem;line-height:1.5}
+  /* recebe */
+  .recv{list-style:none;display:grid;gap:var(--space-3);margin-top:var(--space-2)}
+  .recv li{position:relative;padding-left:30px;color:var(--text-secondary);line-height:1.55}
+  .recv li::before{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:5px;background:var(--surface-brand-subtle)}
+  .recv li::after{content:"";position:absolute;left:5px;top:7px;width:8px;height:5px;border-left:2px solid var(--brand-primary);border-bottom:2px solid var(--brand-primary);transform:rotate(-45deg)}
+  .bncc{margin-top:var(--space-6);background:var(--surface-brand-subtle);border-radius:var(--radius-md);padding:var(--space-5)}
+  .bncc .kicker{margin-bottom:6px}
+  .bncc p{color:var(--text-secondary);line-height:1.55;font-size:0.95rem}
 
-  /* segurança */
-  .safe{background:color-mix(in oklab,var(--green-500) 7%,white);border:1px solid color-mix(in oklab,var(--green-500) 22%,white);border-radius:var(--radius-lg);padding:var(--space-6)}
-  .safe h2{font-size:1.3rem;margin-bottom:var(--space-3)}
-  .safe p{color:var(--neutral-700)}
+  /* modalidades */
+  .mod-grid{display:grid;grid-template-columns:1fr;gap:var(--space-6)}
+  @media(min-width:720px){ .mod-grid{grid-template-columns:1fr 1fr} }
+  .mod{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+  .mod-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--nav)}
+  .mod-media img{width:100%;height:100%;object-fit:cover}
+  .mod-num{position:absolute;top:0;left:0;background:var(--brand-accent);color:#1a1206;font-family:var(--font-display);font-weight:900;font-size:1.1rem;padding:6px 12px;border-radius:0 0 var(--radius-md) 0}
+  .mod-body{padding:var(--space-6);display:flex;flex-direction:column;flex:1}
+  .mod-kicker{color:var(--brand-accent);font-weight:700;font-size:0.76rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+  .mod-body h3{font-size:1.3rem;margin-bottom:var(--space-3)}
+  .mod-obj{color:var(--text-secondary);line-height:1.55;flex:1}
+  .mod-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--space-4)}
+  .mod-tags span{background:var(--neutral-100);color:var(--text-secondary);border-radius:var(--radius-pill);padding:4px 12px;font-size:0.8rem;font-weight:600}
+  .mod-more{margin-top:var(--space-4);border-top:1px solid var(--color-border);padding-top:var(--space-3)}
+  .mod-more summary{list-style:none;cursor:pointer;font-weight:700;color:var(--brand-primary);font-size:0.92rem}
+  .mod-more summary::-webkit-details-marker{display:none}
+  .mod-more summary::after{content:" +"}
+  .mod-more[open] summary::after{content:" –"}
+  .mod-detail{padding-top:var(--space-4)}
+  .mod-detail h4{font-size:0.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin:var(--space-4) 0 var(--space-2)}
+  .mod-detail h4:first-child{margin-top:0}
+  .mod-detail ul{list-style:none;display:grid;gap:6px}
+  .mod-detail li{position:relative;padding-left:16px;color:var(--text-secondary);font-size:0.9rem;line-height:1.5}
+  .mod-detail li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--brand-accent)}
+  .mod-detail li b{color:var(--text-primary)}
+  .mod-safe{margin-top:var(--space-4);background:color-mix(in oklab,var(--orange-500) 7%,white);border-radius:var(--radius-sm);padding:var(--space-3);font-size:0.86rem;color:var(--neutral-700);line-height:1.5}
+  .combo-note{margin-top:var(--space-8);background:var(--surface-brand-subtle);border-radius:var(--radius-md);padding:var(--space-5)}
+  .combo-note .kicker{margin-bottom:6px}
+  .combo-note p{color:var(--text-secondary);line-height:1.55;font-size:0.95rem}
 
-  /* cta band */
-  .ctaband{background:linear-gradient(180deg,#123 0%,#0e2136 100%);color:#fff;text-align:center}
-  .ctaband .wrap{padding:var(--space-12) var(--space-6)}
-  .ctaband h2{color:#fff;font-size:1.8rem;margin-bottom:var(--space-3)}
-  .ctaband p{color:#c2d2e2;margin-bottom:var(--space-6);max-width:50ch;margin-left:auto;margin-right:auto}
+  /* equipe */
+  .team{display:grid;grid-template-columns:1fr;gap:var(--space-6)}
+  @media(min-width:720px){ .team{grid-template-columns:1fr 1fr} }
+  .person{background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)}
+  .person img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%}
+  .person .pb{padding:var(--space-6)}
+  .person .nome{font-weight:800;font-size:1.2rem}
+  .person .role{color:var(--brand-accent);font-size:0.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin:2px 0 10px}
+  .person p{color:var(--text-secondary);line-height:1.55;font-size:0.95rem}
+  .insts{margin-top:var(--space-8)}
+  .insts .kicker{margin-bottom:var(--space-4)}
+  .insts-grid{display:grid;grid-template-columns:1fr;gap:8px}
+  @media(min-width:640px){ .insts-grid{grid-template-columns:1fr 1fr} }
+  .insts-grid li{list-style:none;position:relative;padding-left:18px;color:var(--text-secondary);font-size:0.92rem;line-height:1.5}
+  .insts-grid li::before{content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;background:var(--brand-accent)}
+  .insts .disc{margin-top:var(--space-6);background:var(--neutral-100);border-radius:var(--radius-md);padding:var(--space-4);font-size:0.86rem;color:var(--text-secondary);line-height:1.5}
+
+  /* CLAT */
+  .clat{background:linear-gradient(180deg,#123049 0%,var(--nav) 100%);color:#fff}
+  .clat .wrap{max-width:1120px}
+  .clat h2{color:#fff;font-size:2rem;margin-bottom:var(--space-3)}
+  .clat .intro{color:#c2d2e2;line-height:1.6;max-width:60ch;margin-bottom:var(--space-8)}
+  .clat .map{border:2px solid rgba(232,111,46,.5);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:var(--space-8)}
+  .clat .map img{width:100%;display:block}
+  .clat-grid{display:grid;grid-template-columns:1fr;gap:var(--space-5)}
+  @media(min-width:640px){ .clat-grid{grid-template-columns:1fr 1fr} }
+  .clat-item{display:flex;gap:var(--space-3)}
+  .clat-item .dot{flex:none;width:11px;height:11px;border-radius:50%;background:var(--brand-accent);margin-top:6px}
+  .clat-item b{display:block;color:#fff;font-size:0.82rem;letter-spacing:.04em;text-transform:uppercase}
+  .clat-item span{color:#9fb8d4;font-size:0.95rem;line-height:1.5}
+  .clat .closing{margin-top:var(--space-10);font-size:1.3rem;color:#fff;font-weight:700}
+
+  /* oferta */
+  .oferta .box{max-width:620px;margin:0 auto;background:#fff;border:2px solid var(--brand-accent);border-radius:var(--radius-lg);padding:var(--space-10) var(--space-8);text-align:center;box-shadow:var(--shadow-md)}
+  .oferta .price{font-family:var(--font-display);font-weight:900;color:var(--text-primary);line-height:1}
+  .oferta .price .cur{font-size:1.2rem;vertical-align:baseline;color:var(--text-muted);margin-right:4px}
+  .oferta .price .val{font-size:3.4rem}
+  .oferta .price-note{color:var(--text-secondary);margin:var(--space-2) 0 var(--space-6)}
+  .oferta .box .btn{max-width:420px;margin:0 auto}
+  .oferta .fine{margin-top:var(--space-4);font-size:0.85rem;color:var(--text-muted)}
 
   /* contato */
-  .contato .wrap{max-width:860px}
-  .contato .card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-8);box-shadow:var(--shadow-sm)}
-  .contato .org{font-weight:800;font-size:1.1rem;margin-bottom:var(--space-2)}
-  .contato .lines{color:var(--text-secondary);line-height:1.8}
-  .contato .lines a{color:var(--brand-primary);font-weight:600}
+  .contato{background:var(--nav);color:#fff;text-align:center}
+  .contato .wrap{padding:var(--space-16) var(--space-6)}
+  .contato .emblem{height:86px;width:auto;margin:0 auto var(--space-5)}
+  .contato h2{color:#fff;font-size:2rem;margin-bottom:var(--space-3)}
+  .contato p.inv{color:#c2d2e2;max-width:52ch;margin:0 auto var(--space-8);line-height:1.6}
+  .contato .fone{font-family:var(--font-display);font-weight:800;font-size:1.9rem;color:#fff;margin:var(--space-6) 0 var(--space-2);display:inline-block}
+  .contato .social{color:#9fb8d4}
+  .contato .slogan{margin-top:var(--space-10);color:#fff;font-size:1.25rem;font-weight:700}
+
+  /* sticky mobile cta */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;background:var(--nav);border-top:1px solid rgba(255,255,255,.14);padding:10px 16px;z-index:60;display:none}
+  .sticky-cta .btn{max-width:660px;margin:0 auto}
+  @media(max-width:767px){ .sticky-cta{display:block} body{padding-bottom:76px} }
 </style>
 <script src="/assets/track.js"></script>
 </head>
 <body>
 
-<header class="topbar">
+<!-- HERO -->
+<header class="pf-hero">
   <div class="wrap">
-    <a href="/"><img class="logo" src="/assets/logo-ide.png" alt="IDE Preparação Familiar"></a>
-    <div class="navlinks">
-      <a href="/cardume">Comunidade</a>
-      <a href="/loja">Produtos</a>
-      <a href="/cursos">Cursos</a>
-      <a class="btn btn-accent btn-sm" href="https://wa.me/5561985641912" target="_blank" rel="noopener">Falar com a gente</a>
+    <div class="brand"><img src="/assets/logo-ide.png" alt="IDE"><span>IDE Preparação Familiar</span></div>
+    <h1>Cursos e experiências para escolas</h1>
+    <p class="sub">Oito modalidades de formação prática ao ar livre, conduzidas por instrutores com experiência militar e de campo, realizadas em estrutura própria a 1h25 de Brasília.</p>
+    <div class="ctas">
+      <a class="btn btn-accent" href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20levar%20minha%20turma%20para%20os%20Cursos%20e%20Experi%C3%AAncias%20para%20Escolas%20da%20IDE." target="_blank" rel="noopener">Levar minha turma para o campo</a>
+      <a class="btn btn-ghost" href="#modalidades" style="color:#fff;border-color:rgba(255,255,255,.3)">Ver as 8 modalidades</a>
+    </div>
+    <div class="pf-stats">
+      <div class="st"><b>8</b><span>Modalidades</span></div>
+      <div class="st"><b>6+</b><span>Anos de idade</span></div>
+      <div class="st"><b>30 ha</b><span>Área de atividade</span></div>
+      <div class="st"><b>CLAT</b><span>Estrutura própria</span></div>
     </div>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <span class="tag">Cursos e Experiências para Escolas</span>
-    <h1>Preparação Familiar</h1>
-    <p class="lead">A casa pronta antes do imprevisto</p>
-    <p class="meta">IDE Preparação Familiar — Cursos e Experiências para Escolas<br>Modalidade 05 de 08 · Realização no CLAT, Santo Antônio do Descoberto (GO)</p>
-    <div class="hero-ctas">
-      <a class="btn btn-accent" href="https://wa.me/5561985641912" target="_blank" rel="noopener">Levar para a minha escola</a>
-      <a class="btn btn-ghost" href="#estrutura" style="color:#fff;border-color:rgba(255,255,255,.3)">Ver estrutura</a>
-    </div>
-  </div>
-</section>
-
 <main class="container">
 
-  <!-- OBJETIVO -->
-  <section class="section">
-    <div class="wrap">
-      <div class="kicker">Objetivo</div>
-      <h2>Da emergência à escala da casa do aluno</h2>
-      <p>Levar a emergência para a escala da casa do aluno — falta de água, blecaute, enchente, evacuação — e encerrar com um plano escrito que a família pode usar.</p>
+  <!-- PROPOSTA -->
+  <section class="section-light">
+    <div class="wrap" style="max-width:860px">
+      <div class="kicker">A proposta</div>
+      <h2 style="font-size:2rem;margin-bottom:var(--space-4)">Uma aula que acontece em campo</h2>
+      <p class="lead-big">Cada modalidade é uma atividade prática completa: o aluno executa, erra, corrige e termina com um resultado que ele mesmo construiu. Não há aula expositiva de meio período nem palestra com slides.</p>
     </div>
   </section>
 
-  <hr class="divider">
+  <!-- COMO FUNCIONA + FORMATOS -->
+  <section class="section-soft">
+    <div class="wrap" style="max-width:960px">
+      <div class="sec-head"><div class="kicker">Como funciona</div><h2>Três passos até a turma em campo</h2></div>
+      <div class="steps3">
+        <div class="step"><div class="n">1 · Escolha</div><p>A escola seleciona uma ou mais modalidades deste portfólio e o segmento que vai participar.</p></div>
+        <div class="step"><div class="n">2 · Alinhamento</div><p>Definimos data, duração, tamanho da turma e os ajustes de conteúdo para a faixa etária.</p></div>
+        <div class="step"><div class="n">3 · Realização</div><p>A turma é recebida no CLAT, com instrutores, material e estrutura de apoio já montados.</p></div>
+      </div>
 
-  <!-- O QUE OS ALUNOS FAZEM -->
-  <section class="section">
-    <div class="wrap">
-      <div class="kicker">O que os alunos fazem</div>
-      <h2>Mão na massa, do início ao plano</h2>
-      <ul class="do-list">
-        <li>O que é emergência doméstica e com que frequência acontece</li>
-        <li>Estoque de água e alimento: o que guardar, onde e por quanto tempo</li>
-        <li>Kit básico e documentos organizados</li>
-        <li>Plano de reencontro da família e lista de contatos</li>
-        <li>Simulação de blecaute e de saída rápida de casa</li>
+      <div class="sec-head" style="margin-top:var(--space-12)"><div class="kicker">Formatos disponíveis</div><h2>Do meio período ao programa anual</h2></div>
+      <div class="fmts">
+        <div class="fmt"><span class="dot"></span><div><b>Meio período</b><span>Uma modalidade, cerca de 4 horas de atividade.</span></div></div>
+        <div class="fmt"><span class="dot"></span><div><b>Dia inteiro</b><span>Duas modalidades combinadas, com intervalo e almoço.</span></div></div>
+        <div class="fmt"><span class="dot"></span><div><b>Pernoite</b><span>Imersão com atividade noturna e café da manhã.</span></div></div>
+        <div class="fmt"><span class="dot"></span><div><b>Programa anual</b><span>Uma modalidade por bimestre, com evolução de conteúdo.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE A ESCOLA RECEBE -->
+  <section class="section-light">
+    <div class="wrap" style="max-width:860px">
+      <div class="sec-head"><div class="kicker">O que a escola recebe</div><h2>Tudo montado para a sua turma</h2></div>
+      <ul class="recv">
+        <li>Plano da atividade com objetivos, etapas e tempo de cada bloco, enviado antes da data.</li>
+        <li>Equipe de instrutores dimensionada pelo tamanho da turma, com proporção declarada em cada modalidade.</li>
+        <li>Material de prática fornecido pela IDE: cordas, lonas, bússolas, kits e equipamento de segurança.</li>
+        <li>Registro em foto e vídeo da turma, entregue à escola para uso próprio.</li>
+        <li>Certificado de participação para os alunos, quando a escola solicitar.</li>
       </ul>
-    </div>
-  </section>
-
-  <!-- O QUE DESENVOLVE -->
-  <section class="section">
-    <div class="wrap">
-      <div class="kicker">O que a atividade desenvolve</div>
-      <h2>Competências para a vida</h2>
-      <div class="skills">
-        <div class="skill">
-          <div class="sico"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
-          <h3>Autonomia</h3>
-          <p>A criança sabe o que fazer se o adulto não estiver por perto.</p>
-        </div>
-        <div class="skill">
-          <div class="sico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
-          <h3>Cooperação</h3>
-          <p>O plano só funciona se todos de casa souberem.</p>
-        </div>
-        <div class="skill">
-          <div class="sico"><svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3z"/></svg></div>
-          <h3>Responsabilidade</h3>
-          <p>Cuidar de quem depende: irmão menor, idoso, animal.</p>
-        </div>
-        <div class="skill">
-          <div class="sico"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
-          <h3>Respeito à natureza</h3>
-          <p>Compreende eventos climáticos com informação, sem medo.</p>
-        </div>
+      <div class="bncc">
+        <div class="kicker">Alinhamento com o projeto pedagógico</div>
+        <p>As atividades dialogam com as competências gerais da BNCC ligadas a autoconhecimento e autocuidado, empatia e cooperação, e responsabilidade e cidadania. O plano enviado antes da data traz essa correspondência por escrito, para anexo ao planejamento da escola.</p>
       </div>
     </div>
   </section>
 
-  <hr class="divider">
-
-  <!-- PÚBLICO, TURMA E ESTRUTURA -->
-  <section class="section" id="estrutura">
+  <!-- MODALIDADES -->
+  <section class="section-soft" id="modalidades">
     <div class="wrap">
-      <div class="kicker">Público, turma e estrutura</div>
-      <h2>Como a experiência acontece</h2>
-      <dl class="deflist">
-        <div class="row"><dt>Público indicado</dt><dd>Todas as idades. Linguagem e profundidade ajustadas por segmento.</dd></div>
-        <div class="row"><dt>Turma e equipe</dt><dd>Até 30 alunos. Ou 15 famílias, no formato que envolve os responsáveis.</dd></div>
-        <div class="row"><dt>Ambiente no CLAT</dt><dd>Salão coberto e área externa. Recurso multimídia para a parte expositiva.</dd></div>
-      </dl>
-      <blockquote class="note">Duração, número de participantes e faixa etária são propostas de partida — ajustáveis ao segmento e ao calendário da escola.</blockquote>
-    </div>
-  </section>
-
-  <!-- DIÁLOGO COM O CURRÍCULO -->
-  <section class="section">
-    <div class="wrap">
-      <div class="kicker">Diálogo com o currículo</div>
-      <h2>Conecta com o que já se aprende</h2>
-      <div class="curriculo">
-        <div class="disc"><h3>Ciências</h3><p>Clima, eventos extremos e prevenção.</p></div>
-        <div class="disc"><h3>Geografia</h3><p>Riscos do território e defesa civil.</p></div>
-        <div class="disc"><h3>Educação financeira</h3><p>Estoque, consumo e planejamento.</p></div>
+      <div class="sec-head center"><div class="kicker">Visão geral</div><h2>As oito modalidades</h2><p>Todas podem ser contratadas isoladamente ou combinadas em um mesmo dia. A faixa etária indicada é o ponto de partida: o conteúdo é ajustado ao segmento que vai participar.</p></div>
+      <div class="mod-grid">
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_1.jpg" alt="Natação Utilitária" loading="lazy"><span class="mod-num">01</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Água e autossalvamento</div>
+    <h3>Natação Utilitária</h3>
+    <p class="mod-obj">Ensinar o aluno a se manter seguro na água em situação não planejada — queda, roupa pesada, fundo inesperado — e a pedir ou prestar ajuda sem se colocar em risco.</p>
+    <div class="mod-tags"><span>A partir de 8 anos</span><span>Até 20 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Flutuação de repouso e controle da respiração</li><li>Deslocamento vestido e com mochila nas costas</li><li>Entrada e saída seguras da água</li><li>Autossalvamento com material improvisado</li><li>Apoio a terceiros sem contato direto: alcançar, lançar, conduzir</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> Reconhece o próprio limite na água e age antes do pânico.</li><li><b>Cooperação.</b> Entende que socorro é tarefa de equipe, nunca ato isolado.</li><li><b>Responsabilidade.</b> Aprende por que não se entra na água sozinho.</li><li><b>Respeito à natureza.</b> Lê a água como ambiente com regras próprias.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Educação Física — segurança aquática e consciência corporal</li><li>Ciências — flutuação, densidade e respiração</li><li>Projeto de vida — autocuidado e percepção de risco</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Profundidade limitada à estatura do grupo, instrutores dentro da água durante toda a atividade, equipe de apoio em terra, flutuadores e material de resgate ao alcance da mão. Nenhum aluno entra ou sai da água sem contagem.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_2.jpg" alt="Nós, Voltas e Amarras" loading="lazy"><span class="mod-num">02</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Corda aplicada</div>
+    <h3>Nós, Voltas e Amarras</h3>
+    <p class="mod-obj">Transformar corda em ferramenta — fixar, prender, levantar, improvisar — com nós que o aluno executa, testa e usa na mesma aula.</p>
+    <div class="mod-tags"><span>A partir de 6 anos</span><span>Até 25 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Nós de união, de fixação e de ajuste</li><li>Amarras para unir varas e montar estruturas</li><li>Montagem de um abrigo simples com corda e lona</li><li>Improviso de maca e de transporte de carga</li><li>Teste de carga: o nó aguenta ou não aguenta</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> Resolve um problema concreto com as próprias mãos.</li><li><b>Cooperação.</b> Amarra que sustenta exige duas pessoas combinando ação.</li><li><b>Responsabilidade.</b> Nó mal feito tem consequência visível e imediata.</li><li><b>Respeito à natureza.</b> Usa varas e material local sem desperdício.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Matemática — geometria, tensão e estrutura</li><li>Educação Física — coordenação e motricidade fina</li><li>Arte e cultura maker — construção com material simples</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Cordas de diâmetro adequado à idade, nenhuma suspensão de pessoas, supervisão direta em todo teste de carga e estruturas mantidas em altura que o próprio aluno alcança.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_3.jpg" alt="Fogo Primitivo" loading="lazy"><span class="mod-num">03</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Do atrito à chama</div>
+    <h3>Fogo Primitivo</h3>
+    <p class="mod-obj">Compreender o fogo como processo físico — combustível, oxigênio e calor — e produzi-lo com segurança, do atrito tradicional ao método contemporâneo.</p>
+    <div class="mod-tags"><span>A partir de 10 anos</span><span>Até 20 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Identificação de materiais combustíveis naturais</li><li>Preparo do ninho de ignição</li><li>Ignição por atrito e por faísca</li><li>Manutenção da chama em condição adversa</li><li>Extinção segura e leitura do terreno</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> Método e paciência: fogo não acende na pressa.</li><li><b>Cooperação.</b> Equipes dividem coleta, preparo e ignição.</li><li><b>Responsabilidade.</b> Aprende o risco real do fogo manuseando-o sob supervisão.</li><li><b>Respeito à natureza.</b> Coleta seletiva, descarte do carvão, terreno devolvido como estava.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Ciências — combustão, calor e estados da matéria</li><li>Geografia — bioma, vegetação e uso do fogo no território</li><li>História — tecnologias primitivas e evolução técnica</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Perímetro delimitado, água e extintor no local, calçado fechado obrigatório, cabelo preso e ignição somente com instrutor ao lado. A área é conferida e resfriada antes de a turma sair.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_4.jpg" alt="Sobrevivência" loading="lazy"><span class="mod-num">04</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Imersão completa</div>
+    <h3>Sobrevivência</h3>
+    <p class="mod-obj">Reunir água, fogo, abrigo, sinalização e deslocamento em uma única vivência, para que o aluno entenda prioridade: o que se resolve primeiro quando falta tudo.</p>
+    <div class="mod-tags"><span>A partir de 12 anos</span><span>Até 24 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Regra de prioridades e montagem do plano do grupo</li><li>Obtenção e tratamento de água</li><li>Abrigo e fogo dentro de um tempo definido</li><li>Sinalização para resgate</li><li>Deslocamento orientado e reagrupamento</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> Decide com informação incompleta e tempo curto.</li><li><b>Cooperação.</b> Divide tarefas sob pressão real de relógio.</li><li><b>Responsabilidade.</b> A decisão de um afeta o grupo inteiro.</li><li><b>Respeito à natureza.</b> Consumo mínimo e área entregue sem vestígio.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Ciências — água, temperatura corporal e necessidades básicas</li><li>Geografia — leitura de terreno e orientação</li><li>Projeto de vida — decisão, liderança e protagonismo</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Briefing de limites antes da saída, contagem por equipe a cada etapa, ponto fixo de apoio com água e primeiros socorros, comunicação por rádio entre instrutores e horário de reagrupamento definido.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_5.jpg" alt="Preparação Familiar" loading="lazy"><span class="mod-num">05</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">A casa pronta antes do imprevisto</div>
+    <h3>Preparação Familiar</h3>
+    <p class="mod-obj">Levar a emergência para a escala da casa do aluno — falta de água, blecaute, enchente, evacuação — e encerrar com um plano escrito que a família pode usar.</p>
+    <div class="mod-tags"><span>Todas as idades</span><span>Até 30 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>O que é emergência doméstica e com que frequência acontece</li><li>Estoque de água e alimento: o que guardar, onde e por quanto tempo</li><li>Kit básico e documentos organizados</li><li>Plano de reencontro da família e lista de contatos</li><li>Simulação de blecaute e de saída rápida de casa</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> A criança sabe o que fazer se o adulto não estiver por perto.</li><li><b>Cooperação.</b> O plano só funciona se todos de casa souberem.</li><li><b>Responsabilidade.</b> Cuidar de quem depende: irmão menor, idoso, animal.</li><li><b>Respeito à natureza.</b> Compreende eventos climáticos com informação, sem medo.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Ciências — clima, eventos extremos e prevenção</li><li>Geografia — riscos do território e defesa civil</li><li>Educação financeira — estoque, consumo e planejamento</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Atividade de baixo risco físico. O conteúdo é tratado sem imagens ou relatos que assustem a criança: o foco é o que se pode fazer, nunca o que se pode perder.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_6.jpg" alt="Orientação e Navegação" loading="lazy"><span class="mod-num">06</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Saber onde se está</div>
+    <h3>Orientação e Navegação</h3>
+    <p class="mod-obj">Ensinar o aluno a se localizar e a planejar um deslocamento com mapa e bússola, sem depender de sinal de celular.</p>
+    <div class="mod-tags"><span>A partir de 9 anos</span><span>Até 25 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Pontos cardeais, norte magnético e norte geográfico</li><li>Leitura de carta: escala, legenda e relevo</li><li>Uso da bússola e cálculo de azimute</li><li>Contagem de passos e estimativa de distância</li><li>Percurso com pontos de controle, em equipe</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> Sai e volta por conta própria, com método verificável.</li><li><b>Cooperação.</b> O percurso é cumprido em equipe, com funções definidas.</li><li><b>Responsabilidade.</b> Errar o rumo tem custo: conferir antes de andar.</li><li><b>Respeito à natureza.</b> Lê o terreno, o sol e o relevo como referência.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Matemática — ângulo, escala, proporção e medida</li><li>Geografia — cartografia, coordenadas e relevo</li><li>Educação Física — deslocamento e trabalho em equipe</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Percurso demarcado e inteiramente dentro do CLAT, cada equipe acompanhada por um instrutor, ponto de encontro e horário fixos, apito e rádio em cada equipe.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_7.jpg" alt="Construção de Abrigos" loading="lazy"><span class="mod-num">07</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Proteção, temperatura e tempo</div>
+    <h3>Construção de Abrigos</h3>
+    <p class="mod-obj">Mostrar que abrigo é cálculo, não sorte: o que proteger primeiro, com que material e quanto tempo cada solução dura.</p>
+    <div class="mod-tags"><span>A partir de 8 anos</span><span>Até 24 alunos</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Escolha do terreno: vento, água, sol e risco de queda</li><li>Abrigo de emergência em tempo curto, com lona e corda</li><li>Abrigo semipermanente com estrutura de varas amarradas</li><li>Princípios do abrigo permanente e da cobertura natural</li><li>Isolamento do solo e controle térmico</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Autonomia.</b> Constrói algo que de fato o protege.</li><li><b>Cooperação.</b> Estrutura de pé exige trabalho combinado.</li><li><b>Responsabilidade.</b> Terreno escolhido por critério, não por conveniência.</li><li><b>Respeito à natureza.</b> Coleta consciente e desmontagem ao final da atividade.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Ciências — troca de calor e isolamento térmico</li><li>Matemática — geometria, apoio e distribuição de carga</li><li>Geografia — clima, vento e escolha de terreno</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Ferramenta cortante apenas sob supervisão e conforme a faixa etária, estruturas de altura limitada, equipamento de proteção conforme a etapa e conferência da estrutura pelo instrutor antes de qualquer aluno entrar nela.</div>
+      </div>
+    </details>
+  </div>
+</article>
+<article class="mod">
+  <div class="mod-media"><img src="/assets/escolas/mod_8.jpg" alt="Acampamento Pai e Filho" loading="lazy"><span class="mod-num">08</span></div>
+  <div class="mod-body">
+    <div class="mod-kicker">Aprender junto, ao ar livre</div>
+    <h3>Acampamento Pai e Filho</h3>
+    <p class="mod-obj">Uma noite de acampamento em que responsável e criança aprendem lado a lado. Ninguém assiste: os dois executam cada tarefa em dupla.</p>
+    <div class="mod-tags"><span>Crianças a partir de 6 anos</span><span>Até 20 duplas</span></div>
+    <details class="mod-more">
+      <summary>Ver detalhes</summary>
+      <div class="mod-detail">
+        <h4>O que os alunos fazem</h4>
+        <ul><li>Montagem da barraca e organização do acampamento em dupla</li><li>Fogo, cozinha de campo e refeição preparada juntos</li><li>Nós, abrigo e cuidados com o ambiente</li><li>Roda de conversa e atividade noturna</li><li>Desmontagem e devolução da área ao estado original</li></ul>
+        <h4>O que a atividade desenvolve</h4>
+        <ul><li><b>Laços familiares.</b> Tempo integral sem tela, com uma tarefa comum entre os dois.</li><li><b>Aprendizado compartilhado.</b> A criança ensina o adulto em parte das tarefas.</li><li><b>Responsabilidade.</b> A dupla responde pelo próprio acampamento do início ao fim.</li><li><b>Respeito à natureza.</b> A noite ao ar livre como experiência, não como desconforto.</li></ul>
+        <h4>Diálogo com o currículo</h4>
+        <ul><li>Projeto de vida — vínculo, convivência e cooperação</li><li>Educação Física — atividade ao ar livre e rotina de acampamento</li><li>Ciências — ciclos da natureza, fauna e flora locais</li></ul>
+        <div class="mod-safe"><strong>Supervisão e segurança.</strong> Equipe de plantão a noite inteira, iluminação nos acessos, perímetro definido e comunicado às duplas, apoio de primeiros socorros no local e contato direto com a coordenação da escola.</div>
+      </div>
+    </details>
+  </div>
+</article>
+      </div>
+      <div class="combo-note">
+        <div class="kicker">Combinações mais procuradas</div>
+        <p>Nós e Amarras com Construção de Abrigos em um mesmo dia; Orientação e Navegação com Sobrevivência para Ensino Médio; Preparação Familiar como abertura de qualquer programa anual.</p>
       </div>
     </div>
   </section>
 
-  <!-- SUPERVISÃO E SEGURANÇA -->
-  <section class="section">
+  <!-- EQUIPE -->
+  <section class="section-light">
+    <div class="wrap" style="max-width:960px">
+      <div class="sec-head"><div class="kicker">Equipe</div><h2>Quem conduz as atividades</h2><p>A formação é conduzida pelo casal de instrutores que assina a IDE Preparação Familiar, com apoio de equipe dimensionada ao tamanho da turma.</p></div>
+      <div class="team">
+        <div class="person">
+          <img src="/assets/escolas/moraes.jpg" alt="Alex Moraes">
+          <div class="pb"><div class="nome">Alex Moraes</div><div class="role">Instrutor-chefe</div>
+            <p>Fuzileiro Naval com mais de 30 anos de carreira militar. Instrutor de sobrevivência, navegação terrestre, abrigos, fogo e primeiros socorros. Conduz as turmas de campo e responde pelo plano de segurança da atividade.</p></div>
+        </div>
+        <div class="person">
+          <img src="/assets/escolas/andreia.jpg" alt="Andreia Moraes">
+          <div class="pb"><div class="nome">Andreia Moraes</div><div class="role">Instrutora</div>
+            <p>Conduz as turmas com crianças e famílias. Responsável pelos módulos de rotina doméstica, estoque e organização familiar, e pela ponte entre o conteúdo técnico e a linguagem de cada faixa etária.</p></div>
+        </div>
+      </div>
+      <div class="insts">
+        <div class="kicker">Instituições que já receberam treinamentos da equipe</div>
+        <ul class="insts-grid">
+          <li>Corpo de Fuzileiros Navais</li>
+          <li>DPOE — Operações Especiais do Sistema Penitenciário do DF</li>
+          <li>Marinha do Brasil — RJ e DF</li>
+          <li>Polícia Penal Federal</li>
+          <li>Gabinete de Segurança Institucional do Ministério da Defesa</li>
+          <li>Ministério Público Militar (DF)</li>
+          <li>BOPE — Batalhão de Operações Especiais da PMDF</li>
+          <li>Procuradoria-Geral da Justiça Militar</li>
+          <li>COT — Polícia Federal</li>
+          <li>Tribunal Regional do Trabalho — ES</li>
+          <li>CAOP — Polícia Federal (DF)</li>
+          <li>Escoteiros — DF e RJ</li>
+        </ul>
+        <div class="disc"><strong>Uso das referências.</strong> As instituições acima constam como histórico de instrução da equipe. Nenhuma delas endossa este programa escolar: a citação é de experiência profissional dos instrutores, não de patrocínio ou parceria institucional.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLAT -->
+  <section class="clat section-light" style="background:linear-gradient(180deg,#123049 0%,var(--nav) 100%)">
     <div class="wrap">
-      <div class="safe">
-        <h2>Supervisão e segurança</h2>
-        <p>Atividade de baixo risco físico. O conteúdo é tratado sem imagens ou relatos que assustem a criança: o foco é o que se pode fazer, nunca o que se pode perder.</p>
+      <div class="kicker" style="color:#e9a24a">Onde as atividades acontecem</div>
+      <h2>CLAT — Centro de Lazer e Treinamento</h2>
+      <p class="intro">Santo Antônio do Descoberto, Goiás — a cerca de 1h25 de Brasília. Estrutura parceira onde a IDE realiza as turmas, com área de campo, trilhas, lago e apoio para receber grupos escolares.</p>
+      <div class="map"><img src="/assets/escolas/clat_mapa.jpg" alt="Localização do CLAT — Santo Antônio do Descoberto (GO)" loading="lazy"></div>
+      <div class="clat-grid">
+        <div class="clat-item"><span class="dot"></span><div><b>Área de atividade</b><span>Mais de 30 hectares de natureza e cerca de 2 km de trilhas.</span></div></div>
+        <div class="clat-item"><span class="dot"></span><div><b>Espaços cobertos</b><span>Salões amplos para aulas, reuniões e recursos multimídia.</span></div></div>
+        <div class="clat-item"><span class="dot"></span><div><b>Alimentação</b><span>Refeições completas no local, com cardápio ajustado ao grupo.</span></div></div>
+        <div class="clat-item"><span class="dot"></span><div><b>Hospedagem</b><span>Chalés e suítes para imersões, pernoites e acampamentos.</span></div></div>
+        <div class="clat-item"><span class="dot"></span><div><b>Lago e piscinas</b><span>Entrada rasa e áreas controladas para atividade aquática.</span></div></div>
+        <div class="clat-item"><span class="dot"></span><div><b>Vivências rurais</b><span>Museu rural, pomar, engenho e monjolo, conforme a programação.</span></div></div>
+      </div>
+      <p class="closing">Um único destino para aprender, praticar, conviver e descansar.</p>
+    </div>
+  </section>
+
+  <!-- OFERTA -->
+  <section class="section-light oferta" id="inscrever">
+    <div class="wrap">
+      <div class="sec-head center"><div class="kicker">Inscrição</div><h2>Leve a sua turma para o campo</h2></div>
+      <div class="box">
+        <div class="price"><span class="cur">R$</span><span class="val">1.500</span></div>
+        <p class="price-note">à vista</p>
+        <a class="btn btn-accent btn-block" href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20inscrever%20minha%20turma%20nos%20Cursos%20e%20Experi%C3%AAncias%20para%20Escolas%20da%20IDE%20(R%24%201.500)." target="_blank" rel="noopener">Garantir a data da turma</a>
+        <p class="fine">Envie o segmento, o número aproximado de alunos e o período pretendido. Confirmamos a data, a duração e o plano da atividade.</p>
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- CTA BAND -->
-<section class="ctaband">
-  <div class="wrap">
-    <h2>Quer levar a Preparação Familiar para a sua escola?</h2>
-    <p>Montamos a experiência junto com você, ajustada ao segmento e ao calendário da escola.</p>
-    <a class="btn btn-accent" href="https://wa.me/5561985641912" target="_blank" rel="noopener">Falar no WhatsApp</a>
-  </div>
-</section>
-
 <!-- CONTATO -->
-<section class="section contato">
+<section class="contato">
   <div class="wrap">
-    <div class="kicker">Contato</div>
-    <div class="card">
-      <div class="org">Academia IDE Bushcraft &amp; Sobrevivência — Brasília, DF</div>
-      <div class="lines">
-        <a href="https://wa.me/5561985641912" target="_blank" rel="noopener">(61) 98564-1912</a><br>
-        @moraes.preparacao · @andreia.preparacao
-      </div>
-    </div>
+    <img class="emblem" src="/assets/logo-ide.png" alt="IDE">
+    <h2>Leve a sua turma para o campo.</h2>
+    <p class="inv">Envie o segmento, o número aproximado de alunos e o período pretendido. Devolvemos a proposta com data, duração e o plano da atividade.</p>
+    <div class="kicker" style="color:#e9a24a">Fale com a coordenação da IDE</div>
+    <a class="fone" href="https://wa.me/5561985641912" target="_blank" rel="noopener">(61) 98564-1912</a>
+    <div class="social">@moraes.preparacao · @andreia.preparacao</div>
+    <div class="social" style="margin-top:6px">Academia IDE Bushcraft &amp; Sobrevivência · Brasília, DF</div>
+    <p class="slogan">Preparar não é medo. É cuidado.</p>
   </div>
 </section>
 
@@ -232,6 +490,11 @@
     <span>Contato: <a href="https://wa.me/5561985641912" target="_blank" rel="noopener">(61) 98564-1912</a></span>
   </div>
 </footer>
+
+<!-- CTA fixo mobile -->
+<div class="sticky-cta">
+  <a class="btn btn-accent" href="#inscrever">Inscrever turma — R$ 1.500</a>
+</div>
 
 </body>
 </html>
