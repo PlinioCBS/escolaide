@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /carrinho
+Disallow: /api/
+
+Sitemap: https://preparacaofamiliar.com.br/sitemap.xml
