@@ -21,6 +21,7 @@
   var GTM_ID = "";          // <<< GTM-XXXXXXX
   var META_PIXEL_ID = "";   // <<< ID do Pixel da Meta
   var GA4_ID = "";          // <<< G-XXXXXXXXXX
+  var CLARITY_ID = "";      // <<< ID do Microsoft Clarity (heatmap + gravações)
 
   window.dataLayer = window.dataLayer || [];
   function dl(o) { try { window.dataLayer.push(o); } catch (e) {} }
@@ -54,6 +55,15 @@
     window.gtag = window.gtag || function () { (window.dataLayer = window.dataLayer || []).push(arguments); };
     gtag("js", new Date());
     gtag("config", GA4_ID);
+  }
+
+  // --- Microsoft Clarity (mapa de calor de clique/toque, rolagem e gravações) ---
+  if (CLARITY_ID) {
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", CLARITY_ID);
   }
 
   // --- UTMs: captura da URL e persiste na sessão ---
