@@ -31,16 +31,26 @@ module.exports = async function handler(req, res) {
   }
 
   const clean = (v) => String(v == null ? '' : v).replace(/[\r\n\t]+/g, ' ').trim().slice(0, 140);
+  const cleanLong = (v) => String(v == null ? '' : v).replace(/[\r\n]+/g, ' ').trim().slice(0, 600);
   const nome = clean(body.nome);
   const email = clean(body.email);
   const whatsapp = clean(body.whatsapp || body.telefone);
   const cidade = clean(body.cidade);
   const pessoas = clean(body.pessoas);
+  const idade = clean(body.idade);
+  const sabeNadar = clean(body.sabe_nadar);
+  const alergias = cleanLong(body.alergias);
+  const saude = cleanLong(body.saude);
+  const emergNome = clean(body.emerg_nome);
+  const emergTel = clean(body.emerg_tel);
+  const consentimento = clean(body.consentimento);
 
-  // validação básica no servidor
+  // validação no servidor: identificação + contato de emergência
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
   const foneDigits = whatsapp.replace(/\D/g, '');
-  if (nome.length < 2 || !emailOk || foneDigits.length < 10 || foneDigits.length > 11) {
+  const emergDigits = emergTel.replace(/\D/g, '');
+  if (nome.length < 2 || !emailOk || foneDigits.length < 10 || foneDigits.length > 11 ||
+      emergNome.length < 2 || emergDigits.length < 10 || emergDigits.length > 11) {
     return res.status(400).json({ ok: false, error: 'dados_invalidos' });
   }
 
@@ -54,6 +64,8 @@ module.exports = async function handler(req, res) {
   const payload = JSON.stringify({
     data: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' }),
     nome, whatsapp, email, cidade, pessoas,
+    idade, sabe_nadar: sabeNadar, alergias, saude,
+    emerg_nome: emergNome, emerg_tel: emergTel, consentimento,
     origem: clean(body.origem || 'preparacao-familiar'),
     etapa: 'pré-inscrição',
     utm_source: clean(utm.utm_source),
