@@ -208,7 +208,7 @@
       <h1>Cursos e experiências ao ar livre</h1>
       <p class="sub">Oito modalidades de formação prática ao ar livre, para todas as idades, conduzidas por instrutores com experiência militar e de campo, em estrutura própria a 1h25 de Brasília.</p>
       <div class="ctas">
-        <a class="btn btn-accent" href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20participar%20dos%20Cursos%20e%20Experi%C3%AAncias%20da%20IDE." target="_blank" rel="noopener">Quero participar</a>
+        <a class="btn btn-accent" href="/preparacao-familiar/inscricao" data-cta="inscricao-hero">Quero participar</a>
         <a class="btn btn-ghost" href="#modalidades" style="color:#fff;border-color:rgba(255,255,255,.3)">Ver as 8 modalidades</a>
       </div>
       <div class="pf-stats">
@@ -498,7 +498,7 @@
           <li><b>Hospedagem</b> no CLAT</li>
           <li><b>Alimentação completa</b> — café da manhã, almoço, jantar e ceia</li>
         </ul>
-        <a class="btn btn-accent btn-block" href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20garantir%20minha%20vaga%20nos%20Cursos%20e%20Experi%C3%AAncias%20da%20IDE%20(R%24%201.500)." target="_blank" rel="noopener">Quero garantir minha vaga</a>
+        <a class="btn btn-accent btn-block" href="/preparacao-familiar/inscricao" data-cta="inscricao-oferta">Quero garantir minha vaga</a>
         <p class="fine">Envie quantas pessoas, a faixa de idade e o período pretendido. Confirmamos a data, a duração e o plano da atividade.</p>
       </div>
     </div>
@@ -530,8 +530,13 @@
 
 <!-- CTA fixo mobile -->
 <div class="sticky-cta">
-  <a class="btn btn-accent" href="#inscrever">Garantir vaga — R$ 1.500/pessoa</a>
+  <a class="btn btn-accent" href="/preparacao-familiar/inscricao" data-cta="inscricao-sticky">Garantir vaga — R$ 1.500/pessoa</a>
 </div>
+
+<script>
+  // evento de funil: visualização do curso
+  if (window.cardumeTrack) window.cardumeTrack('view_item', { item_name: 'Cursos e Experiências IDE', content_name: 'Cursos e Experiências IDE', value: 1500, currency: 'BRL' });
+</script>
 
 </body>
 </html>

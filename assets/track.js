@@ -1,21 +1,31 @@
 /* ============================================================
-   Cardume — camada de tracking (Google Tag Manager + dataLayer)
+   IDE / Cardume — camada de tracking
    ------------------------------------------------------------
-   Para ATIVAR o GTM: preencha GTM_ID abaixo com o seu container
-   (formato GTM-XXXXXXX). Enquanto vazio, os eventos são apenas
-   empilhados no dataLayer (nada é enviado para fora).
-   Eventos disparados: page_view, video_play, lead, begin_checkout,
-   select_item, donate_click, donate_pix_copy — todos com as UTMs.
-   Importante: NÃO enviamos dados pessoais (nome/e-mail/telefone).
+   Preencha os IDs abaixo para ATIVAR cada ferramenta. Enquanto
+   vazios, os eventos só são empilhados no dataLayer (nada sai).
+
+   • GTM_ID        → GTM-XXXXXXX  (painel de controle; opcional)
+   • META_PIXEL_ID → ex.: 123456789012345  (Meta/Facebook Pixel)
+   • GA4_ID        → ex.: G-XXXXXXXXXX  (Google Analytics 4)
+
+   Regra: se usar GTM, configure GA4/Meta DENTRO do GTM e deixe
+   GA4_ID/META_PIXEL_ID vazios aqui (evita contagem dobrada).
+   Se NÃO usar GTM, preencha META_PIXEL_ID e/ou GA4_ID aqui.
+
+   Funil: page_view, view_item, inscricao_click, generate_lead,
+   begin_checkout, contact, select_item, donate_*, video_play.
+   NÃO enviamos dados pessoais (nome/e-mail/telefone) ao tracking.
    ============================================================ */
 (function () {
   "use strict";
-  var GTM_ID = ""; // <<< coloque aqui o ID GTM-XXXXXXX para ativar o GTM
+  var GTM_ID = "";          // <<< GTM-XXXXXXX
+  var META_PIXEL_ID = "";   // <<< ID do Pixel da Meta
+  var GA4_ID = "";          // <<< G-XXXXXXXXXX
 
   window.dataLayer = window.dataLayer || [];
   function dl(o) { try { window.dataLayer.push(o); } catch (e) {} }
 
-  // --- carrega o GTM (somente quando GTM_ID estiver preenchido) ---
+  // --- Google Tag Manager ---
   if (GTM_ID) {
     dl({ "gtm.start": new Date().getTime(), event: "gtm.js" });
     var s0 = document.getElementsByTagName("script")[0];
@@ -23,6 +33,27 @@
     g.async = true;
     g.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
     s0.parentNode.insertBefore(g, s0);
+  }
+
+  // --- Meta (Facebook) Pixel ---
+  if (META_PIXEL_ID) {
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+      t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    try { fbq("init", META_PIXEL_ID); fbq("track", "PageView"); } catch (e) {}
+  }
+
+  // --- Google Analytics 4 (gtag) — só direto quando NÃO há GTM ---
+  if (GA4_ID && !GTM_ID) {
+    var ga = document.createElement("script");
+    ga.async = true;
+    ga.src = "https://www.googletagmanager.com/gtag/js?id=" + GA4_ID;
+    document.head.appendChild(ga);
+    window.gtag = window.gtag || function () { (window.dataLayer = window.dataLayer || []).push(arguments); };
+    gtag("js", new Date());
+    gtag("config", GA4_ID);
   }
 
   // --- UTMs: captura da URL e persiste na sessão ---
@@ -43,6 +74,17 @@
     return o;
   }
   var UTM = readUTMs();
+  window.cardumeUTM = UTM; // disponível para os formulários
+
+  // --- mapa dos nossos eventos -> eventos padrão da Meta ---
+  var FB_STD = {
+    view_item: "ViewContent",
+    generate_lead: "Lead",
+    lead: "Lead",
+    begin_checkout: "InitiateCheckout",
+    contact: "Contact",
+    purchase: "Purchase"
+  };
 
   // --- helper global ---
   function track(event, params) {
@@ -50,6 +92,17 @@
     for (var k in UTM) payload[k] = UTM[k];
     if (params) for (var j in params) payload[j] = params[j];
     dl(payload);
+    if (event !== "page_view") {
+      // Meta Pixel direto (se ativo)
+      try {
+        if (window.fbq && META_PIXEL_ID) {
+          if (FB_STD[event]) fbq("track", FB_STD[event], params || {});
+          else fbq("trackCustom", event, params || {});
+        }
+      } catch (e) {}
+      // GA4 direto (se ativo e sem GTM)
+      try { if (window.gtag && GA4_ID && !GTM_ID) gtag("event", event, params || {}); } catch (e) {}
+    }
   }
   window.cardumeTrack = track;
 
@@ -61,9 +114,14 @@
     var el = e.target && e.target.closest ? e.target.closest("a,button") : null;
     if (!el) return;
     var href = el.getAttribute("href") || "";
+    var cta = el.getAttribute("data-cta") || "";
     var txt = (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 60);
     if (href.indexOf("pay.hub.la") > -1) {
       track("begin_checkout", { link_url: href, cta_text: txt });
+    } else if (/wa\.me|api\.whatsapp\.com/.test(href)) {
+      track("contact", { method: "whatsapp", cta_text: txt });
+    } else if (href.indexOf("/preparacao-familiar/inscricao") > -1 || cta.indexOf("inscricao") === 0) {
+      track("inscricao_click", { cta: cta, cta_text: txt });
     } else if (el.hasAttribute("data-produto")) {
       track("select_item", { item_id: el.getAttribute("data-produto") });
     } else if (href.indexOf("/doar") > -1) {
