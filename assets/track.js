@@ -20,7 +20,7 @@
   "use strict";
   var GTM_ID = "";          // <<< GTM-XXXXXXX
   var META_PIXEL_ID = "";   // <<< ID do Pixel da Meta
-  var GA4_ID = "";          // <<< G-XXXXXXXXXX
+  var GA4_ID = "G-EWFL8CP9L4"; // <<< G-XXXXXXXXXX
   var CLARITY_ID = "";      // <<< ID do Microsoft Clarity (heatmap + gravações)
 
   window.dataLayer = window.dataLayer || [];
