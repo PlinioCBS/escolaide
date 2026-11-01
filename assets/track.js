@@ -21,7 +21,7 @@
   var GTM_ID = "";          // <<< GTM-XXXXXXX
   var META_PIXEL_ID = "";   // <<< ID do Pixel da Meta
   var GA4_ID = "G-EWFL8CP9L4"; // <<< G-XXXXXXXXXX
-  var CLARITY_ID = "";      // <<< ID do Microsoft Clarity (heatmap + gravações)
+  var CLARITY_ID = "z6yvyewr1m"; // <<< ID do Microsoft Clarity (heatmap + gravações)
 
   window.dataLayer = window.dataLayer || [];
   function dl(o) { try { window.dataLayer.push(o); } catch (e) {} }
