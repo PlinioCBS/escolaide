@@ -126,7 +126,7 @@
     var href = el.getAttribute("href") || "";
     var cta = el.getAttribute("data-cta") || "";
     var txt = (el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 60);
-    if (href.indexOf("pay.hub.la") > -1) {
+    if (href.indexOf("hub.la") > -1) {
       track("begin_checkout", { link_url: href, cta_text: txt });
     } else if (/wa\.me|api\.whatsapp\.com/.test(href)) {
       track("contact", { method: "whatsapp", cta_text: txt });
