@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abrindo o checkout — IDE Preparação Familiar</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0e2136">
+<link rel="icon" href="/assets/favicon-ide.png">
+<link rel="stylesheet" href="/assets/store.css">
+<style>
+  body{background:linear-gradient(180deg,#123049 0%,#0e2136 60%,#0b1b2e 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:var(--space-6)}
+  .card{width:100%;max-width:420px;background:var(--color-surface);border-radius:var(--radius-lg);box-shadow:0 24px 60px rgba(0,0,0,.4);padding:var(--space-8) var(--space-6);text-align:center}
+  .card img{height:56px;width:auto;margin:0 auto var(--space-5)}
+  h1{font-size:1.25rem;line-height:1.3;color:var(--text-primary);margin-bottom:var(--space-2)}
+  p{color:var(--text-secondary);line-height:1.5;margin-bottom:var(--space-6)}
+  .spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--color-border);border-top-color:var(--brand-primary);margin:0 auto var(--space-5);animation:g .8s linear infinite}
+  @keyframes g{to{transform:rotate(360deg)}}
+</style>
+<script src="/assets/track.js"></script>
+</head>
+<body>
+<div class="card">
+  <img src="/assets/logo-ide.png" alt="IDE Preparação Familiar">
+  <div class="spin" aria-hidden="true"></div>
+  <h1 id="titulo">Abrindo o checkout…</h1>
+  <p id="sub">Você será levado ao pagamento seguro em instantes.</p>
+  <a class="btn btn-accent btn-block" id="ir" href="/">Continuar</a>
+</div>
+
+<script>
+  /* Link rastreável dos QR codes: /qr/<evento>/<produto>
+     1) registra o escaneamento (evento qr_scan no GA4/Clarity; a página
+        /qr/<evento>/<produto> também aparece no relatório de páginas);
+     2) manda para o checkout da Hubla com as UTMs do evento — a Hubla guarda
+        as UTMs na venda e o webhook grava tudo na aba "Pagamentos". */
+  var EVENTOS = {
+    gbnov26: "guilda-bushcraft-presencial-nov26"
+  };
+  var PRODUTOS = {
+    "curso":           { nome: "Curso Presencial Preparação Familiar", checkout: "https://pay.hub.la/1qFaDSUf6fPUvVLJRIwe", valor: 1500 },
+    "comida-que-dura": { nome: "Comida que dura",                      checkout: "https://pay.hub.la/CkUqU00vHNm3vWBYkiF6", valor: 19.9 },
+    "mochila-pet":     { nome: "Ebook Mochila de Emergência do PET",   checkout: "https://pay.hub.la/gqwrMzyPcj1Zc14Jnxoz", valor: 19.9 },
+    "mochila":         { nome: "Ebook Mochila Emergência",             checkout: "https://pay.hub.la/FQqpKh5cf1GVSMmzyV5P", valor: 19.9 },
+    "pasta":           { nome: "Pasta de Emergência da Família",       checkout: "https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3", valor: 19.9 },
+    "cardume":         { nome: "Comunidade Cardume",                   checkout: "https://pay.hub.la/QF9mQUV4MUF2gfBycXKX", valor: 157.46 }
+  };
+
+  var partes = location.pathname.replace(/\/+$/, "").split("/"); // ["", "qr", evento, produto]
+  var evento = (partes[2] || "").toLowerCase();
+  var slug = (partes[3] || "").toLowerCase();
+  var prod = PRODUTOS[slug];
+  var campanha = EVENTOS[evento] || evento || "qrcode";
+
+  var destino = "/";
+  if (prod) {
+    var q = new URLSearchParams({
+      utm_source: "evento-presencial",
+      utm_medium: "qrcode",
+      utm_campaign: campanha,
+      utm_content: slug
+    });
+    destino = prod.checkout + "?" + q.toString();
+    document.getElementById("titulo").textContent = prod.nome;
+  }
+  document.getElementById("ir").href = destino;
+
+  if (prod && window.cardumeTrack) {
+    window.cardumeTrack("qr_scan", {
+      evento: campanha,
+      produto: slug,
+      item_name: prod.nome,
+      value: prod.valor,
+      currency: "BRL"
+    });
+  }
+
+  // espera o GA4 carregar e enviar o evento (máx. 2s) e segue para o checkout
+  var inicio = Date.now(), foi = false;
+  var modoTeste = new URLSearchParams(location.search).has("teste"); // ?teste = não redireciona
+  function seguir() { if (foi || modoTeste) return; foi = true; location.replace(destino); }
+  (function esperar() {
+    if (window.google_tag_manager && Date.now() - inicio > 400) return setTimeout(seguir, 300);
+    if (Date.now() - inicio > 2000) return seguir();
+    setTimeout(esperar, 100);
+  })();
+</script>
+</body>
+</html>

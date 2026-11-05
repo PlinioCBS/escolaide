@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/produto/:slug", "destination": "/produto/index.html" }
+    { "source": "/produto/:slug", "destination": "/produto/index.html" },
+    { "source": "/qr/:evento/:produto", "destination": "/qr/index.html" }
   ],
   "headers": [
     {
