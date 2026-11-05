@@ -59,10 +59,15 @@ module.exports = async function handler(req, res) {
   const amount = inv.amount || {};
   const utm = (inv.firstPaymentSession && inv.firstPaymentSession.utm) ||
               (inv.paymentSession && inv.paymentSession.utm) || {};
-  const produto = (ev.product && ev.product.name) ||
-                  (Array.isArray(ev.products) && ev.products[0] && ev.products[0].name) || '';
-  let oferta = '';
-  try { oferta = ev.products[0].offers[0].name || ''; } catch (_) {}
+  // Numa venda com order bump a Hubla manda todos os produtos em `products`;
+  // registramos todos ("Produto A + Produto B") para a linha bater com o valor.
+  const lista = Array.isArray(ev.products) ? ev.products : [];
+  const nomes = lista.map((p) => p && (p.name || (p.product && p.product.name))).filter(Boolean);
+  const produto = nomes.length ? nomes.join(' + ') : ((ev.product && ev.product.name) || '');
+  const oferta = lista
+    .map((p) => p && Array.isArray(p.offers) && p.offers[0] && p.offers[0].name)
+    .filter(Boolean)
+    .join(' + ');
   const nome = clean(((payer.firstName || '') + ' ' + (payer.lastName || '')).trim() || payer.name);
   const valor = (amount.total != null) ? amount.total
               : (amount.totalCents != null ? amount.totalCents / 100 : '');
