@@ -5,14 +5,14 @@
 :root{
   --blue-50:oklch(96% 0.02 240); --blue-100:oklch(91% 0.045 240);
   --blue-500:#276fc7; --blue-600:#1d63bb; --blue-700:#0f5aad; --blue-800:#064b9d;
-  --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:#b8500f;
+  --orange-500:#ee6a1d; --orange-600:#d75f18; --orange-700:#a8480c;
   --green-500:#2a9d5c; --green-600:#218049;
   --neutral-0:#ffffff; --neutral-50:#f4f3f1; --neutral-100:#eceae6; --neutral-200:#d8dbd4;
   --neutral-300:#c3c6bd; --neutral-400:#9a9d94; --neutral-500:#787b73; --neutral-600:#5b5e56;
   --neutral-700:#41443d; --neutral-800:#2b2d27; --neutral-900:#1a1b17;
   --color-bg:var(--neutral-50); --color-surface:var(--neutral-0); --color-surface-sunken:var(--neutral-100);
   --color-border:var(--neutral-200); --text-primary:var(--neutral-800); --text-secondary:var(--neutral-600);
-  --text-muted:var(--neutral-500); --on-accent:#1a1206;
+  --text-muted:#6b6e66; --on-accent:#1a1206;
   --brand-primary:var(--blue-600); --brand-accent:var(--orange-500); --brand-accent-hover:var(--orange-600);
   --surface-brand-subtle:var(--blue-50);
   --font-display:"Helvetica Now Display","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -42,6 +42,7 @@ h3{font-weight:700}
 .topbar .navlinks{display:flex;align-items:center;gap:var(--space-5)}
 .topbar .navlinks a{font-size:0.9rem;color:var(--text-secondary)}
 .topbar .navlinks a:hover{color:var(--brand-primary)}
+.topbar .navlinks a.btn-accent,.topbar .navlinks a.btn-accent:hover{color:var(--on-accent)}
 @media(max-width:760px){
   .topbar .wrap{flex-wrap:wrap;height:auto;min-height:54px;padding-top:8px;padding-bottom:8px;gap:6px}
   .topbar .logo{height:34px}
@@ -117,7 +118,7 @@ h3{font-weight:700}
 
 /* ---- página de produto ---- */
 .crumbs{font-size:0.85rem;color:var(--text-muted);padding:var(--space-6) 0 0}
-.crumbs a{color:var(--text-secondary)}
+.crumbs a{color:var(--text-secondary);text-decoration:underline}
 .crumbs span{margin:0 4px}
 .p-layout{display:grid;grid-template-columns:1fr;gap:var(--space-8);padding:var(--space-6) 0 var(--space-10)}
 .p-gallery .p-main{aspect-ratio:4/3;background:var(--surface-brand-subtle);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow:hidden;display:flex;align-items:center;justify-content:center}
@@ -131,6 +132,7 @@ h3{font-weight:700}
 .p-resumo{color:var(--text-secondary);line-height:var(--leading-relaxed);margin-bottom:var(--space-5)}
 .p-price{display:flex;align-items:baseline;gap:var(--space-3);margin-bottom:var(--space-5)}
 .p-price-note{font-size:0.85rem;color:var(--text-muted)}
+.price-old{font-size:.95rem;color:var(--text-muted);text-decoration:line-through;margin-right:8px}
 .p-cta{display:flex;flex-direction:column;gap:var(--space-3);max-width:420px}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--color-border);border-radius:var(--radius-pill);overflow:hidden;align-self:flex-start}
 .qty .qbtn{width:42px;height:44px;border:0;background:var(--color-surface);font-size:1.3rem;cursor:pointer;color:var(--text-primary)}

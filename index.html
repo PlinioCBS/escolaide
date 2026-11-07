@@ -34,6 +34,13 @@
   .hero h1{color:#fff;font-size:2.6rem;line-height:1.05;max-width:16ch;margin-bottom:var(--space-4)}
   .hero p.sub{color:#c2d2e2;font-size:1.15rem;line-height:1.55;max-width:52ch;margin-bottom:var(--space-8)}
   .hero .hero-ctas{display:flex;gap:var(--space-3);flex-wrap:wrap}
+  /* foto de fundo + véu azul-marinho para o texto continuar legível */
+  .hero .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%;z-index:0}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,33,54,.62) 0%,rgba(14,33,54,.86) 62%,#0e2136 100%)}
+  @media(min-width:900px){
+    .hero .wrap{padding-top:calc(var(--space-16) + var(--space-8));padding-bottom:var(--space-16)}
+    .hero::after{background:linear-gradient(90deg,rgba(14,33,54,.94) 0%,rgba(14,33,54,.78) 48%,rgba(14,33,54,.2) 100%)}
+  }
   @media(max-width:520px){ .hero h1{font-size:2rem} }
 
   .section{padding:var(--space-16) 0}
@@ -97,7 +104,7 @@
 
 <header class="topbar">
   <div class="wrap">
-    <a href="/"><img class="logo" src="/assets/logo-ide.png" alt="IDE Preparação Familiar"></a>
+    <a href="/"><img class="logo" src="/assets/logo-ide-192.webp" alt="IDE Preparação Familiar"></a>
     <div class="navlinks">
       <a href="/cardume">Comunidade</a>
       <a href="/loja">Produtos</a>
@@ -110,6 +117,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <img class="hero-bg" src="/assets/escolas/capa-800.webp" srcset="/assets/escolas/capa-800.webp 800w, /assets/escolas/capa-1400.webp 1400w" sizes="100vw" width="1400" height="1050" fetchpriority="high" alt="Instrutor da IDE ensinando técnicas de bushcraft a uma turma de adultos e crianças ao ar livre">
   <div class="wrap">
     <span class="tag">Academia IDE</span>
     <h1>Prepare sua família para o que a maioria evita pensar.</h1>

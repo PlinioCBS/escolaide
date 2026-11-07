@@ -75,31 +75,41 @@
   function placeholderIcon() {
     return '<div class="ph-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>';
   }
+  // preço cobrado: o promocional, quando existe e é menor
+  function precoFinal(p) {
+    return (p.preco_promo != null && (p.preco == null || p.preco_promo < p.preco)) ? p.preco_promo : p.preco;
+  }
   function precoHTML(p) {
-    if (p.preco == null) return p.checkout === "hubla" ? "" : '<span class="price-consulta">Sob consulta</span>';
-    var cents = (p.preco % 1 === 0) ? ",00" : ("," + p.preco.toFixed(2).split(".")[1]);
-    var reais = Math.floor(p.preco);
-    return '<span class="price" style="font-size:1.7rem"><span class="cur">R$</span>' + reais + '<span style="font-size:.6em;vertical-align:top">' + cents + "</span></span>";
+    var v = precoFinal(p);
+    if (v == null) return p.checkout === "hubla" ? "" : '<span class="price-consulta">Sob consulta</span>';
+    var cents = (v % 1 === 0) ? ",00" : ("," + v.toFixed(2).split(".")[1]);
+    var reais = Math.floor(v);
+    var de = (v !== p.preco && p.preco != null) ? '<span class="price-old">' + brl(p.preco) + "</span>" : "";
+    return de + '<span class="price" style="font-size:1.7rem"><span class="cur">R$</span>' + reais + '<span style="font-size:.6em;vertical-align:top">' + cents + "</span></span>";
   }
 
   // ---------- CATÁLOGO (/loja) ----------
+  // HTML do catálogo — usado no navegador e pelo gerador das páginas estáticas
+  function catalogHTML(data) {
+    var cats = data.categorias || [];
+    var ps = (data.produtos || []).slice();
+    // destaque primeiro dentro de cada categoria
+    var html = "";
+    cats.forEach(function (cat) {
+      var items = ps.filter(function (p) { return p.categoria === cat; });
+      if (!items.length) return;
+      items.sort(function (a, b) { return (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0); });
+      html += '<section class="cat"><h2 class="cat-title">' + esc(cat) + "</h2><div class=\"prod-grid\">";
+      items.forEach(function (p) { html += cardHTML(p); });
+      html += "</div></section>";
+    });
+    return html || "<p>Catálogo em breve.</p>";
+  }
   function renderCatalog() {
     var host = document.getElementById("catalogo");
     load().then(function (data) {
-      var cats = data.categorias || [];
-      var ps = (data.produtos || []).slice();
-      // destaque primeiro dentro de cada categoria
-      var html = "";
-      cats.forEach(function (cat) {
-        var items = ps.filter(function (p) { return p.categoria === cat; });
-        if (!items.length) return;
-        items.sort(function (a, b) { return (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0); });
-        html += '<section class="cat"><h2 class="cat-title">' + esc(cat) + "</h2><div class=\"prod-grid\">";
-        items.forEach(function (p) { html += cardHTML(p); });
-        html += "</div></section>";
-      });
-      host.innerHTML = html || "<p>Catálogo em breve.</p>";
-    }).catch(function () { host.innerHTML = "<p>Não foi possível carregar o catálogo agora.</p>"; });
+      host.innerHTML = catalogHTML(data);
+    }).catch(function () { if (!host.querySelector(".cat")) host.innerHTML = "<p>Não foi possível carregar o catálogo agora.</p>"; });
   }
   function cardHTML(p) {
     var href = "/produto/" + p.slug;
@@ -119,14 +129,8 @@
   }
 
   // ---------- PRODUTO (/produto/:slug) ----------
-  function renderProduct() {
-    var host = document.getElementById("produto");
-    var slug = currentSlug();
-    load().then(function (data) {
-      var p = bySlug(data, slug);
-      if (!p) { host.innerHTML = '<div class="wrap" style="padding:60px 24px;text-align:center"><h1>Produto não encontrado</h1><p style="margin-top:12px"><a href="/loja">← Voltar ao catálogo</a></p></div>'; return; }
-      document.title = p.nome + " · IDE Preparação Familiar";
-
+  // HTML da página de produto — usado no navegador e pelo gerador das páginas estáticas
+  function productHTML(p) {
       // galeria
       var gallery;
       if (p.imagens && p.imagens.length) {
@@ -179,8 +183,7 @@
           '<p class="p-price-note" style="margin-top:8px">Peça feita sob encomenda — combinamos valor, frete e prazo no WhatsApp.</p>';
       }
 
-      host.innerHTML =
-        '<nav class="crumbs"><a href="/loja">Loja</a> <span>/</span> <span>' + esc(p.categoria) + "</span></nav>" +
+      return '<nav class="crumbs"><a href="/loja">Loja</a> <span>/</span> <span>' + esc(p.categoria) + "</span></nav>" +
         '<div class="p-layout">' +
           gallery +
           '<div class="p-buy">' +
@@ -193,6 +196,16 @@
           "</div>" +
         "</div>" +
         '<div class="p-detail"><h2>Descrição</h2><p>' + esc(p.descricao || "") + "</p>" + (carac ? "<h2>Características</h2>" + carac : "") + "</div>";
+  }
+
+  function renderProduct() {
+    var host = document.getElementById("produto");
+    var slug = currentSlug();
+    load().then(function (data) {
+      var p = bySlug(data, slug);
+      if (!p) { host.innerHTML = '<div class="wrap" style="padding:60px 24px;text-align:center"><h1>Produto não encontrado</h1><p style="margin-top:12px"><a href="/loja">← Voltar ao catálogo</a></p></div>'; return; }
+      document.title = p.nome + " | IDE Preparação Familiar";
+      host.innerHTML = productHTML(p);
 
       // interações
       var thumbBtns = host.querySelectorAll(".thumb");
@@ -213,7 +226,7 @@
           var self = this; setTimeout(function () { self.textContent = "Adicionar ao carrinho"; }, 1400);
         });
       }
-    }).catch(function () { host.innerHTML = '<div class="wrap" style="padding:60px 24px"><p>Não foi possível carregar o produto.</p></div>'; });
+    }).catch(function () { if (!host.querySelector("h1")) host.innerHTML = '<div class="wrap" style="padding:60px 24px"><p>Não foi possível carregar o produto.</p></div>'; });
   }
 
   // ---------- CARRINHO (/carrinho) ----------
@@ -228,13 +241,13 @@
       }
       var subtotal = 0, temEncomenda = false;
       var rows = items.map(function (it) {
-        var line = (it.p.preco || 0) * it.qty; subtotal += line;
+        var line = (precoFinal(it.p) || 0) * it.qty; subtotal += line;
         if (it.p.sob_encomenda) temEncomenda = true;
         var media = (it.p.imagens && it.p.imagens[0]) ? '<img src="' + esc(it.p.imagens[0]) + '" alt="">' : placeholderIcon();
         return '<div class="cart-row" data-slug="' + esc(it.p.slug) + '">' +
           '<a class="cart-thumb" href="/produto/' + esc(it.p.slug) + '">' + media + "</a>" +
           '<div class="cart-mid"><a class="cart-name" href="/produto/' + esc(it.p.slug) + '">' + esc(it.p.nome) + "</a>" +
-            '<div class="cart-unit">' + brl(it.p.preco) + " cada</div>" +
+            '<div class="cart-unit">' + brl(precoFinal(it.p)) + " cada</div>" +
             '<button class="cart-remove" data-slug="' + esc(it.p.slug) + '">Remover</button></div>' +
           '<div class="cart-right"><div class="qty"><button class="qbtn" data-act="minus" data-slug="' + esc(it.p.slug) + '">−</button>' +
             '<span>' + it.qty + '</span><button class="qbtn" data-act="plus" data-slug="' + esc(it.p.slug) + '">+</button></div>' +
@@ -315,6 +328,12 @@
       msg.innerHTML = "Falha de conexão. Fale no <a href=\"https://wa.me/" + WA + "\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>.";
       btn.disabled = false; btn.textContent = "Finalizar compra";
     });
+  }
+
+  // ---------- gerador de páginas estáticas (Node: scripts/gerar-paginas-loja.js) ----------
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { catalogHTML: catalogHTML, productHTML: productHTML, precoFinal: precoFinal, esc: esc };
+    return;
   }
 
   // ---------- roteador ----------
