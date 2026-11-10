@@ -160,7 +160,7 @@
       // aviso de produção
       var aviso = p.sob_encomenda
         ? '<div class="aviso"><strong>Feito sob encomenda.</strong> Cada peça é confeccionada à mão e enviada em até ' + (p.prazo_producao_dias || 10) + ' dias após a confirmação do pagamento.</div>'
-        : (p.tipo === "digital" ? '<div class="aviso ok"><strong>Acesso imediato.</strong> Material digital enviado por e-mail após a compra.</div>' : "");
+        : (p.tipo === "digital" ? '<div class="aviso ok"><strong>Acesso imediato.</strong> Assim que o pagamento é aprovado, o PDF fica liberado na sua área de compras da Hubla para baixar quando quiser.</div>' : "");
 
       // características
       var carac = (p.caracteristicas && p.caracteristicas.length)
