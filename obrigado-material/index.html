@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<script>if (window.top !== window.self) { try { window.top.location.replace(location.href); } catch (e) {} }</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compra confirmada — IDE Preparação Familiar</title>
+<meta name="description" content="Compra confirmada. O seu material já está liberado na sua área de compras da Hubla.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0e2136">
+<link rel="icon" href="/assets/favicon-ide.png">
+<link rel="stylesheet" href="/assets/store.css">
+<style>
+  :root{ --nav:#0e2136; --nav2:#0b1b2e; }
+  body{background:linear-gradient(180deg,#123049 0%,var(--nav) 60%,var(--nav2) 100%);min-height:100vh;display:flex;flex-direction:column}
+  .insc-top{padding:var(--space-6) var(--space-6) 0;max-width:600px;margin:0 auto;width:100%}
+  .insc-top a{display:inline-flex;align-items:center;gap:10px}
+  .insc-top img{height:46px;width:auto}
+  .insc-top span{color:#e9a24a;font-weight:800;font-size:0.72rem;letter-spacing:.14em;text-transform:uppercase}
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:var(--space-8) var(--space-6) var(--space-12)}
+  .card{width:100%;max-width:600px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:0 24px 60px rgba(0,0,0,.4);padding:var(--space-10) var(--space-8);text-align:center}
+  .check{width:84px;height:84px;border-radius:50%;background:color-mix(in oklab,var(--green-500) 16%,white);border:1.5px solid var(--green-500);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5)}
+  .check::after{content:"";width:28px;height:15px;border-left:3.5px solid var(--green-600);border-bottom:3.5px solid var(--green-600);transform:rotate(-45deg);margin-top:-7px;border-radius:1px}
+  h1{font-size:2rem;line-height:1.1;color:var(--text-primary);margin-bottom:var(--space-3)}
+  .sub{color:var(--text-secondary);line-height:1.6;max-width:48ch;margin:0 auto var(--space-7)}
+  .sub strong{color:var(--text-primary)}
+  .steps{display:grid;gap:var(--space-3);text-align:left;max-width:460px;margin:0 auto var(--space-7)}
+  .step{display:flex;gap:12px;align-items:flex-start;background:var(--neutral-50);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px 16px}
+  .step .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--brand-primary);color:#fff;font-weight:800;font-size:0.85rem;display:flex;align-items:center;justify-content:center}
+  .step p{color:var(--text-secondary);font-size:0.92rem;line-height:1.45}
+  .step p b{color:var(--text-primary)}
+  .ctas{display:flex;flex-direction:column;gap:var(--space-3);max-width:460px;margin:0 auto}
+  .btn-wa{background:#25D366;color:#0b2e17}
+  .btn-wa:hover{background:#1ebe5a;color:#0b2e17}
+  .btn svg{width:20px;height:20px}
+  .recap{margin-top:var(--space-7);padding-top:var(--space-6);border-top:1px solid var(--color-border);color:var(--text-muted);font-size:0.88rem;line-height:1.6}
+  .recap b{color:var(--text-secondary)}
+  @media(max-width:460px){ h1{font-size:1.6rem} .card{padding:var(--space-8) var(--space-5)} }
+</style>
+<script src="/assets/track.js"></script>
+</head>
+<body>
+
+<div class="insc-top">
+  <a href="/loja"><img src="/assets/logo-ide-192.webp" alt="IDE Preparação Familiar"><span>IDE Preparação Familiar</span></a>
+</div>
+
+<main>
+  <div class="card">
+    <div class="check" aria-hidden="true"></div>
+    <h1>Compra confirmada! 🎉</h1>
+    <p class="sub" id="sub">O seu material já está <strong>liberado na sua área de compras da Hubla</strong>.</p>
+
+    <div class="steps">
+      <div class="step"><span class="n">1</span><p><b>Entre na Hubla</b> com o e-mail que você usou na compra.</p></div>
+      <div class="step"><span class="n">2</span><p><b>Abra "Minhas compras"</b> — o material está lá, disponível sempre que você precisar.</p></div>
+    </div>
+
+    <div class="ctas">
+      <a class="btn btn-accent btn-block" href="https://app.hub.la" target="_blank" rel="noopener">Acessar meus produtos na Hubla</a>
+      <a class="btn btn-ghost btn-block" href="/loja" style="color:var(--text-secondary)">Voltar para a loja</a>
+    </div>
+
+    <p class="recap">Precisa de ajuda? Fale com a gente no <a href="https://wa.me/5561993461237" target="_blank" rel="noopener">WhatsApp (61) 99346-1237</a>.</p>
+  </div>
+</main>
+
+<script>
+  /* Obrigado dos materiais digitais. Na Hubla, o redirecionamento pós-compra de
+     cada oferta aponta para /obrigado-material?p=<slug do produto em data/produtos.json>.
+     Registra a venda no GA4 (a Meta recebe a compra pelo Pixel da Hubla). */
+  (function () {
+    var qp = new URLSearchParams(location.search);
+    var slug = qp.get("p") || "";
+    fetch("/data/produtos.json").then(function (r) { return r.json(); }).then(function (d) {
+      var p = (d.produtos || []).filter(function (x) { return x.slug === slug; })[0];
+      if (!p) return;
+      var sub = document.getElementById("sub");
+      sub.innerHTML = "O <strong></strong> já está liberado na sua área de compras da Hubla.";
+      sub.querySelector("strong").textContent = p.nome;
+      var valor = (p.preco_promo != null && p.preco_promo < p.preco) ? p.preco_promo : p.preco;
+      var txn = qp.get("invoiceId") || qp.get("invoice_id") || qp.get("transaction_id") || ("ide-" + Date.now());
+      var chave = "ide_purchase_" + slug;
+      try { if (sessionStorage.getItem(chave)) return; sessionStorage.setItem(chave, "1"); } catch (e) {}
+      if (window.cardumeTrack) window.cardumeTrack("purchase", {
+        value: valor, currency: "BRL", transaction_id: txn, content_name: p.nome,
+        items: [{ item_id: p.slug, item_name: p.nome, price: valor, quantity: 1 }]
+      });
+    }).catch(function () {});
+  })();
+</script>
+</body>
+</html>

@@ -273,6 +273,8 @@
       if (res.status === 200 && res.data && res.data.ok) {
         if (window.cardumeTrack) window.cardumeTrack('generate_lead', { pessoas: pessoas });
         try { sessionStorage.setItem('ide_preinsc_nome', nome.split(' ')[0]); } catch (e) {}
+        // usado pelo checkout.js para já abrir o pagamento da Hubla preenchido
+        try { sessionStorage.setItem('ide_comprador', JSON.stringify({ nome: nome, email: payload.email, whatsapp: payload.whatsapp })); } catch (e) {}
         window.location.href = (res.data.redirect || CONFIRM_URL);
       } else if (res.status === 400) {
         formError.textContent = 'Confira os dados e tente de novo.';
