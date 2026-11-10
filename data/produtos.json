@@ -1,16 +1,62 @@
 {
-  "_comentario": "Fonte de dados do marketplace IDE Preparação Familiar. Depois de editar, rode: node scripts/gerar-paginas-loja.js (gera as páginas /produto/<slug> e o catálogo da /loja em HTML, para o Google e o WhatsApp). Para adicionar um produto, copie um bloco e edite. Campos: slug (URL única, sem espaços), categoria, tipo (fisico|digital), destaque (true no carro-chefe), preco (número ou null p/ 'sob consulta'), preco_promo, sob_encomenda, prazo_producao_dias, resumo, descricao, caracteristicas[], imagens[], checkout (mercadopago|whatsapp|hubla|soon), link (usado quando checkout=hubla), disponivel.",
-  "categorias": ["Facas", "Kits de Fogo", "Bushcraft e Equipamentos", "Materiais Digitais"],
+  "_comentario": "Fonte de dados do marketplace IDE Preparação Familiar. Depois de editar, rode: node scripts/gerar-paginas-loja.js (gera as páginas /produto/<slug> e o catálogo da /loja em HTML, para o Google e o WhatsApp). Para adicionar um produto, copie um bloco e edite. Campos: slug (URL única, sem espaços), categoria, tipo (fisico|digital), destaque (true no carro-chefe), preco (número ou null p/ 'sob consulta'), preco_promo, sob_encomenda, prazo_producao_dias, resumo, descricao, caracteristicas[], imagens[], checkout (mercadopago|whatsapp|hubla|pagina|soon), link (usado quando checkout=hubla), pagina (checkout=pagina: o card leva à página própria e não gera /produto), selo (etiqueta no card), preco_sufixo (ex.: /ano), disponivel.",
+  "categorias": [
+    "Cursos e Comunidade",
+    "Facas",
+    "Kits de Fogo",
+    "Bushcraft e Equipamentos",
+    "Materiais Digitais"
+  ],
   "frete": {
     "_comentario": "Frete estimado por região, calculado pelo 1º dígito do CEP. EDITE os valores conforme seu custo real. gratis_acima_de: subtotal a partir do qual o frete fica grátis (null = desativado). Para frete exato dos Correios/transportadora, integrar uma API (ex.: Melhor Envio) depois.",
     "gratis_acima_de": null,
     "tabela": [
-      { "faixa": "São Paulo", "digitos": [0, 1], "valor": 30.00 },
-      { "faixa": "Sudeste (RJ, MG, ES)", "digitos": [2, 3], "valor": 35.00 },
-      { "faixa": "Sul (PR, SC, RS)", "digitos": [8, 9], "valor": 40.00 },
-      { "faixa": "Centro-Oeste (DF, GO, MT, MS)", "digitos": [7], "valor": 45.00 },
-      { "faixa": "Nordeste", "digitos": [4, 5], "valor": 50.00 },
-      { "faixa": "Norte", "digitos": [6], "valor": 60.00 }
+      {
+        "faixa": "São Paulo",
+        "digitos": [
+          0,
+          1
+        ],
+        "valor": 30.0
+      },
+      {
+        "faixa": "Sudeste (RJ, MG, ES)",
+        "digitos": [
+          2,
+          3
+        ],
+        "valor": 35.0
+      },
+      {
+        "faixa": "Sul (PR, SC, RS)",
+        "digitos": [
+          8,
+          9
+        ],
+        "valor": 40.0
+      },
+      {
+        "faixa": "Centro-Oeste (DF, GO, MT, MS)",
+        "digitos": [
+          7
+        ],
+        "valor": 45.0
+      },
+      {
+        "faixa": "Nordeste",
+        "digitos": [
+          4,
+          5
+        ],
+        "valor": 50.0
+      },
+      {
+        "faixa": "Norte",
+        "digitos": [
+          6
+        ],
+        "valor": 60.0
+      }
     ]
   },
   "produtos": [
@@ -20,7 +66,7 @@
       "categoria": "Facas",
       "tipo": "fisico",
       "destaque": true,
-      "preco": 480.00,
+      "preco": 480.0,
       "preco_promo": null,
       "sob_encomenda": true,
       "prazo_producao_dias": 10,
@@ -34,7 +80,11 @@
         "Embalagem personalizada",
         "Ideal para bushcraft, mato e uso no dia a dia"
       ],
-      "imagens": ["/assets/faca-ide-1.webp", "/assets/faca-ide-2.webp", "/assets/faca-ide-1-recorte.webp"],
+      "imagens": [
+        "/assets/faca-ide-1.webp",
+        "/assets/faca-ide-2.webp",
+        "/assets/faca-ide-1-recorte.webp"
+      ],
       "checkout": "mercadopago",
       "disponivel": true
     },
@@ -48,10 +98,18 @@
       "preco_promo": null,
       "sob_encomenda": true,
       "prazo_producao_dias": 10,
-      "resumo": "Kit completo de fricção por arco (bow drill) para produzir fogo com técnica de sobrevivência.",
-      "descricao": "Kit artesanal de bow drill para praticar e dominar a produção de fogo por fricção. Feito sob encomenda. Fale com a gente no WhatsApp para valores, madeiras disponíveis e prazo.",
-      "caracteristicas": ["Feito à mão", "Método de fricção por arco", "Sob encomenda"],
-      "imagens": [],
+      "resumo": "Kit artesanal de fogo por fricção com arco — a técnica clássica de sobrevivência para acender fogo sem fósforo nem isqueiro.",
+      "descricao": "O bow drill (fogo por arco) é a técnica de fricção mais tradicional da sobrevivência: o movimento do arco gira a broca contra a base de madeira até formar a brasa que vira fogo. Dominar o fogo sem isqueiro é uma das habilidades que mais dão confiança em campo. Cada kit é confeccionado à mão pela IDE, sob encomenda. Fale com a gente no WhatsApp para saber os itens inclusos, as madeiras disponíveis, o valor e o prazo.",
+      "caracteristicas": [
+        "Feito à mão pela IDE",
+        "Fogo por fricção com arco",
+        "Para praticar a técnica em casa ou em campo",
+        "Sob encomenda — itens e valores no WhatsApp"
+      ],
+      "imagens": [
+        "/assets/produtos/kit-bow-drill.webp"
+      ],
+      "imagem_alt": "Alunos praticando fogo por fricção em aula da IDE",
       "checkout": "whatsapp",
       "disponivel": true
     },
@@ -65,10 +123,18 @@
       "preco_promo": null,
       "sob_encomenda": true,
       "prazo_producao_dias": 10,
-      "resumo": "Kit de fogo por fricção manual (hand drill) — a técnica mais pura de produção de fogo.",
-      "descricao": "Kit artesanal de hand drill. Feito sob encomenda. Fale com a gente no WhatsApp para valores e disponibilidade.",
-      "caracteristicas": ["Feito à mão", "Fricção manual", "Sob encomenda"],
-      "imagens": [],
+      "resumo": "Kit artesanal de fogo por fricção manual — a forma mais antiga e desafiadora de produzir fogo.",
+      "descricao": "No hand drill, a broca é girada entre as palmas das mãos contra a base de madeira até gerar a brasa. É a forma mais antiga de fazer fogo e exige técnica e persistência — um treino completo de sobrevivência. Cada kit é confeccionado à mão pela IDE, sob encomenda. Fale com a gente no WhatsApp para saber valores, itens e disponibilidade.",
+      "caracteristicas": [
+        "Feito à mão pela IDE",
+        "Fogo por fricção manual",
+        "Para quem quer dominar a técnica mais primitiva",
+        "Sob encomenda — itens e valores no WhatsApp"
+      ],
+      "imagens": [
+        "/assets/produtos/kit-hand-drill.webp"
+      ],
+      "imagem_alt": "Ninho de palha sobre prancha de madeira em aula de fogo por fricção da IDE",
       "checkout": "whatsapp",
       "disponivel": true
     },
@@ -82,10 +148,17 @@
       "preco_promo": null,
       "sob_encomenda": true,
       "prazo_producao_dias": 10,
-      "resumo": "Kit para iniciar fogo com segurança — item essencial do seu equipamento de preparação.",
-      "descricao": "Kit de fogo IDE para o seu equipamento de preparação. Feito sob encomenda. Fale com a gente no WhatsApp para valores e itens inclusos.",
-      "caracteristicas": ["Feito à mão", "Sob encomenda"],
-      "imagens": [],
+      "resumo": "Kit para acender fogo com segurança em campo — item essencial do equipamento de preparação e da mochila de emergência.",
+      "descricao": "Fogo é aquecimento, água fervida, comida quente e sinalização. O Kit Fogo IDE foi pensado para acender fogo com segurança em campo e é um item essencial do seu equipamento de preparação e da mochila de emergência da família. Feito sob encomenda. Fale com a gente no WhatsApp para saber os itens inclusos, o valor e o prazo.",
+      "caracteristicas": [
+        "Feito à mão pela IDE",
+        "Item essencial da mochila de emergência",
+        "Sob encomenda — itens e valores no WhatsApp"
+      ],
+      "imagens": [
+        "/assets/produtos/kit-fogo.webp"
+      ],
+      "imagem_alt": "Instrutor da IDE acendendo fogo em aula prática de fogo primitivo",
       "checkout": "whatsapp",
       "disponivel": true
     },
@@ -95,14 +168,21 @@
       "categoria": "Materiais Digitais",
       "tipo": "digital",
       "destaque": false,
-      "preco": 27.00,
-      "preco_promo": 19.90,
+      "preco": 27.0,
+      "preco_promo": 19.9,
       "sob_encomenda": false,
       "prazo_producao_dias": 0,
-      "resumo": "10 fichas para preencher e montar o plano de emergência da sua família em 20 minutos. PDF preenchível.",
-      "descricao": "PDF de 15 páginas com 10 fichas preenchíveis: você senta uma vez, preenche, imprime e cola na geladeira. Acesso imediato por e-mail após a compra.",
-      "caracteristicas": ["PDF preenchível e imprimível", "Acesso imediato por e-mail", "Pagamento único"],
-      "imagens": [],
+      "resumo": "10 fichas para preencher e montar o plano de emergência da sua família em uma tarde. PDF preenchível, de Moraes e Andreia.",
+      "descricao": "Numa emergência ninguém lembra telefones, remédios, documentos e o ponto de encontro. A Pasta de Emergência da Família coloca tudo isso no papel: são 10 fichas com as perguntas já escritas — ficha de cada membro da família, árvore de contatos, três pontos de encontro, planta da casa (gás, água e disjuntor), inventários de 72 horas de água, alimento e energia, documentos, mochila de evacuação e registro do simulado. Acompanha 18 etiquetas de rotação de estoque e 6 cartões de bolso. Você preenche na tela ou à mão, imprime e deixa num lugar que todo mundo da casa conhece. PDF de 15 páginas, pagamento único e acesso imediato por e-mail.",
+      "caracteristicas": [
+        "10 fichas prontas para preencher",
+        "18 etiquetas de rotação de estoque e 6 cartões de bolso",
+        "PDF preenchível e imprimível",
+        "Pagamento único — acesso imediato por e-mail"
+      ],
+      "imagens": [
+        "/assets/produtos/pasta-emergencia-familia.webp"
+      ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/CXqHSsxGnPsXmi3cNTw3",
       "disponivel": true
@@ -113,14 +193,21 @@
       "categoria": "Materiais Digitais",
       "tipo": "digital",
       "destaque": false,
-      "preco": 19.90,
+      "preco": 19.9,
       "preco_promo": null,
       "sob_encomenda": false,
       "prazo_producao_dias": 0,
-      "resumo": "O guia do que colocar — e do que não colocar — na mochila de emergência da família.",
-      "descricao": "Ebook prático sobre a mochila de emergência da família: o que levar, como organizar e manter pronta. Acesso imediato por e-mail após a compra.",
-      "caracteristicas": ["Material digital em PDF", "Acesso imediato por e-mail"],
-      "imagens": [],
+      "resumo": "Manual Operacional da Academia IDE, Volume 001: o que levar — e o que não levar — na mochila de emergência da família.",
+      "descricao": "O primeiro volume do Manual Operacional da Academia IDE é um guia prático para montar a mochila de emergência da sua família: o que levar, o que deixar de fora, como organizar e como manter tudo pronto para sair de casa rápido se for preciso. Prepare-se hoje, proteja amanhã. Material digital em PDF, com acesso imediato por e-mail após a compra.",
+      "caracteristicas": [
+        "Manual Operacional Academia IDE — Vol. 001",
+        "O que levar e o que não levar",
+        "Material digital em PDF",
+        "Acesso imediato por e-mail"
+      ],
+      "imagens": [
+        "/assets/produtos/ebook-mochila-emergencia.webp"
+      ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/FQqpKh5cf1GVSMmzyV5P",
       "disponivel": true
@@ -131,14 +218,21 @@
       "categoria": "Materiais Digitais",
       "tipo": "digital",
       "destaque": false,
-      "preco": 19.90,
+      "preco": 19.9,
       "preco_promo": null,
       "sob_encomenda": false,
       "prazo_producao_dias": 0,
-      "resumo": "Como montar e manter um estoque de alimentos que dura — o guia da Andreia Moraes.",
-      "descricao": "Ebook da Andreia Moraes sobre alimentação de emergência: o que guardar, como armazenar e rotacionar para que a comida dure. Acesso imediato por e-mail após a compra.",
-      "caracteristicas": ["Material digital em PDF", "Por Andreia Moraes", "Acesso imediato por e-mail"],
-      "imagens": [],
+      "resumo": "Como armazenar alimentos por meses e anos sem desperdício — o guia da Andreia Moraes.",
+      "descricao": "Ter comida em casa numa emergência não é encher o armário: é saber o que guardar, como armazenar e como fazer o rodízio para nada estragar. No ebook Comida que Dura, Andreia Moraes ensina a montar e manter um estoque de alimentos que dura meses e até anos, sem desperdício. Material digital em PDF, com acesso imediato por e-mail após a compra.",
+      "caracteristicas": [
+        "Por Andreia Moraes",
+        "Estoque que dura meses e anos",
+        "Sem desperdício: rodízio dos alimentos",
+        "Material digital em PDF — acesso imediato por e-mail"
+      ],
+      "imagens": [
+        "/assets/produtos/comida-que-dura.webp"
+      ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/CkUqU00vHNm3vWBYkiF6",
       "disponivel": true
@@ -149,16 +243,69 @@
       "categoria": "Materiais Digitais",
       "tipo": "digital",
       "destaque": false,
-      "preco": 19.90,
+      "preco": 19.9,
       "preco_promo": null,
       "sob_encomenda": false,
       "prazo_producao_dias": 0,
-      "resumo": "O que o seu animal precisa numa emergência — a mochila de emergência do pet.",
-      "descricao": "Ebook sobre a mochila de emergência do seu pet: itens essenciais, documentos, alimentação e cuidados para não deixar ninguém da família para trás. Acesso imediato por e-mail após a compra.",
-      "caracteristicas": ["Material digital em PDF", "Para o seu pet", "Acesso imediato por e-mail"],
-      "imagens": [],
+      "resumo": "Preparação, evacuação e autonomia por 72 horas para o seu animal — porque ele também faz parte da família.",
+      "descricao": "Numa evacuação, quem cuida do seu pet? Este guia da Academia IDE mostra como montar a mochila de emergência do seu animal para 72 horas de autonomia: água e alimentação, primeiros socorros, transporte seguro, higiene e bem-estar. Porque eles também fazem parte da família. Material digital em PDF, com acesso imediato por e-mail após a compra.",
+      "caracteristicas": [
+        "Autonomia de 72 horas para o seu pet",
+        "Água, alimentação e primeiros socorros",
+        "Transporte seguro, higiene e bem-estar",
+        "Material digital em PDF — acesso imediato por e-mail"
+      ],
+      "imagens": [
+        "/assets/produtos/mochila-emergencia-pet.webp"
+      ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/gqwrMzyPcj1Zc14Jnxoz",
+      "disponivel": true
+    },
+    {
+      "slug": "curso-presencial",
+      "nome": "Curso Presencial Preparação Familiar",
+      "categoria": "Cursos e Comunidade",
+      "tipo": "servico",
+      "destaque": true,
+      "selo": "Inscrições abertas",
+      "preco": 1500.0,
+      "preco_promo": null,
+      "preco_sufixo": "/pessoa",
+      "sob_encomenda": false,
+      "prazo_producao_dias": 0,
+      "resumo": "8 modalidades práticas ao ar livre no CLAT, a 1h25 de Brasília, com hospedagem e alimentação inclusas. Turma de dezembro de 2026.",
+      "descricao": "",
+      "caracteristicas": [],
+      "imagens": [
+        "/assets/produtos/curso-presencial.webp"
+      ],
+      "imagem_alt": "Alex e Andreia Moraes, instrutores do curso presencial, em treinamento na água",
+      "checkout": "pagina",
+      "pagina": "/preparacao-familiar",
+      "disponivel": true
+    },
+    {
+      "slug": "comunidade-cardume",
+      "nome": "Comunidade Cardume",
+      "categoria": "Cursos e Comunidade",
+      "tipo": "servico",
+      "destaque": false,
+      "selo": "Comunidade",
+      "preco": 157.46,
+      "preco_promo": null,
+      "preco_sufixo": "/ano",
+      "sob_encomenda": false,
+      "prazo_producao_dias": 0,
+      "resumo": "Preparação familiar com calma e no seu ritmo — água, alimentos e organização da casa — com Moraes, Andreia e gente fazendo junto.",
+      "descricao": "",
+      "caracteristicas": [],
+      "imagens": [
+        "/assets/produtos/comunidade-cardume.webp"
+      ],
+      "imagem_alt": "Moraes e Andreia, fundadores do Cardume",
+      "checkout": "pagina",
+      "pagina": "/cardume",
       "disponivel": true
     }
   ]

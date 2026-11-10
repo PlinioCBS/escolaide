@@ -116,8 +116,8 @@ function paginaProduto(p) {
   return p.slug;
 }
 
-// 1) páginas de produto
-const gerados = dados.produtos.map(paginaProduto);
+// 1) páginas de produto (itens com `pagina` — curso, comunidade — já têm página própria)
+const gerados = dados.produtos.filter((p) => !p.pagina).map(paginaProduto);
 
 // 2) catálogo da /loja
 const loja = ler("loja/index.html");

@@ -85,7 +85,8 @@
     var cents = (v % 1 === 0) ? ",00" : ("," + v.toFixed(2).split(".")[1]);
     var reais = Math.floor(v);
     var de = (v !== p.preco && p.preco != null) ? '<span class="price-old">' + brl(p.preco) + "</span>" : "";
-    return de + '<span class="price" style="font-size:1.7rem"><span class="cur">R$</span>' + reais + '<span style="font-size:.6em;vertical-align:top">' + cents + "</span></span>";
+    var suf = p.preco_sufixo ? '<span class="price-suf">' + esc(p.preco_sufixo) + "</span>" : "";
+    return de + '<span class="price" style="font-size:1.7rem"><span class="cur">R$</span>' + reais.toLocaleString("pt-BR") + '<span style="font-size:.6em;vertical-align:top">' + cents + "</span>" + suf + "</span>";
   }
 
   // ---------- CATÁLOGO (/loja) ----------
@@ -94,13 +95,13 @@
     var cats = data.categorias || [];
     var ps = (data.produtos || []).slice();
     // destaque primeiro dentro de cada categoria
-    var html = "";
+    var html = "", n = 0;
     cats.forEach(function (cat) {
       var items = ps.filter(function (p) { return p.categoria === cat; });
       if (!items.length) return;
       items.sort(function (a, b) { return (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0); });
       html += '<section class="cat"><h2 class="cat-title">' + esc(cat) + "</h2><div class=\"prod-grid\">";
-      items.forEach(function (p) { html += cardHTML(p); });
+      items.forEach(function (p) { html += cardHTML(p, n++); });
       html += "</div></section>";
     });
     return html || "<p>Catálogo em breve.</p>";
@@ -111,16 +112,20 @@
       host.innerHTML = catalogHTML(data);
     }).catch(function () { if (!host.querySelector(".cat")) host.innerHTML = "<p>Não foi possível carregar o catálogo agora.</p>"; });
   }
-  function cardHTML(p) {
-    var href = "/produto/" + p.slug;
+  // ordem = posição no catálogo; as primeiras imagens carregam sem esperar a rolagem
+  function cardHTML(p, ordem) {
+    var href = p.pagina || ("/produto/" + p.slug);
+    var carga = ordem < 2 ? (ordem === 0 ? ' fetchpriority="high"' : "") : ' loading="lazy"';
     var media = (p.imagens && p.imagens[0])
-      ? '<img loading="lazy" src="' + esc(p.imagens[0]) + '" alt="' + esc(p.nome) + '">'
+      ? '<img' + carga + ' src="' + esc(p.imagens[0]) + '" width="1200" height="750" alt="' + esc(p.imagem_alt || p.nome) + '">'
       : placeholderIcon();
     var badges = "";
-    if (p.destaque) badges += '<span class="badge badge-orange card-badge">Carro-chefe</span>';
+    if (p.selo) badges += '<span class="badge badge-orange card-badge">' + esc(p.selo) + "</span>";
+    else if (p.destaque) badges += '<span class="badge badge-orange card-badge">Carro-chefe</span>';
     else if (!p.disponivel) badges += '<span class="badge badge-soon card-badge">Em breve</span>';
     else if (p.sob_encomenda) badges += '<span class="badge badge-encomenda card-badge">Sob encomenda</span>';
-    var cta = p.disponivel ? '<span class="card-cta">Ver produto →</span>' : '<span class="card-cta muted">Em breve</span>';
+    var cta = !p.disponivel ? '<span class="card-cta muted">Em breve</span>'
+      : '<span class="card-cta">' + (p.pagina ? "Conhecer →" : "Ver produto →") + "</span>";
     return '<a class="prod-card" href="' + href + '">' +
       '<div class="prod-media">' + media + badges + "</div>" +
       '<div class="prod-info"><h3>' + esc(p.nome) + "</h3>" +
@@ -134,7 +139,7 @@
       // galeria
       var gallery;
       if (p.imagens && p.imagens.length) {
-        var main = '<img id="pmain" src="' + esc(p.imagens[0]) + '" alt="' + esc(p.nome) + '">';
+        var main = '<img id="pmain" src="' + esc(p.imagens[0]) + '" width="1200" height="750" fetchpriority="high" alt="' + esc(p.imagem_alt || p.nome) + '">';
         var thumbs = "";
         if (p.imagens.length > 1) {
           thumbs = '<div class="thumbs">' + p.imagens.map(function (src, i) {
