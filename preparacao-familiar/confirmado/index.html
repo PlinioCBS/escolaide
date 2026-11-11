@@ -20,8 +20,8 @@
   .card{width:100%;max-width:600px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:0 24px 60px rgba(0,0,0,.4);padding:var(--space-10) var(--space-8);text-align:center}
   .check{width:78px;height:78px;border-radius:50%;background:color-mix(in oklab,var(--green-500) 16%,white);border:1.5px solid var(--green-500);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5)}
   .check::after{content:"";width:26px;height:14px;border-left:3px solid var(--green-600);border-bottom:3px solid var(--green-600);transform:rotate(-45deg);margin-top:-6px;border-radius:1px}
-  h1{font-size:1.9rem;line-height:1.12;color:var(--text-primary);margin-bottom:var(--space-3)}
-  .sub{color:var(--text-secondary);line-height:1.6;max-width:46ch;margin:0 auto var(--space-7)}
+  h1{font-size:1.9rem;line-height:1.12;color:var(--text-primary);margin-bottom:var(--space-3);text-wrap:balance}
+  .sub{color:var(--text-secondary);line-height:1.6;max-width:46ch;margin:0 auto var(--space-7);text-wrap:balance}
   .sub strong{color:var(--text-primary)}
   .steps{display:grid;gap:var(--space-3);text-align:left;max-width:440px;margin:0 auto var(--space-7)}
   .step{display:flex;gap:12px;align-items:flex-start;background:var(--neutral-50);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px 16px}
@@ -48,7 +48,7 @@
   <div class="card">
     <div class="check" aria-hidden="true"></div>
     <h1 id="titulo">Pré-inscrição confirmada!</h1>
-    <p class="sub">Recebemos seus dados e <strong>sua vaga está pré-reservada</strong>. Agora é só dar o último passo com a nossa equipe.</p>
+    <p class="sub">Recebemos seus dados e <strong>sua vaga está <span style="white-space:nowrap">pré-reservada</span></strong>. Agora é só dar o último passo com a nossa equipe.</p>
 
     <div class="steps">
       <div class="step"><span class="n">1</span><p><b>Fale com a equipe no WhatsApp</b> — confirmamos a data, tiramos suas dúvidas e fechamos a sua vaga.</p></div>
