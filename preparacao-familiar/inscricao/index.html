@@ -24,6 +24,8 @@
   .recap{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:color-mix(in oklab,var(--brand-accent) 10%,white);border:1px solid color-mix(in oklab,var(--brand-accent) 35%,white);border-radius:var(--radius-md);padding:12px 14px;margin-bottom:var(--space-6);font-size:0.9rem;color:var(--text-secondary)}
   .recap b{color:var(--text-primary)}
   .recap .dot{color:var(--brand-accent)}
+  .individual{background:var(--surface-brand-subtle);border:1px solid color-mix(in oklab,var(--brand-primary) 25%,white);border-radius:var(--radius-md);padding:12px 14px;margin:0 0 var(--space-6);font-size:0.9rem;line-height:1.5;color:var(--text-secondary)}
+  .individual b{color:var(--text-primary)}
   form{display:flex;flex-direction:column;gap:var(--space-4)}
   .field{display:flex;flex-direction:column;gap:6px}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
@@ -68,13 +70,15 @@
       <b>R$&nbsp;1.500</b> por pessoa <span class="dot">•</span> 8 modalidades <span class="dot">•</span> hospedagem e alimentação inclusas
     </div>
 
+    <div class="individual"><b>A inscrição é individual.</b> Cada participante faz a sua própria ficha, com os seus dados de saúde e o seu contato de emergência. Para crianças, o responsável preenche uma ficha com os dados da criança.</div>
+
     <div class="form-error" id="formError">Não conseguimos registrar agora — vamos te atender direto no WhatsApp.</div>
 
     <form id="inscForm" novalidate>
       <!-- IDENTIFICAÇÃO -->
       <div class="field" id="f-nome">
-        <label for="nome">Nome completo</label>
-        <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Seu nome" required>
+        <label for="nome">Nome completo do participante</label>
+        <input type="text" id="nome" name="nome" autocomplete="name" placeholder="Nome de quem vai participar" required>
         <span class="err">Escreva seu nome.</span>
       </div>
       <div class="field" id="f-whatsapp">
@@ -87,34 +91,20 @@
         <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="voce@email.com" required>
         <span class="err">Digite um e-mail válido.</span>
       </div>
-      <div class="row2">
-        <div class="field" id="f-cidade">
-          <label for="cidade">Cidade / UF</label>
-          <input type="text" id="cidade" name="cidade" autocomplete="address-level2" placeholder="Brasília / DF" required>
-          <span class="err">Informe sua cidade.</span>
-        </div>
-        <div class="field" id="f-pessoas">
-          <label for="pessoas">Quantas pessoas</label>
-          <select id="pessoas" name="pessoas">
-            <option value="1">1 pessoa</option>
-            <option value="2">2 pessoas</option>
-            <option value="3">3 pessoas</option>
-            <option value="4">4 pessoas</option>
-            <option value="5">5 pessoas</option>
-            <option value="6+">6 ou mais</option>
-            <option value="grupo">Grupo / empresa</option>
-          </select>
-        </div>
+      <div class="field" id="f-cidade">
+        <label for="cidade">Cidade / UF</label>
+        <input type="text" id="cidade" name="cidade" autocomplete="address-level2" placeholder="Brasília / DF" required>
+        <span class="err">Informe sua cidade.</span>
       </div>
 
       <!-- SAÚDE E SEGURANÇA -->
       <div class="sec-label">Saúde e segurança</div>
-      <p class="sec-hint">Se for mais de uma pessoa, inclua as informações de todos os participantes.</p>
+      <p class="sec-hint">Informações do participante desta ficha.</p>
       <div class="row2">
         <div class="field" id="f-idade">
-          <label for="idade">Idade(s)</label>
-          <input type="text" id="idade" name="idade" inputmode="numeric" placeholder="Ex.: 38 e 10" required>
-          <span class="err">Informe a(s) idade(s).</span>
+          <label for="idade">Idade</label>
+          <input type="text" id="idade" name="idade" inputmode="numeric" placeholder="Ex.: 38" required>
+          <span class="err">Informe a idade.</span>
         </div>
         <div class="field" id="f-nada">
           <label for="nada">Sabe nadar?</label>
@@ -154,7 +144,7 @@
 
       <label class="consent" id="f-consent" for="consent">
         <input type="checkbox" id="consent" name="consent">
-        <span>Declaro que as informações de saúde são verdadeiras e autorizo a equipe a utilizá-las para a minha segurança durante a atividade (<a href="/privacidade" target="_blank" rel="noopener">política de privacidade</a>).</span>
+        <span>Declaro que as informações de saúde são verdadeiras e autorizo a equipe a utilizá-las para a segurança do participante durante a atividade (<a href="/privacidade" target="_blank" rel="noopener">política de privacidade</a>).</span>
       </label>
 
       <!-- honeypot anti-bot -->
@@ -225,11 +215,10 @@
     return ok;
   }
 
-  function goWhatsApp(nome, cidade, pessoas) {
+  function goWhatsApp(nome, cidade) {
     var msg = 'Ola! Fiz minha pre-inscricao nos Cursos e Experiencias da IDE.%0A'
-      + 'Nome: ' + encodeURIComponent(nome) + '%0A'
-      + 'Cidade: ' + encodeURIComponent(cidade) + '%0A'
-      + 'Pessoas: ' + encodeURIComponent(pessoas);
+      + 'Participante: ' + encodeURIComponent(nome) + '%0A'
+      + 'Cidade: ' + encodeURIComponent(cidade);
     window.location.href = 'https://wa.me/' + WHATSAPP_FALLBACK + '?text=' + msg;
   }
 
@@ -240,14 +229,13 @@
 
     var nome = val('nome');
     var cidade = val('cidade');
-    var pessoas = document.getElementById('pessoas').value;
 
     var payload = {
       nome: nome,
       whatsapp: tel.value.trim(),
       email: val('email'),
       cidade: cidade,
-      pessoas: pessoas,
+      pessoas: '1', // inscrição individual: uma ficha por participante
       idade: val('idade'),
       sabe_nadar: val('nada'),
       alergias: val('alergias'),
@@ -271,7 +259,7 @@
       return r.json().catch(function () { return {}; }).then(function (data) { return { status: r.status, data: data }; });
     }).then(function (res) {
       if (res.status === 200 && res.data && res.data.ok) {
-        if (window.cardumeTrack) window.cardumeTrack('generate_lead', { pessoas: pessoas });
+        if (window.cardumeTrack) window.cardumeTrack('generate_lead', {});
         try { sessionStorage.setItem('ide_preinsc_nome', nome.split(' ')[0]); } catch (e) {}
         // usado pelo checkout.js para já abrir o pagamento da Hubla preenchido
         try { sessionStorage.setItem('ide_comprador', JSON.stringify({ nome: nome, email: payload.email, whatsapp: payload.whatsapp })); } catch (e) {}
@@ -286,9 +274,9 @@
       }
     }).catch(function () {
       // resiliência: nunca perder o lead — segue para o WhatsApp com os dados básicos
-      if (window.cardumeTrack) window.cardumeTrack('generate_lead', { via: 'whatsapp_fallback', pessoas: pessoas });
+      if (window.cardumeTrack) window.cardumeTrack('generate_lead', { via: 'whatsapp_fallback' });
       formError.classList.add('show');
-      setTimeout(function () { goWhatsApp(nome, cidade, pessoas); }, 1200);
+      setTimeout(function () { goWhatsApp(nome, cidade); }, 1200);
     });
   });
 

@@ -1,5 +1,5 @@
 {
-  "_comentario": "Fonte de dados do marketplace IDE Preparação Familiar. Depois de editar, rode: node scripts/gerar-paginas-loja.js (gera as páginas /produto/<slug> e o catálogo da /loja em HTML, para o Google e o WhatsApp). Para adicionar um produto, copie um bloco e edite. Campos: slug (URL única, sem espaços), categoria, tipo (fisico|digital), destaque (true no carro-chefe), preco (número ou null p/ 'sob consulta'), preco_promo, sob_encomenda, prazo_producao_dias, resumo, descricao, caracteristicas[], imagens[], checkout (mercadopago|whatsapp|hubla|pagina|soon), link (usado quando checkout=hubla), pagina (checkout=pagina: o card leva à página própria e não gera /produto), selo (etiqueta no card), preco_sufixo (ex.: /ano), disponivel.",
+  "_comentario": "Fonte de dados do marketplace IDE Preparação Familiar. Depois de editar, rode: node scripts/gerar-paginas-loja.js (gera as páginas /produto/<slug> e o catálogo da /loja em HTML, para o Google e o WhatsApp). Para adicionar um produto, copie um bloco e edite. Campos: slug (URL única, sem espaços), categoria, tipo (fisico|digital), destaque (true no carro-chefe), preco (número ou null p/ 'sob consulta'), preco_promo, sob_encomenda, prazo_producao_dias, resumo, descricao, caracteristicas[], imagens[], checkout (mercadopago|whatsapp|hubla|pagina|soon), link (usado quando checkout=hubla), pagina (checkout=pagina: o card leva à página própria e não gera /produto), selo (etiqueta no card), preco_sufixo (ex.: /ano), disponivel. oculto (true = some da loja, das páginas e do sitemap, sem apagar os dados).",
   "categorias": [
     "Cursos e Comunidade",
     "Facas",
@@ -111,7 +111,8 @@
       ],
       "imagem_alt": "Alunos praticando fogo por fricção em aula da IDE",
       "checkout": "whatsapp",
-      "disponivel": true
+      "disponivel": true,
+      "oculto": true
     },
     {
       "slug": "kit-hand-drill",
@@ -136,7 +137,8 @@
       ],
       "imagem_alt": "Ninho de palha sobre prancha de madeira em aula de fogo por fricção da IDE",
       "checkout": "whatsapp",
-      "disponivel": true
+      "disponivel": true,
+      "oculto": true
     },
     {
       "slug": "kit-fogo",
@@ -160,7 +162,8 @@
       ],
       "imagem_alt": "Instrutor da IDE acendendo fogo em aula prática de fogo primitivo",
       "checkout": "whatsapp",
-      "disponivel": true
+      "disponivel": true,
+      "oculto": true
     },
     {
       "slug": "pasta-emergencia-familia",

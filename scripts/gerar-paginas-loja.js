@@ -116,8 +116,16 @@ function paginaProduto(p) {
   return p.slug;
 }
 
-// 1) páginas de produto (itens com `pagina` — curso, comunidade — já têm página própria)
-const gerados = dados.produtos.filter((p) => !p.pagina).map(paginaProduto);
+// 1) páginas de produto (itens com `pagina` — curso, comunidade — já têm página própria;
+//    itens `oculto` ficam fora: a página gerada é apagada e o endereço cai no "não encontrado")
+const gerados = dados.produtos.filter((p) => !p.pagina && !p.oculto).map(paginaProduto);
+const ocultos = dados.produtos.filter((p) => !p.pagina && p.oculto).map((p) => p.slug);
+for (const slug of ocultos) {
+  const arq = path.join(RAIZ, "produto", slug, "index.html");
+  if (fs.existsSync(arq) && fs.readFileSync(arq, "utf8").includes("Gerado por scripts/gerar-paginas-loja.js")) {
+    fs.rmSync(path.join(RAIZ, "produto", slug), { recursive: true });
+  }
+}
 
 // 2) catálogo da /loja
 const loja = ler("loja/index.html");
@@ -128,12 +136,20 @@ const novaLoja = loja.replace(
 if (novaLoja === loja && !loja.includes(catalogHTML(dados))) throw new Error("marcadores gerado:catalogo não encontrados em loja/index.html");
 gravar("loja/index.html", novaLoja);
 
-// 3) lastmod no sitemap
+// 3) sitemap: tira os ocultos, inclui produtos novos e atualiza o lastmod
 let mapa = ler("sitemap.xml");
+for (const slug of ocultos) {
+  mapa = mapa.replace(new RegExp(`\\s*<url>\\s*<loc>${SITE.replace(/\./g, "\\.")}/produto/${slug}</loc>[\\s\\S]*?</url>`), "");
+}
+for (const slug of gerados) {
+  if (!mapa.includes(`<loc>${SITE}/produto/${slug}</loc>`)) {
+    mapa = mapa.replace("</urlset>", `  <url><loc>${SITE}/produto/${slug}</loc><lastmod>${hoje}</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url>\n</urlset>`);
+  }
+}
 for (const rota of ["/loja", ...gerados.map((s) => "/produto/" + s)]) {
   const re = new RegExp(`(<loc>${SITE.replace(/\./g, "\\.")}${rota}</loc>\\s*<lastmod>)[^<]*(</lastmod>)`);
   mapa = mapa.replace(re, `$1${hoje}$2`);
 }
 gravar("sitemap.xml", mapa);
 
-console.log(`ok: ${gerados.length} páginas de produto, catálogo da loja e sitemap atualizados (${hoje})`);
+console.log(`ok: ${gerados.length} páginas de produto, catálogo da loja e sitemap atualizados (${hoje})` + (ocultos.length ? ` — ocultos: ${ocultos.join(", ")}` : ""));

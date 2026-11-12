@@ -60,7 +60,7 @@
   }
   function bySlug(data, slug) {
     var ps = (data && data.produtos) || [];
-    for (var i = 0; i < ps.length; i++) if (ps[i].slug === slug) return ps[i];
+    for (var i = 0; i < ps.length; i++) if (ps[i].slug === slug && !ps[i].oculto) return ps[i]; // oculto = fora da loja
     return null;
   }
   function currentSlug() {
@@ -97,7 +97,7 @@
     // destaque primeiro dentro de cada categoria
     var html = "", n = 0;
     cats.forEach(function (cat) {
-      var items = ps.filter(function (p) { return p.categoria === cat; });
+      var items = ps.filter(function (p) { return p.categoria === cat && !p.oculto; });
       if (!items.length) return;
       items.sort(function (a, b) { return (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0); });
       html += '<section class="cat"><h2 class="cat-title">' + esc(cat) + "</h2><div class=\"prod-grid\">";
