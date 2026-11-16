@@ -117,9 +117,12 @@ function paginaProduto(p) {
 }
 
 // 1) páginas de produto (itens com `pagina` — curso, comunidade — já têm página própria;
-//    itens `oculto` ficam fora: a página gerada é apagada e o endereço cai no "não encontrado")
+//    itens `oculto` ficam fora: a página gerada é apagada e o endereço cai no "não encontrado";
+//    ebooks com `pagina` — /mochila-de-emergencia etc. — são gerados por gerar-paginas-ebooks.js)
 const gerados = dados.produtos.filter((p) => !p.pagina && !p.oculto).map(paginaProduto);
-const ocultos = dados.produtos.filter((p) => !p.pagina && p.oculto).map((p) => p.slug);
+// itens que ganharam página de venda própria (`pagina`) ou saíram da loja (`oculto`)
+// perdem a página /produto/ gerada e a entrada no sitemap (o vercel.json redireciona)
+const ocultos = dados.produtos.filter((p) => p.pagina || p.oculto).map((p) => p.slug);
 for (const slug of ocultos) {
   const arq = path.join(RAIZ, "produto", slug, "index.html");
   if (fs.existsSync(arq) && fs.readFileSync(arq, "utf8").includes("Gerado por scripts/gerar-paginas-loja.js")) {
@@ -152,4 +155,4 @@ for (const rota of ["/loja", ...gerados.map((s) => "/produto/" + s)]) {
 }
 gravar("sitemap.xml", mapa);
 
-console.log(`ok: ${gerados.length} páginas de produto, catálogo da loja e sitemap atualizados (${hoje})` + (ocultos.length ? ` — ocultos: ${ocultos.join(", ")}` : ""));
+console.log(`ok: ${gerados.length} páginas de produto, catálogo da loja e sitemap atualizados (${hoje})` + (ocultos.length ? ` — sem /produto/: ${ocultos.join(", ")}` : ""));

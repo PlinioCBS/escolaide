@@ -17,7 +17,7 @@
           0,
           1
         ],
-        "valor": 30.0
+        "valor": 30
       },
       {
         "faixa": "Sudeste (RJ, MG, ES)",
@@ -25,7 +25,7 @@
           2,
           3
         ],
-        "valor": 35.0
+        "valor": 35
       },
       {
         "faixa": "Sul (PR, SC, RS)",
@@ -33,14 +33,14 @@
           8,
           9
         ],
-        "valor": 40.0
+        "valor": 40
       },
       {
         "faixa": "Centro-Oeste (DF, GO, MT, MS)",
         "digitos": [
           7
         ],
-        "valor": 45.0
+        "valor": 45
       },
       {
         "faixa": "Nordeste",
@@ -48,14 +48,14 @@
           4,
           5
         ],
-        "valor": 50.0
+        "valor": 50
       },
       {
         "faixa": "Norte",
         "digitos": [
           6
         ],
-        "valor": 60.0
+        "valor": 60
       }
     ]
   },
@@ -66,7 +66,7 @@
       "categoria": "Facas",
       "tipo": "fisico",
       "destaque": true,
-      "preco": 480.0,
+      "preco": 480,
       "preco_promo": null,
       "sob_encomenda": true,
       "prazo_producao_dias": 10,
@@ -171,7 +171,7 @@
       "categoria": "Materiais Digitais",
       "tipo": "digital",
       "destaque": false,
-      "preco": 27.0,
+      "preco": 27,
       "preco_promo": 19.9,
       "sob_encomenda": false,
       "prazo_producao_dias": 0,
@@ -213,7 +213,8 @@
       ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/FQqpKh5cf1GVSMmzyV5P",
-      "disponivel": true
+      "disponivel": true,
+      "pagina": "/mochila-de-emergencia"
     },
     {
       "slug": "comida-que-dura",
@@ -238,7 +239,8 @@
       ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/CkUqU00vHNm3vWBYkiF6",
-      "disponivel": true
+      "disponivel": true,
+      "pagina": "/comida-que-dura"
     },
     {
       "slug": "mochila-emergencia-pet",
@@ -263,7 +265,8 @@
       ],
       "checkout": "hubla",
       "link": "https://pay.hub.la/gqwrMzyPcj1Zc14Jnxoz",
-      "disponivel": true
+      "disponivel": true,
+      "pagina": "/mochila-pet"
     },
     {
       "slug": "curso-presencial",
@@ -272,7 +275,7 @@
       "tipo": "servico",
       "destaque": true,
       "selo": "Inscrições abertas",
-      "preco": 1500.0,
+      "preco": 1500,
       "preco_promo": null,
       "preco_sufixo": "/pessoa",
       "sob_encomenda": false,

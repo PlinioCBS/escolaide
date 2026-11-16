@@ -49,6 +49,18 @@
   .note{font-size:0.8rem;color:var(--text-muted);text-align:center;line-height:1.5;margin-top:2px}
   .form-error{display:none;background:color-mix(in oklab,var(--danger) 10%,white);border:1px solid color-mix(in oklab,var(--danger) 40%,white);color:#b91c1c;border-radius:var(--radius-md);padding:12px 14px;font-size:0.9rem}
   .form-error.show{display:block}
+  .pessoa{border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-5);display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-2)}
+  .pessoa-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .pessoa-head b{font-size:0.95rem;color:var(--text-primary)}
+  .link-btn{background:none;border:0;padding:0;font:inherit;font-size:0.82rem;font-weight:700;color:var(--brand-primary);cursor:pointer;text-decoration:underline}
+  .link-btn.danger{color:#b91c1c}
+  .add-pessoa{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--surface-brand-subtle);color:var(--brand-primary);border:1.5px dashed color-mix(in oklab,var(--brand-primary) 45%,white);border-radius:var(--radius-md);padding:14px;font:inherit;font-weight:800;font-size:0.95rem;cursor:pointer;margin-top:var(--space-2)}
+  .add-pessoa:hover{background:color-mix(in oklab,var(--brand-primary) 12%,white)}
+  .add-pessoa[hidden]{display:none}
+  .grupo-max{font-size:0.82rem;color:var(--text-muted);text-align:center;line-height:1.5}
+  .total{display:flex;justify-content:space-between;align-items:baseline;gap:10px;background:var(--neutral-50);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px 16px;margin-top:var(--space-2)}
+  .total span{color:var(--text-secondary);font-size:0.92rem}
+  .total b{font-size:1.25rem;color:var(--text-primary);white-space:nowrap}
   .trust{display:flex;align-items:center;gap:8px;justify-content:center;color:var(--text-muted);font-size:0.78rem;margin-top:var(--space-4)}
   .trust svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
 </style>
@@ -70,11 +82,12 @@
       <b>R$&nbsp;1.500</b> por pessoa <span class="dot">•</span> 8 modalidades <span class="dot">•</span> hospedagem e alimentação inclusas
     </div>
 
-    <div class="individual"><b>A inscrição é individual.</b> Cada participante faz a sua própria ficha, com os seus dados de saúde e o seu contato de emergência. Para crianças, o responsável preenche uma ficha com os dados da criança.</div>
+    <div class="individual"><b>Cada participante tem a sua própria ficha</b>, com os seus dados de saúde e o seu contato de emergência. Vai com a família ou com amigos? Use <b>“Adicionar outra pessoa”</b> no fim do formulário — o pagamento sai de uma vez só, R$&nbsp;1.500 por pessoa. Para crianças, preencha os dados da criança.</div>
 
     <div class="form-error" id="formError">Não conseguimos registrar agora — vamos te atender direto no WhatsApp.</div>
 
     <form id="inscForm" novalidate>
+      <div class="sec-label" style="margin-top:0">Participante 1 — responsável pela inscrição</div>
       <!-- IDENTIFICAÇÃO -->
       <div class="field" id="f-nome">
         <label for="nome">Nome completo do participante</label>
@@ -142,9 +155,15 @@
         </div>
       </div>
 
+      <!-- OUTROS PARTICIPANTES (adicionados pelo botão) -->
+      <div id="extras"></div>
+      <button type="button" class="add-pessoa" id="addPessoa">+ Adicionar outra pessoa</button>
+      <p class="grupo-max" id="grupoMax" hidden>Máximo de 5 pessoas por inscrição. Grupo maior? Fale com a gente no <a href="https://wa.me/5561985641912" target="_blank" rel="noopener">WhatsApp</a>.</p>
+      <div class="total" aria-live="polite"><span id="totalTxt">1 pessoa</span><b id="totalVal">R$ 1.500</b></div>
+
       <label class="consent" id="f-consent" for="consent">
         <input type="checkbox" id="consent" name="consent">
-        <span>Declaro que as informações de saúde são verdadeiras e autorizo a equipe a utilizá-las para a segurança do participante durante a atividade (<a href="/privacidade" target="_blank" rel="noopener">política de privacidade</a>).</span>
+        <span>Declaro que as informações de saúde são verdadeiras e autorizo a equipe a utilizá-las para a segurança dos participantes durante a atividade (<a href="/privacidade" target="_blank" rel="noopener">política de privacidade</a>).</span>
       </label>
 
       <!-- honeypot anti-bot -->
@@ -153,7 +172,7 @@
       </div>
 
       <button type="submit" class="btn btn-accent btn-block" id="submitBtn" style="margin-top:6px">Fazer pré-inscrição</button>
-      <p class="note">Sem compromisso de pagamento agora. É só a reserva da vaga.</p>
+      <p class="note">Sem compromisso de pagamento agora. É só a reserva da vaga. Os contatos (WhatsApp e e-mail) do participante 1 valem para todo o grupo.</p>
     </form>
 
     <div class="trust">
@@ -167,10 +186,14 @@
   var API_ENDPOINT = "/api/preinscricao";
   var WHATSAPP_FALLBACK = "5561985641912"; // número da coordenação IDE
   var CONFIRM_URL = "/preparacao-familiar/confirmado";
+  var PRECO = 1500;      // por pessoa
+  var MAX_PESSOAS = 5;   // acima disso, grupo é fechado pelo WhatsApp
 
   var form = document.getElementById('inscForm');
   var submitBtn = document.getElementById('submitBtn');
   var formError = document.getElementById('formError');
+  var extras = document.getElementById('extras');
+  var addBtn = document.getElementById('addPessoa');
 
   /* máscara de telefone brasileiro (aplicável a vários campos) */
   function maskPhone(el) {
@@ -187,8 +210,8 @@
   var emergTel = document.getElementById('emerg_tel');
   maskPhone(tel); maskPhone(emergTel);
 
-  function setInvalid(id, bad) {
-    var f = document.getElementById(id);
+  function setInvalid(el, bad) {
+    var f = typeof el === 'string' ? document.getElementById(el) : el;
     f.classList.toggle('invalid', bad);
     var input = f.querySelector('input,select,textarea');
     if (input) input.setAttribute('aria-invalid', bad ? 'true' : 'false');
@@ -197,27 +220,113 @@
   function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
   function val(id) { return (document.getElementById(id).value || '').trim(); }
   function digits(v) { return v.replace(/\D/g, ''); }
+  function badPhone(v) { var n = digits(v).length; return n < 10 || n > 11; }
+  function brl(v) { return 'R$ ' + v.toLocaleString('pt-BR'); }
+
+  /* ---------- outras pessoas ---------- */
+  var seq = 1;
+  function blocos() { return extras.querySelectorAll('.pessoa'); }
+  function totalPessoas() { return 1 + blocos().length; }
+
+  function atualizar() {
+    var n = totalPessoas();
+    var list = blocos();
+    for (var i = 0; i < list.length; i++) list[i].querySelector('.pessoa-head b').textContent = 'Participante ' + (i + 2);
+    document.getElementById('totalTxt').textContent = n === 1 ? '1 pessoa' : n + ' pessoas × R$ 1.500';
+    document.getElementById('totalVal').textContent = brl(n * PRECO);
+    addBtn.hidden = n >= MAX_PESSOAS;
+    document.getElementById('grupoMax').hidden = n < MAX_PESSOAS;
+    if (!submitBtn.disabled) submitBtn.textContent = n === 1 ? 'Fazer pré-inscrição' : 'Fazer pré-inscrição de ' + n + ' pessoas';
+  }
+
+  function campo(k, label, html, err) {
+    return '<div class="field" data-f="' + k + '"><label for="' + k + '-' + seq + '">' + label + '</label>' + html + (err ? '<span class="err">' + err + '</span>' : '') + '</div>';
+  }
+
+  function addPessoa() {
+    if (totalPessoas() >= MAX_PESSOAS) return;
+    seq++;
+    var id = function (k) { return 'id="' + k + '-' + seq + '"'; };
+    var el = document.createElement('div');
+    el.className = 'pessoa';
+    el.innerHTML =
+      '<div class="pessoa-head"><b>Participante</b><button type="button" class="link-btn danger" data-act="remover">Remover</button></div>' +
+      campo('nome', 'Nome completo', '<input type="text" ' + id('nome') + ' autocomplete="off" placeholder="Nome de quem vai participar">', 'Escreva o nome.') +
+      '<div class="row2">' +
+        campo('idade', 'Idade', '<input type="text" ' + id('idade') + ' inputmode="numeric" placeholder="Ex.: 12">', 'Informe a idade.') +
+        campo('nada', 'Sabe nadar?', '<select ' + id('nada') + '><option value="">Selecione…</option><option value="Sim">Sim</option><option value="Básico">Básico / mais ou menos</option><option value="Não">Não</option></select>', 'Selecione uma opção.') +
+      '</div>' +
+      campo('alergias', 'Alergias (alimentos, medicamentos, picadas)', '<textarea ' + id('alergias') + ' rows="2" placeholder="Descreva, ou escreva “nenhuma”"></textarea>', 'Preencha (escreva “nenhuma” se não houver).') +
+      campo('saude', 'Condições de saúde ou medicamentos de uso contínuo <span class="opt">(opcional)</span>', '<textarea ' + id('saude') + ' rows="2" placeholder="Ex.: asma, alergia, remédios de uso diário…"></textarea>') +
+      '<div class="pessoa-head"><span class="sec-hint" style="margin:0">Contato de emergência</span><button type="button" class="link-btn" data-act="copiar">Usar o mesmo do participante 1</button></div>' +
+      '<div class="row2">' +
+        campo('emerg_nome', 'Nome', '<input type="text" ' + id('emerg_nome') + ' placeholder="Quem acionar">', 'Informe o nome.') +
+        campo('emerg_tel', 'Telefone', '<input type="tel" ' + id('emerg_tel') + ' inputmode="numeric" placeholder="(61) 99999-9999">', 'Telefone com DDD.') +
+      '</div>';
+    extras.appendChild(el);
+    maskPhone(el.querySelector('[data-f="emerg_tel"] input'));
+    el.addEventListener('input', limparErro);
+    el.addEventListener('change', limparErro);
+    el.addEventListener('click', function (e) {
+      var act = e.target.getAttribute && e.target.getAttribute('data-act');
+      if (act === 'remover') { el.remove(); atualizar(); addBtn.focus(); }
+      if (act === 'copiar') {
+        el.querySelector('[data-f="emerg_nome"] input').value = val('emerg_nome');
+        el.querySelector('[data-f="emerg_tel"] input').value = emergTel.value;
+        el.querySelector('[data-f="emerg_nome"]').classList.remove('invalid');
+        el.querySelector('[data-f="emerg_tel"]').classList.remove('invalid');
+      }
+    });
+    atualizar();
+    el.querySelector('input').focus();
+    if (window.cardumeTrack) window.cardumeTrack('add_participante', { pessoas: totalPessoas() });
+  }
+  addBtn.addEventListener('click', addPessoa);
+
+  function limparErro(e) {
+    var f = e.target.closest && e.target.closest('.field');
+    if (f) f.classList.remove('invalid');
+  }
+
+  function lerBloco(el) {
+    var g = function (k) { return (el.querySelector('[data-f="' + k + '"] input, [data-f="' + k + '"] select, [data-f="' + k + '"] textarea').value || '').trim(); };
+    return { nome: g('nome'), idade: g('idade'), sabe_nadar: g('nada'), alergias: g('alergias'), saude: g('saude'), emerg_nome: g('emerg_nome'), emerg_tel: g('emerg_tel') };
+  }
 
   function validate() {
     var ok = true;
     ok = setInvalid('f-nome', val('nome').length < 2) && ok;
-    ok = setInvalid('f-whatsapp', digits(tel.value).length < 10 || digits(tel.value).length > 11) && ok;
+    ok = setInvalid('f-whatsapp', badPhone(tel.value)) && ok;
     ok = setInvalid('f-email', !validEmail(val('email'))) && ok;
     ok = setInvalid('f-cidade', val('cidade').length < 2) && ok;
     ok = setInvalid('f-idade', val('idade').length < 1) && ok;
     ok = setInvalid('f-nada', val('nada') === '') && ok;
     ok = setInvalid('f-alergias', val('alergias').length < 2) && ok;
     ok = setInvalid('f-emergnome', val('emerg_nome').length < 2) && ok;
-    ok = setInvalid('f-emergtel', digits(emergTel.value).length < 10 || digits(emergTel.value).length > 11) && ok;
+    ok = setInvalid('f-emergtel', badPhone(emergTel.value)) && ok;
+    var list = blocos();
+    for (var i = 0; i < list.length; i++) {
+      var el = list[i], p = lerBloco(el), f = function (k) { return el.querySelector('[data-f="' + k + '"]'); };
+      ok = setInvalid(f('nome'), p.nome.length < 2) && ok;
+      ok = setInvalid(f('idade'), p.idade.length < 1) && ok;
+      ok = setInvalid(f('nada'), p.sabe_nadar === '') && ok;
+      ok = setInvalid(f('alergias'), p.alergias.length < 2) && ok;
+      ok = setInvalid(f('emerg_nome'), p.emerg_nome.length < 2) && ok;
+      ok = setInvalid(f('emerg_tel'), badPhone(p.emerg_tel)) && ok;
+    }
     var consent = document.getElementById('consent').checked;
     document.getElementById('f-consent').classList.toggle('invalid', !consent);
     if (!consent) ok = false;
+    if (!ok) {
+      var first = form.querySelector('.field.invalid input, .field.invalid select, .field.invalid textarea');
+      if (first) first.focus();
+    }
     return ok;
   }
 
-  function goWhatsApp(nome, cidade) {
+  function goWhatsApp(nomes, cidade) {
     var msg = 'Ola! Fiz minha pre-inscricao nos Cursos e Experiencias da IDE.%0A'
-      + 'Participante: ' + encodeURIComponent(nome) + '%0A'
+      + (nomes.length > 1 ? 'Participantes (' + nomes.length + '): ' : 'Participante: ') + encodeURIComponent(nomes.join(', ')) + '%0A'
       + 'Cidade: ' + encodeURIComponent(cidade);
     window.location.href = 'https://wa.me/' + WHATSAPP_FALLBACK + '?text=' + msg;
   }
@@ -229,19 +338,29 @@
 
     var nome = val('nome');
     var cidade = val('cidade');
+    var participantes = [{
+      nome: nome, idade: val('idade'), sabe_nadar: val('nada'), alergias: val('alergias'), saude: val('saude'),
+      emerg_nome: val('emerg_nome'), emerg_tel: emergTel.value.trim()
+    }];
+    var list = blocos();
+    for (var i = 0; i < list.length; i++) participantes.push(lerBloco(list[i]));
+    var n = participantes.length;
 
     var payload = {
+      // contato do responsável (participante 1) — vale para o grupo todo
       nome: nome,
       whatsapp: tel.value.trim(),
       email: val('email'),
       cidade: cidade,
-      pessoas: '1', // inscrição individual: uma ficha por participante
-      idade: val('idade'),
-      sabe_nadar: val('nada'),
-      alergias: val('alergias'),
-      saude: val('saude'),
-      emerg_nome: val('emerg_nome'),
-      emerg_tel: emergTel.value.trim(),
+      pessoas: String(n),
+      participantes: participantes,
+      // campos do participante 1 (compatibilidade com a versão individual)
+      idade: participantes[0].idade,
+      sabe_nadar: participantes[0].sabe_nadar,
+      alergias: participantes[0].alergias,
+      saude: participantes[0].saude,
+      emerg_nome: participantes[0].emerg_nome,
+      emerg_tel: participantes[0].emerg_tel,
       consentimento: document.getElementById('consent').checked ? 'sim' : 'nao',
       origem: 'preparacao-familiar',
       utm: (window.cardumeUTM || {}),
@@ -259,24 +378,26 @@
       return r.json().catch(function () { return {}; }).then(function (data) { return { status: r.status, data: data }; });
     }).then(function (res) {
       if (res.status === 200 && res.data && res.data.ok) {
-        if (window.cardumeTrack) window.cardumeTrack('generate_lead', {});
+        if (window.cardumeTrack) window.cardumeTrack('generate_lead', { pessoas: n, value: n * PRECO, currency: 'BRL' });
         try { sessionStorage.setItem('ide_preinsc_nome', nome.split(' ')[0]); } catch (e) {}
+        // quantas pessoas pagar: a página de confirmação escolhe o checkout certo da Hubla
+        try { sessionStorage.setItem('ide_preinsc_pessoas', String(n)); } catch (e) {}
         // usado pelo checkout.js para já abrir o pagamento da Hubla preenchido
         try { sessionStorage.setItem('ide_comprador', JSON.stringify({ nome: nome, email: payload.email, whatsapp: payload.whatsapp })); } catch (e) {}
-        window.location.href = (res.data.redirect || CONFIRM_URL);
+        window.location.href = (res.data.redirect || CONFIRM_URL) + (n > 1 ? '?pessoas=' + n : '');
       } else if (res.status === 400) {
         formError.textContent = 'Confira os dados e tente de novo.';
         formError.classList.add('show');
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Fazer pré-inscrição';
+        atualizar();
       } else {
         throw new Error('backend');
       }
     }).catch(function () {
       // resiliência: nunca perder o lead — segue para o WhatsApp com os dados básicos
-      if (window.cardumeTrack) window.cardumeTrack('generate_lead', { via: 'whatsapp_fallback' });
+      if (window.cardumeTrack) window.cardumeTrack('generate_lead', { via: 'whatsapp_fallback', pessoas: n });
       formError.classList.add('show');
-      setTimeout(function () { goWhatsApp(nome, cidade); }, 1200);
+      setTimeout(function () { goWhatsApp(participantes.map(function (p) { return p.nome; }), cidade); }, 1200);
     });
   });
 

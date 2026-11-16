@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/produto/ebook-mochila-emergencia", "destination": "/mochila-de-emergencia", "permanent": true },
+    { "source": "/produto/comida-que-dura", "destination": "/comida-que-dura", "permanent": true },
+    { "source": "/produto/mochila-emergencia-pet", "destination": "/mochila-pet", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/produto/:slug", "destination": "/produto/index.html" },
     { "source": "/qr/:evento/:produto", "destination": "/qr/index.html" }
