@@ -145,6 +145,16 @@
       "source": "/produto/mochila-emergencia-pet",
       "destination": "/mochila-pet",
       "permanent": true
+    },
+    {
+      "source": "/obrigado-pasta",
+      "destination": "/obrigado-material?p=pasta-emergencia-familia",
+      "permanent": false
+    },
+    {
+      "source": "/obrigado-comunidade",
+      "destination": "/obrigado-material?p=comunidade-cardume",
+      "permanent": false
     }
   ],
   "rewrites": [

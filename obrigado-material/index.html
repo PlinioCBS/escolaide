@@ -35,30 +35,49 @@
   .btn svg{width:20px;height:20px}
   .recap{margin-top:var(--space-7);padding-top:var(--space-6);border-top:1px solid var(--color-border);color:var(--text-muted);font-size:0.88rem;line-height:1.6}
   .recap b{color:var(--text-secondary)}
-  @media(max-width:460px){ h1{font-size:1.6rem} .card{padding:var(--space-8) var(--space-5)} }
+  .next{margin-top:var(--space-8);padding-top:var(--space-7);border-top:1px solid var(--color-border);text-align:left}
+  .next .kicker{color:var(--orange-700);font-weight:800;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+  .next h2{font-size:1.25rem;line-height:1.2;color:var(--text-primary);margin-bottom:var(--space-4)}
+  .offer{display:grid;grid-template-columns:104px 1fr;gap:14px;align-items:center;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:12px;color:inherit;text-decoration:none;background:#fff;margin-bottom:var(--space-3);transition:border-color var(--dur) var(--ease)}
+  .offer:hover{border-color:var(--brand-accent)}
+  .offer.main{border:2px solid var(--brand-accent)}
+  .offer img{width:104px;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:var(--radius-sm);display:block}
+  .offer b{display:block;color:var(--text-primary);line-height:1.25;font-size:.98rem}
+  .offer span{display:block;color:var(--text-secondary);font-size:.84rem;line-height:1.4;margin-top:3px}
+  .offer em{display:inline-block;font-style:normal;font-weight:800;color:var(--orange-700);font-size:.86rem;margin-top:6px}
+  .home-link{display:block;margin-top:var(--space-6);text-align:center;color:var(--brand-primary);font-weight:700}
+  @media(max-width:460px){ h1{font-size:1.6rem} .card{padding:var(--space-8) var(--space-5)} .offer{grid-template-columns:84px 1fr} .offer img{width:84px} }
 </style>
 <script src="/assets/track.js"></script>
 </head>
 <body>
 
 <div class="insc-top">
-  <a href="/loja"><img src="/assets/logo-ide-192.webp" alt="IDE Preparação Familiar"><span>IDE Preparação Familiar</span></a>
+  <a href="/"><img src="/assets/logo-ide-192.webp" alt="IDE Preparação Familiar"><span>IDE Preparação Familiar</span></a>
 </div>
 
 <main>
   <div class="card">
     <div class="check" aria-hidden="true"></div>
-    <h1>Compra confirmada! 🎉</h1>
+    <h1 id="titulo">Compra confirmada! 🎉</h1>
     <p class="sub" id="sub">O seu material já está <strong>liberado na sua área de compras da Hubla</strong>.</p>
 
-    <div class="steps">
+    <div class="steps" id="passos">
       <div class="step"><span class="n">1</span><p><b>Entre na Hubla</b> com o e-mail que você usou na compra.</p></div>
       <div class="step"><span class="n">2</span><p><b>Abra "Minhas compras"</b> — o material está lá, disponível sempre que você precisar.</p></div>
     </div>
 
     <div class="ctas">
-      <a class="btn btn-accent btn-block" href="https://app.hub.la" target="_blank" rel="noopener">Acessar meus produtos na Hubla</a>
-      <a class="btn btn-ghost btn-block" href="/loja" style="color:var(--text-secondary)">Voltar para a loja</a>
+      <a class="btn btn-accent btn-block" id="acessar" href="https://app.hub.la" target="_blank" rel="noopener" data-cta="obrigado-acessar">Acessar meus produtos na Hubla</a>
+      <a class="btn btn-ghost btn-block" href="/" style="color:var(--text-secondary)" data-cta="obrigado-home">Voltar para a página principal</a>
+    </div>
+
+    <!-- próximo passo: ofertas para quem acabou de comprar (montado pelo script) -->
+    <div class="next" id="next" hidden>
+      <div class="kicker">Próximo passo</div>
+      <h2 id="nextTitulo">Continue a preparação da sua família</h2>
+      <div id="ofertas"></div>
+      <a class="home-link" href="/loja" data-cta="obrigado-loja">Ver todos os materiais e cursos →</a>
     </div>
 
     <p class="recap">Precisa de ajuda? Fale com a gente no <a href="https://wa.me/5561993461237" target="_blank" rel="noopener">WhatsApp (61) 99346-1237</a>.</p>
@@ -66,25 +85,88 @@
 </main>
 
 <script>
-  /* Obrigado dos materiais digitais. Na Hubla, o redirecionamento pós-compra de
-     cada oferta aponta para /obrigado-material?p=<slug do produto em data/produtos.json>.
-     Registra a venda no GA4 (a Meta recebe a compra pelo Pixel da Hubla). */
+  /* Obrigado de todos os produtos digitais e da comunidade. Na Hubla, o
+     redirecionamento pós-compra de cada oferta aponta para
+     /obrigado-material?p=<slug do produto em data/produtos.json>.
+     Registra a venda no GA4 (a Meta recebe a compra pelo Pixel da Hubla) e
+     mostra o próximo passo: o que a pessoa ainda não comprou. */
   (function () {
     var qp = new URLSearchParams(location.search);
     var slug = qp.get("p") || "";
+
+    // textos por produto (o padrão serve para os ebooks)
+    var PASSOS = {
+      "pasta-emergencia-familia": [
+        ["Acesse a Pasta na Hubla", "ela está na sua área de compras: entre com o e-mail usado na compra."],
+        ["Imprima e preencha", "complete as 10 fichas com os documentos, contatos e informações da sua família."],
+        ["Guarde num lugar que todos conhecem", "e avise quem mora com você onde ela está."]
+      ],
+      "comunidade-cardume": [
+        ["Entre na Hubla", "com o e-mail que você usou na compra — o acesso à comunidade está na sua área de compras."],
+        ["Chegue e se apresente", "conte um pouco de você: a comunidade é feita de gente real trocando experiência."],
+        ["Aproveite os benefícios", "lives mensais, suporte no grupo e descontos em produtos e cursos."]
+      ]
+    };
+    var TITULO = { "comunidade-cardume": "Bem-vindo(a) ao Cardume! 🎉" };
+    var SUB = { "comunidade-cardume": "A sua assinatura da <strong>Comunidade Cardume</strong> foi confirmada. Bem-vindo(a) à rede que se prepara junto." };
+    var BOTAO = { "comunidade-cardume": "Acessar a comunidade na Hubla" };
+
+    // o que oferecer depois de cada compra, em ordem (a 1ª vira o destaque)
+    var CHAMADA = {
+      "comunidade-cardume": ["Comunidade Cardume", "Lives mensais, suporte no grupo e descontos — para não se preparar sozinho.", "/cardume"],
+      "comida-que-dura": ["Comida que Dura", "Como armazenar alimentos por meses e anos, com planilha de bônus.", "/comida-que-dura"],
+      "ebook-mochila-emergencia": ["Ebook Mochila de Emergência", "O que levar e o que não levar se a família precisar sair rápido.", "/mochila-de-emergencia"],
+      "pasta-emergencia-familia": ["Pasta de Emergência da Família", "10 fichas para preencher com o plano de emergência da casa.", "/pasta"],
+      "mochila-emergencia-pet": ["Mochila de Emergência do PET", "72 horas de autonomia para o seu animal.", "/mochila-pet"],
+      "curso-presencial": ["Curso presencial", "8 modalidades de sobrevivência e bushcraft, perto de Brasília.", "/preparacao-familiar"]
+    };
+    var ORDEM = ["comunidade-cardume", "comida-que-dura", "ebook-mochila-emergencia", "pasta-emergencia-familia", "curso-presencial", "mochila-emergencia-pet"];
+
+    function brl(v) { return "R$ " + v.toFixed(2).replace(".", ","); }
+    function esc(t) { var d = document.createElement("div"); d.textContent = t; return d.innerHTML; }
+
     fetch("/data/produtos.json").then(function (r) { return r.json(); }).then(function (d) {
-      var p = (d.produtos || []).filter(function (x) { return x.slug === slug; })[0];
+      var prods = d.produtos || [];
+      var por = {}; prods.forEach(function (x) { por[x.slug] = x; });
+      var p = por[slug];
+
+      // --- confirmação do que foi comprado
+      if (p) {
+        if (TITULO[slug]) document.getElementById("titulo").textContent = TITULO[slug];
+        var sub = document.getElementById("sub");
+        if (SUB[slug]) sub.innerHTML = SUB[slug];
+        else { sub.innerHTML = "<strong></strong>: o seu material já está liberado na sua área de compras da Hubla."; sub.querySelector("strong").textContent = p.nome; }
+        if (BOTAO[slug]) document.getElementById("acessar").textContent = BOTAO[slug];
+        if (PASSOS[slug]) document.getElementById("passos").innerHTML = PASSOS[slug].map(function (s, i) {
+          return '<div class="step"><span class="n">' + (i + 1) + '</span><p><b>' + esc(s[0]) + '</b> — ' + esc(s[1]) + '</p></div>';
+        }).join("");
+      }
+
+      // --- próximo passo: até 3 ofertas que não são o que acabou de comprar
+      var lista = ORDEM.filter(function (s) { return s !== slug && por[s] && !por[s].oculto && por[s].disponivel !== false; }).slice(0, 3);
+      if (lista.length) {
+        document.getElementById("ofertas").innerHTML = lista.map(function (s, i) {
+          var x = por[s], c = CHAMADA[s];
+          var valor = (x.preco_promo != null && x.preco_promo < x.preco) ? x.preco_promo : x.preco;
+          var preco = valor != null ? brl(valor) + (x.preco_sufixo || "") : "";
+          var img = (x.imagens && x.imagens[0]) || "/assets/escolas/capa-800.webp";
+          return '<a class="offer' + (i === 0 ? " main" : "") + '" href="' + c[2] + '" data-cta="obrigado-oferta-' + s + '">' +
+            '<img src="' + img + '" width="1200" height="750" alt="" loading="lazy">' +
+            '<div><b>' + esc(c[0]) + '</b><span>' + esc(c[1]) + '</span>' + (preco ? '<em>' + esc(preco) + ' →</em>' : '') + '</div></a>';
+        }).join("");
+        if (slug === "comunidade-cardume") document.getElementById("nextTitulo").textContent = "Aproveite e complete a sua preparação";
+        document.getElementById("next").hidden = false;
+      }
+
+      // --- registra a venda (uma vez por sessão e por produto)
       if (!p) return;
-      var sub = document.getElementById("sub");
-      sub.innerHTML = "O <strong></strong> já está liberado na sua área de compras da Hubla.";
-      sub.querySelector("strong").textContent = p.nome;
-      var valor = (p.preco_promo != null && p.preco_promo < p.preco) ? p.preco_promo : p.preco;
+      var valorP = (p.preco_promo != null && p.preco_promo < p.preco) ? p.preco_promo : p.preco;
       var txn = qp.get("invoiceId") || qp.get("invoice_id") || qp.get("transaction_id") || ("ide-" + Date.now());
       var chave = "ide_purchase_" + slug;
       try { if (sessionStorage.getItem(chave)) return; sessionStorage.setItem(chave, "1"); } catch (e) {}
       if (window.cardumeTrack) window.cardumeTrack("purchase", {
-        value: valor, currency: "BRL", transaction_id: txn, content_name: p.nome,
-        items: [{ item_id: p.slug, item_name: p.nome, price: valor, quantity: 1 }]
+        value: valorP, currency: "BRL", transaction_id: txn, content_name: p.nome,
+        items: [{ item_id: p.slug, item_name: p.nome, price: valorP, quantity: 1 }]
       });
     }).catch(function () {});
   })();
