@@ -64,35 +64,144 @@ const PAGINAS = [
   {
     rota: "comida-que-dura",
     slug: "comida-que-dura",
-    titulo: "Comida que Dura — como armazenar alimentos sem desperdício | Andreia Moraes",
-    descricao: "Ebook da Andreia Moraes: como montar e manter em casa um estoque de alimentos que dura meses e anos, sem desperdício. PDF por R$ 19,90.",
-    kicker: "Ebook · por Andreia Moraes",
-    h1: "Comida guardada não é armário cheio. É estoque que dura.",
-    sub: "No Comida que Dura, Andreia Moraes ensina a montar e manter em casa um estoque de alimentos para meses e até anos: o que guardar, como armazenar e como fazer o rodízio para nada estragar.",
-    stats: [["Meses e anos", "De estoque em casa"], ["Zero", "Desperdício"], ["Na hora", "Liberado na Hubla"]],
-    problemaKicker: "O problema",
-    problemaH2: "Comprar a mais é fácil. Difícil é não perder.",
+    titulo: "Comida que Dura — guia de armazenamento de alimentos | Andreia Moraes",
+    descricao: "E-book + planilha de Andreia Moraes: como montar uma reserva de alimentos que dura meses e anos, no calor e na umidade do Brasil. 10 capítulos, 55 páginas. R$ 19,90.",
+    kicker: "E-book + planilha · por Andreia Moraes",
+    h1: "Se o mercado fechasse amanhã, quantos dias a sua casa aguentaria?",
+    sub: "O guia prático de Andreia Moraes para montar uma reserva de alimentos que aguenta greve, enchente, apagão e mês apertado — com o método certo para o calor e a umidade do Brasil.",
+    heroImg: { src: "/assets/produtos/comida/capa.webp", w: 960, h: 1440, alt: "Capa do e-book Comida que Dura, de Andreia Moraes", retrato: true },
+    heroLista: [
+      "Quais alimentos duram décadas e quais estragam em poucos meses na despensa",
+      "Como um sachê barato faz o arroz branco passar de 1 ano para 25",
+      "Um plano de 90 dias que começa com um item a mais em cada ida ao mercado",
+    ],
+    heroNota: "Pagamento único · Pix ou cartão · garantia de 7 dias",
+    stats: [["10", "Capítulos práticos"], ["55", "Páginas para ler no celular"], ["Bônus", "Planilha da Reserva"]],
+    linhaDoTempo: {
+      kicker: "O que já aconteceu",
+      h2: "O Brasil já mostrou o que acontece quando a comida some da prateleira",
+      itens: [
+        ["Maio de 2018", "Greve dos caminhoneiros", "Em poucos dias faltou gasolina nos postos, faltou verdura na feira e muita prateleira de supermercado ficou vazia."],
+        ["Novembro de 2020", "Apagão no Amapá", "Quase todo o estado ficou no escuro, e a energia voltou em rodízio durante semanas. Geladeira desligada por tanto tempo é carne, leite e congelado indo para o lixo."],
+        ["Maio de 2024", "Enchentes no Rio Grande do Sul", "As enchentes isolaram cidades inteiras, e bairros de Porto Alegre passaram dias sem água tratada."],
+      ],
+      fecho: [
+        "Quem tinha comida guardada passou esses dias cozinhando como sempre. Quem não tinha passou os mesmos dias em fila.",
+        "E há as crises que não saem no jornal: uma demissão no meio do mês, um familiar internado, um salário que atrasa. Nessas horas, abrir o armário e encontrar comida para semanas muda o jeito como a família atravessa o problema — o dinheiro do mercado pode pagar a luz, o remédio ou o aluguel.",
+      ],
+    },
+    problemaKicker: "O erro comum",
+    problemaH2: "Por que tanta gente tenta estocar comida e desiste",
     problema: [
-      "Muita gente começa um estoque de alimentos e desiste na primeira leva de produtos vencidos no fundo do armário. Dinheiro jogado fora e a sensação de que \"isso não é para mim\".",
-      "O segredo não é comprar mais: é saber o que vale a pena guardar, como armazenar cada coisa e como girar o estoque no dia a dia da casa. É isso que este ebook ensina.",
+      "A história costuma ser parecida. A pessoa vê uma promoção, compra vinte quilos de arroz e guarda no armário da área de serviço. Seis meses depois abre o pacote e encontra caruncho, cheiro de mofo ou grão grudado. Metade vai para o lixo junto com o dinheiro, e fica a impressão de que reserva de comida não funciona.",
+      "O que estragou aquele arroz foi uma destas cinco coisas — e o clima quente e úmido do Brasil ajuda quase todas elas.",
     ],
-    aprendeH2: "O que você aprende",
+    inimigos: {
+      itens: [["Oxigênio", "Deixa a gordura rançosa."], ["Umidade", "Traz fungo, mofo e caruncho."], ["Calor", "Acelera todo o resto."], ["Luz", "Tira cor, vitamina e sabor."], ["Pragas", "Caruncho, traça e rato."]],
+      fecho: "Quase todo desperdício de comida guardada tem uma dessas cinco causas, e cada uma tem uma defesa barata que cabe em casa.",
+    },
+    metodo: {
+      kicker: "O método",
+      h2: "Comida seca, com pouca gordura e guardada sem oxigênio dura anos",
+      texto: [
+        "O e-book ensina, passo a passo, a montar e manter uma reserva de comida e água para a sua família. Ele foi escrito para a realidade brasileira: arroz e feijão no centro do prato, apartamento pequeno, orçamento apertado e uma despensa que esquenta no verão.",
+        "Um sachê absorvedor de oxigênio dentro de uma garrafa PET bem fechada leva o arroz branco de um ou dois anos na embalagem do mercado para 25 a 30 anos. O livro traz os números alimento por alimento, com o ajuste para o calor daqui.",
+      ],
+      compara: [["Na embalagem do mercado", "1 a 2 anos"], ["Na garrafa PET com sachê", "25 a 30 anos"]],
+      fonte: "Arroz branco guardado. Prazos de pesquisas da Utah State University e da Brigham Young University, com a comida a 24 °C ou menos.",
+      paginas: [
+        ["/assets/produtos/comida/pagina-04.webp", "Página do sumário do e-book"],
+        ["/assets/produtos/comida/pagina-15.webp", "Página com a tabela de durabilidade dos alimentos"],
+        ["/assets/produtos/comida/pagina-51.webp", "Página com o checklist para imprimir"],
+      ],
+    },
+    aprendeH2: "O que você encontra em cada capítulo",
+    aprendeSub: "Do primeiro pacote de arroz até três meses de comida guardada, na ordem em que você vai precisar.",
     aprende: [
-      ["O que guardar", "os alimentos que valem a pena ter em estoque e os que não valem."],
-      ["Como armazenar", "para cada alimento durar o máximo possível."],
-      ["Como fazer o rodízio", "usando o estoque no dia a dia, sem deixar nada vencer."],
-      ["Como manter", "um estoque para meses — e até anos — sem desperdício."],
+      ["Por que ter uma reserva", "A diferença entre estocar e acumular, e a regra da terça-feira comum, que resolve quase toda dúvida sobre o que comprar."],
+      ["Os 5 inimigos da comida guardada", "Como oxigênio, umidade, calor, luz e pragas estragam a comida, como você percebe cada um e como se defender."],
+      ["O que armazenar e quanto tempo dura", "A tabela com o prazo de cada alimento, do arroz à farinha de mandioca, e os que parecem ótimos para estoque e ficam rançosos em meses."],
+      ["Embalagens e sachês absorvedores", "O passo a passo da garrafa PET, do balde e da seladora a vácuo, e a ordem certa para aplicar o sachê sem desperdiçar nenhum."],
+      ["Especiarias, sal e açúcar", "O que conserva de verdade, o que só ajuda, e o preparo caseiro com alho que pode causar botulismo."],
+      ["Quanto armazenar", "A conta feita com o que a sua família come de verdade, com ajustes para bebês, idosos, dietas especiais e pets."],
+      ["Onde guardar", "Os piores lugares da casa, como achar o ponto mais fresco com um termômetro barato e onde esconder a reserva num apartamento pequeno."],
+      ["Rotação e inventário", "O sistema que faz a comida girar sozinha no armário, para nada vencer esquecido no fundo da prateleira."],
+      ["Água", "Quanto guardar por pessoa, a água que a comida seca pede para ser cozida, como tratar com hipoclorito e como guardar por até 5 anos."],
+      ["Seu plano de 90 dias", "O roteiro semana a semana, com lista de compras por fase, até a sua casa ter três meses de comida."],
     ],
+    aprendeExtra: "Anexos para imprimir: checklist da despensa, modelo de inventário e tabela de quanto absorvedor usar em cada recipiente.",
+    descobertas: [
+      "Por que o arroz branco atravessa décadas e o integral fica rançoso em meses",
+      "O erro com o açúcar que transforma o pacote num bloco de pedra",
+      "O sinal que a embalagem dá, em um ou dois dias, para mostrar que o sachê funcionou",
+      "A tampinha de álcool 70 que entra na limpeza da garrafa PET antes de encher",
+      "Por que garrafa de leite nunca deve ser usada para guardar água",
+      "Onde está a água que a sua casa já tem numa emergência, e que quase ninguém lembra",
+      "Como intercalar especiarias e grãos dentro da garrafa para reforçar a conservação",
+      "A diferença entre charque e carne de sol na hora de guardar",
+    ],
+    bonus: {
+      h2: "Planilha da Reserva: as contas do livro feitas por você",
+      texto: "Junto com o e-book, você recebe a planilha que aplica o método no dia a dia. Funciona no Excel e no Google Planilhas, no computador e no celular.",
+      img: ["/assets/produtos/comida/planilha-inventario.webp", 2540, 1007, "Aba Inventário da Planilha da Reserva, preenchida com itens de exemplo"],
+      itens: [
+        ["Inventário com alerta de validade", "Você registra o que guardou, e a planilha mostra em verde o que está em dia, em laranja o que precisa ser consumido logo e em vermelho o que venceu."],
+        ["Calculadora de quanto guardar", "Anote o que a casa consome em duas semanas, escolha a etapa e receba a lista do que ainda falta comprar."],
+        ["Calculadora de água", "Soma a água de beber, a de cozinhar e a dos pets, e mostra quantas garrafas ou galões você precisa."],
+        ["Calculadora de absorvedores", "Escolha o recipiente e a quantidade, e veja quantos cc de sachê usar."],
+      ],
+    },
     paraQuem: [
-      "Quem quer ter comida em casa para uma emergência, uma crise ou um mês difícil.",
-      "Quem já tentou fazer estoque e perdeu alimentos vencidos.",
-      "Quem cuida das compras e da cozinha da casa e quer mais segurança para a família.",
+      "Você cuida da casa e quer dormir sabendo que tem comida para as próximas semanas",
+      "Você já tentou estocar, perdeu comida para caruncho ou mofo e quer acertar desta vez",
+      "Você mora em apartamento e acha que não tem espaço para reserva",
+      "O orçamento está apertado e você precisa montar a reserva aos poucos",
+      "A sua região sofre com enchente, seca, falta de luz ou estrada que fecha",
+      "Você nunca fez reserva e quer começar do jeito certo desde o primeiro pacote",
     ],
-    autoria: "Escrito por Andreia Moraes, instrutora da IDE e responsável pelos módulos de rotina doméstica, estoque e organização familiar.",
-    cta: "Quero o ebook",
-    faqExtra: [
-      ["Serve para quem mora em apartamento?", "Serve. O estoque é montado de acordo com o espaço que você tem em casa."],
+    naoPara: [
+      "Você procura receitas ou cardápio de emergência. O livro ensina a guardar comida, e a cozinha fica por sua conta",
+      "Você quer técnicas de sobrevivência na mata ou montar um bunker",
+      "Você prefere comprar tudo num fim de semana sem ler nada antes",
     ],
+    autora: {
+      img: "/assets/produtos/comida/andreia.webp",
+      texto: [
+        "Andreia Moraes faz reserva de alimentos para a própria família há 20 anos. Mãe de três filhos e responsável pela casa, foi na despensa dela que cada técnica deste livro foi testada.",
+        "Nesse tempo, ela viu muita gente começar com vontade e desistir por falta de método. Viu arroz jogado fora por caruncho, lata estufada no fundo do armário e dinheiro indo para o lixo. Este e-book reúne o que funciona no clima e no bolso de uma família brasileira comum.",
+      ],
+      frase: "Preparação, para mim, parece com pagar o seguro do carro. Você não espera bater, mas se bater, está coberto.",
+    },
+    ofertaH2: "Tudo o que você recebe hoje",
+    ofertaImg: { src: "/assets/produtos/comida-que-dura.webp" },
+    inclui: [
+      "E-book Comida que Dura, em PDF, com 10 capítulos, anexos e 55 páginas para ler no celular, no tablet ou no computador",
+      "Bônus: Planilha da Reserva, com inventário e calculadoras de quanto guardar, de água e de absorvedores",
+      "Checklist da despensa, modelo de inventário e tabela de absorvedores prontos para imprimir",
+    ],
+    garantia: "Leia o livro, abra a planilha e comece a sua reserva. Se em até 7 dias você achar que não valeu o investimento, é só pedir o reembolso e devolvemos 100% do valor pago. Você não precisa explicar o motivo.",
+    cta: "Quero o e-book e a planilha",
+    ctaCurto: "Quero o e-book",
+    faq: [
+      ["Como eu recebo o e-book e a planilha?", "Assim que o pagamento é confirmado, o material fica liberado na sua área de compras da Hubla, a plataforma onde você faz o pagamento. No Pix, costuma levar poucos minutos."],
+      ["É um livro físico?", "É um e-book em PDF, diagramado para ler no celular, no tablet ou no computador. Se preferir papel, dá para imprimir."],
+      ["Nunca fiz reserva de comida. O livro serve para mim?", "Serve, e foi escrito pensando em quem está começando. Ele vai do primeiro pacote de arroz até três meses de comida guardada, com um plano semana a semana."],
+      ["Preciso gastar muito para começar?", "O plano de 90 dias começa com um item a mais em cada ida ao mercado. A reserva cresce no ritmo do seu orçamento."],
+      ["Moro em apartamento pequeno. Vou ter onde guardar?", "O capítulo 7 mostra onde guardar comida em casas pequenas: embaixo da cama, no alto dos armários, atrás dos livros, dentro de baús e pufes."],
+      ["Onde eu compro o sachê absorvedor de oxigênio?", "Em lojas de embalagem e em sites de venda online. O livro explica o que conferir no anúncio para não comprar sachê errado ou já gasto."],
+      ["Os prazos de validade do livro são confiáveis?", "Os prazos longos vêm de pesquisas da Utah State University e da Brigham Young University, medidos com a comida guardada a 24 °C ou menos. O livro mostra como ajustar esses prazos para o calor brasileiro."],
+      ["A planilha funciona no celular?", "Funciona no Google Planilhas, que tem aplicativo gratuito para celular, e no Excel, no computador."],
+      ["Quais são as formas de pagamento?", "Pix e cartão de crédito, no checkout seguro da Hubla."],
+      ["E se eu não gostar?", "Você tem 7 dias para pedir o reembolso de 100% do valor, sem precisar explicar o motivo."],
+    ],
+    fechamento: {
+      h2: "Quando a próxima crise chegar, o que vai ter no seu armário?",
+      a: ["Daqui a 90 dias", "A sua casa pode ter três meses de comida guardada, etiquetada e girando no armário, com a água separada e a planilha avisando o que precisa ser consumido primeiro."],
+      b: ["Ou", "Você pode estar no mesmo lugar de hoje, comprando só o que vai comer na semana e torcendo para a estrada não fechar."],
+      fim: "O primeiro passo leva cinco minutos: garantir o livro e colar uma folha na porta do armário para anotar o que a sua casa consome.",
+    },
+    aviso: "As orientações do e-book têm caráter informativo. Siga sempre as instruções dos rótulos dos produtos e, em caso de dúvida sobre saúde ou dieta, procure um profissional.",
+    faqExtra: [],
   },
   {
     rota: "mochila-pet",
@@ -156,7 +265,9 @@ function pagina(cfg) {
     },
   ].map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join("\n");
 
-  const faq = [
+  const hero = cfg.heroImg || { src: img, w: 1200, h: 750, alt: p.imagem_alt || "Capa do " + p.nome };
+  const ctaCurto = cfg.ctaCurto || cfg.cta;
+  const faq = cfg.faq ? [...cfg.faq, ["Tenho uma dúvida que não está aqui.", 'Fale com a gente no WhatsApp: <a href="https://wa.me/5561993461237" target="_blank" rel="noopener">(61) 99346-1237</a>.']] : [
     ["Como eu recebo o material?", "Assim que o pagamento é aprovado, o material fica liberado na hora na sua área de compras da Hubla, a plataforma onde você faz o pagamento."],
     ["Em que formato é?", "É um PDF. Você lê no celular, no tablet ou no computador — e pode imprimir se preferir."],
     ["Como posso pagar?", "Pix ou cartão de crédito, no checkout seguro da Hubla."],
@@ -199,17 +310,20 @@ ${ld}
 <header class="pf-hero">
   <div class="wrap">
     <a class="brand" href="/loja"><img src="/assets/logo-ide-192.webp" alt="IDE" width="52" height="52"><span>IDE Preparação Familiar</span></a>
-    <div class="hero-media">
-      <img src="${img}" width="1200" height="750" alt="${esc(p.imagem_alt || "Capa do " + p.nome)}" fetchpriority="high">
+    <div class="hero-media${hero.retrato ? " retrato" : ""}">
+      <img src="${hero.src}" width="${hero.w}" height="${hero.h}" alt="${esc(hero.alt)}" fetchpriority="high">
     </div>
     <div class="hero-copy">
       <div class="kicker" style="color:#e9a24a">${esc(cfg.kicker)}</div>
       <h1>${esc(cfg.h1)}</h1>
-      <p class="sub">${esc(cfg.sub)}</p>
+      <p class="sub">${esc(cfg.sub)}</p>${cfg.heroLista ? `
+      <ul class="hero-list">
+${cfg.heroLista.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
+      </ul>` : ""}
       <div class="ctas">
-        <a class="btn btn-accent" href="${link}" data-cta="ebook-hero">${esc(cfg.cta)} — R$ ${brl(valor)}</a>
+        <a class="btn btn-accent" href="${link}" data-cta="ebook-hero">${esc(ctaCurto)} — R$ ${brl(valor)}</a>
       </div>
-      <p class="hero-note">Pagamento único · Pix ou cartão · liberado na hora na Hubla</p>
+      <p class="hero-note">${esc(cfg.heroNota || "Pagamento único · Pix ou cartão · liberado na hora na Hubla")}</p>
       <div class="pf-stats">
 ${cfg.stats.map(([b, s]) => `        <div class="st"><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("\n")}
       </div>
@@ -218,30 +332,88 @@ ${cfg.stats.map(([b, s]) => `        <div class="st"><b>${esc(b)}</b><span>${esc
 </header>
 
 <main>
-
+${cfg.linhaDoTempo ? `
   <section class="section-light">
+    <div class="wrap mid">
+      <div class="sec-head"><div class="kicker">${esc(cfg.linhaDoTempo.kicker)}</div><h2>${esc(cfg.linhaDoTempo.h2)}</h2></div>
+      <div class="tl">
+${cfg.linhaDoTempo.itens.map(([d, t, x]) => `        <div class="tl-item"><div class="tl-date">${esc(d)}</div><b>${esc(t)}</b><p>${esc(x)}</p></div>`).join("\n")}
+      </div>
+${cfg.linhaDoTempo.fecho.map((t) => `      <p class="lead" style="margin-top:var(--space-5)">${esc(t)}</p>`).join("\n")}
+    </div>
+  </section>
+` : ""}
+  <section class="${cfg.linhaDoTempo ? "section-soft" : "section-light"}">
     <div class="wrap narrow">
       <div class="kicker">${esc(cfg.problemaKicker)}</div>
       <h2 class="h2">${esc(cfg.problemaH2)}</h2>
-${cfg.problema.map((t) => `      <p class="lead">${esc(t)}</p>`).join("\n")}
+${cfg.problema.map((t) => `      <p class="lead">${esc(t)}</p>`).join("\n")}${cfg.inimigos ? `
+      <div class="enemies">
+${cfg.inimigos.itens.map(([b, t]) => `        <div><b>${esc(b)}</b><span>${esc(t)}</span></div>`).join("\n")}
+      </div>
+      <p class="lead">${esc(cfg.inimigos.fecho)}</p>` : ""}
     </div>
   </section>
-
-  <section class="section-soft">
+${cfg.metodo ? `
+  <section class="section-light">
     <div class="wrap mid">
-      <div class="sec-head"><div class="kicker">Conteúdo</div><h2>${esc(cfg.aprendeH2)}</h2></div>
-      <div class="learn">
-${cfg.aprende.map(([b, t], i) => `        <div class="item"><div class="n">${String(i + 1).padStart(2, "0")}</div><div><b>${esc(b)}</b><p>${esc(t)}</p></div></div>`).join("\n")}
+      <div class="sec-head"><div class="kicker">${esc(cfg.metodo.kicker)}</div><h2>${esc(cfg.metodo.h2)}</h2></div>
+      <div class="metodo">
+        <div>
+${cfg.metodo.texto.map((t) => `          <p class="lead">${esc(t)}</p>`).join("\n")}
+          <div class="compara">
+${cfg.metodo.compara.map(([a, b], k) => `            <div class="${k ? "bom" : ""}"><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join("\n")}
+          </div>
+          <p class="fonte">${esc(cfg.metodo.fonte)}</p>
+          <a class="btn btn-accent" href="${link}" data-cta="ebook-metodo">${esc(ctaCurto)}</a>
+        </div>
+        <div class="paginas">
+${cfg.metodo.paginas.map(([src, alt]) => `          <img src="${src}" width="720" height="1080" alt="${esc(alt)}" loading="lazy">`).join("\n")}
+        </div>
       </div>
     </div>
   </section>
-
+` : ""}
+  <section class="section-soft">
+    <div class="wrap mid">
+      <div class="sec-head"><div class="kicker">Conteúdo</div><h2>${esc(cfg.aprendeH2)}</h2>${cfg.aprendeSub ? `<p>${esc(cfg.aprendeSub)}</p>` : ""}</div>
+      <div class="learn">
+${cfg.aprende.map(([b, t], i) => `        <div class="item"><div class="n">${String(i + 1).padStart(2, "0")}</div><div><b>${esc(b)}</b><p>${esc(t)}</p></div></div>`).join("\n")}
+      </div>${cfg.aprendeExtra ? `
+      <p class="extra-note">${esc(cfg.aprendeExtra)}</p>` : ""}
+    </div>
+  </section>
+${cfg.descobertas ? `
+  <section class="section-light">
+    <div class="wrap narrow">
+      <div class="sec-head"><div class="kicker">Dentro do livro</div><h2>Algumas coisas que você vai descobrir</h2></div>
+      <ul class="recv">
+${cfg.descobertas.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
+      </ul>
+      <p style="margin-top:var(--space-6)"><a class="btn btn-accent" href="${link}" data-cta="ebook-descobertas">Quero descobrir tudo isso</a></p>
+    </div>
+  </section>
+` : ""}${cfg.bonus ? `
+  <section class="section-soft">
+    <div class="wrap mid">
+      <div class="sec-head"><div class="kicker">Bônus incluído</div><h2>${esc(cfg.bonus.h2)}</h2><p>${esc(cfg.bonus.texto)}</p></div>
+      <img class="bonus-img" src="${cfg.bonus.img[0]}" width="${cfg.bonus.img[1]}" height="${cfg.bonus.img[2]}" alt="${esc(cfg.bonus.img[3])}" loading="lazy">
+      <div class="learn" style="margin-top:var(--space-6)">
+${cfg.bonus.itens.map(([b, t]) => `        <div class="item"><div><b>${esc(b)}</b><p>${esc(t)}</p></div></div>`).join("\n")}
+      </div>
+    </div>
+  </section>
+` : ""}
   <section class="section-light">
     <div class="wrap narrow">
       <div class="sec-head"><div class="kicker">Para quem é</div><h2>Feito para você se…</h2></div>
       <ul class="recv">
 ${cfg.paraQuem.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
-      </ul>
+      </ul>${cfg.naoPara ? `
+      <h3 class="nao-h">Talvez não seja para você se…</h3>
+      <ul class="nao">
+${cfg.naoPara.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
+      </ul>` : ""}
     </div>
   </section>
 
@@ -256,7 +428,20 @@ ${cfg.paraQuem.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
     </div>
   </section>
 
-  <section class="section-light">
+${cfg.autora ? `  <section class="section-light">
+    <div class="wrap mid">
+      <div class="autora">
+        <img src="${cfg.autora.img}" width="840" height="1050" alt="Andreia Moraes" loading="lazy">
+        <div>
+          <div class="kicker">A autora</div>
+          <h2 class="h2">Quem escreveu este guia</h2>
+${cfg.autora.texto.map((t) => `          <p class="lead">${esc(t)}</p>`).join("\n")}
+          <blockquote>“${esc(cfg.autora.frase)}”<cite>Andreia Moraes</cite></blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+` : `  <section class="section-light">
     <div class="wrap mid">
       <div class="sec-head"><div class="kicker">Quem fez</div><h2>De quem ensina preparação em campo</h2><p>${esc(cfg.autoria)}</p></div>
       <div class="team">
@@ -274,19 +459,21 @@ ${cfg.paraQuem.map((t) => `        <li>${esc(t)}</li>`).join("\n")}
     </div>
   </section>
 
+`}
   <section class="section-soft oferta" id="comprar">
     <div class="wrap">
-      <div class="sec-head center"><div class="kicker">${esc(p.nome)}</div><h2>Comece hoje</h2></div>
+      <div class="sec-head center"><div class="kicker">${esc(p.nome)}</div><h2>${esc(cfg.ofertaH2 || "Comece hoje")}</h2></div>
       <div class="box">
         <img class="cover" src="${img}" width="1200" height="750" alt="" loading="lazy">
         <div class="price"><span class="cur">R$</span><span class="val">${brl(valor)}</span></div>
         <p class="price-note"><strong>pagamento único</strong> · Pix ou cartão</p>
         <ul class="incl">
-${p.caracteristicas.map((c) => `          <li>${esc(c)}</li>`).join("\n")}
+${(cfg.inclui || p.caracteristicas).map((c) => `          <li>${esc(c)}</li>`).join("\n")}
         </ul>
         <a class="btn btn-accent btn-block" href="${link}" data-cta="ebook-oferta">${esc(cfg.cta)}</a>
         <p class="fine">O pagamento é feito na plataforma segura da Hubla. Assim que é aprovado, o material fica liberado na sua área de compras.</p>
-      </div>
+      </div>${cfg.garantia ? `
+      <div class="garantia"><b>Garantia incondicional de 7 dias</b><p>${esc(cfg.garantia)}</p></div>` : ""}
     </div>
   </section>
 
@@ -297,7 +484,20 @@ ${faq.map(([q, a]) => `      <details><summary>${esc(q)}</summary><div class="an
     </div>
   </section>
 
+${cfg.fechamento ? `
   <section class="section-soft">
+    <div class="wrap mid">
+      <div class="sec-head center"><h2>${esc(cfg.fechamento.h2)}</h2></div>
+      <div class="duas">
+        <div class="sim"><b>${esc(cfg.fechamento.a[0])}</b><p>${esc(cfg.fechamento.a[1])}</p></div>
+        <div><b>${esc(cfg.fechamento.b[0])}</b><p>${esc(cfg.fechamento.b[1])}</p></div>
+      </div>
+      <p class="lead" style="text-align:center;max-width:56ch;margin:var(--space-6) auto">${esc(cfg.fechamento.fim)}</p>
+      <p style="text-align:center"><a class="btn btn-accent" href="${link}" data-cta="ebook-fechamento">Começar minha reserva hoje — R$ ${brl(valor)}</a></p>
+    </div>
+  </section>
+` : ""}
+  <section class="${cfg.fechamento ? "section-light" : "section-soft"}">
     <div class="wrap mid">
       <div class="sec-head"><div class="kicker">Continue se preparando</div><h2>Outros materiais da IDE</h2></div>
       <div class="more">
@@ -312,7 +512,8 @@ ${outros.map((o) => `        <a class="card" href="/${o.rota}"><img src="${o.p.i
 
 <section class="contato">
   <div class="wrap">
-    <p class="aviso"><strong>Este material ajuda a sua família a se preparar. Ele não substitui o serviço público de emergência.</strong><br>Em qualquer ocorrência real, ligue: 193 Bombeiros · 192 SAMU · 190 Polícia · 199 Defesa Civil</p>
+    <p class="aviso"><strong>Este material ajuda a sua família a se preparar. Ele não substitui o serviço público de emergência.</strong><br>Em qualquer ocorrência real, ligue: 193 Bombeiros · 192 SAMU · 190 Polícia · 199 Defesa Civil</p>${cfg.aviso ? `
+    <p class="aviso">${esc(cfg.aviso)}</p>` : ""}
     <div class="social">@moraes.preparacao · @andreia.preparacao</div>
     <div class="social" style="margin-top:6px">Academia IDE Bushcraft &amp; Sobrevivência · Brasília, DF</div>
     <p class="slogan">Preparar não é medo. É cuidado.</p>
@@ -329,7 +530,7 @@ ${outros.map((o) => `        <a class="card" href="/${o.rota}"><img src="${o.p.i
 </footer>
 
 <div class="sticky-cta">
-  <a class="btn btn-accent" href="${link}" data-cta="ebook-sticky">${esc(cfg.cta)} — R$ ${brl(valor)}</a>
+  <a class="btn btn-accent" href="${link}" data-cta="ebook-sticky">${esc(ctaCurto)} — R$ ${brl(valor)}</a>
 </div>
 
 <script>
