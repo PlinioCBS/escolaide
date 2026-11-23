@@ -97,6 +97,34 @@
   .faq .ans{padding:0 0 18px;color:var(--text-secondary);line-height:var(--leading-relaxed);max-width:70ch}
 
   .note-placeholder{margin-top:var(--space-6);font-size:0.8rem;color:var(--text-muted)}
+
+  /* comece por aqui */
+  .start{background:var(--color-surface);border-bottom:1px solid var(--color-border)}
+  .feat{display:grid;grid-template-columns:1fr;background:#fff;border:2px solid var(--brand-accent);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+  .feat-img img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
+  .feat-body{padding:var(--space-6)}
+  .feat-tag{display:inline-block;background:var(--brand-accent);color:#1a1206;font-weight:800;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-radius:var(--radius-pill);padding:4px 12px;margin-bottom:var(--space-3)}
+  .feat-body h3{font-size:1.7rem;line-height:1.1;margin-bottom:var(--space-3)}
+  .feat-body>p{color:var(--text-secondary);line-height:1.55}
+  .feat-body ul{list-style:none;display:grid;gap:8px;margin:var(--space-4) 0 var(--space-5)}
+  .feat-body li{position:relative;padding-left:26px;color:var(--text-secondary);line-height:1.45}
+  .feat-body li::before{content:"";position:absolute;left:2px;top:6px;width:9px;height:5px;border-left:2px solid var(--green-600);border-bottom:2px solid var(--green-600);transform:rotate(-45deg)}
+  .feat-buy{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3) var(--space-5)}
+  .feat-price{font-family:var(--font-display);font-weight:900;font-size:1.9rem;line-height:1;color:var(--text-primary)}
+  .feat-price small{display:block;font-family:var(--font-body);font-weight:500;font-size:.78rem;color:var(--text-muted);margin-top:4px}
+  .feat-more{color:var(--brand-primary);font-weight:700;font-size:.92rem}
+  .feat-note{margin-top:var(--space-3);font-size:.82rem;color:var(--text-muted) !important}
+  @media(min-width:820px){ .feat{grid-template-columns:1.05fr 1fr;align-items:stretch} .feat-body{padding:var(--space-8)} }
+  @media(max-width:520px){ .feat-buy .btn{width:100%;text-align:center} }
+  .start-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-4);margin-top:var(--space-6)}
+  @media(min-width:820px){ .start-grid{grid-template-columns:repeat(3,1fr)} }
+  .scard{display:flex;flex-direction:column;background:#fff;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;color:inherit;text-decoration:none;box-shadow:var(--shadow-sm)}
+  .scard img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+  .scard b{padding:12px 14px 2px;font-size:.95rem;line-height:1.25;color:var(--text-primary)}
+  .scard span{padding:0 14px 14px;font-size:.82rem;color:var(--orange-700);font-weight:700}
+  .scard.all{justify-content:center;background:var(--surface-brand-subtle);border-style:dashed;min-height:110px}
+  .scard.all b{color:var(--brand-primary)}
+  .scard.all span{color:var(--text-secondary);font-weight:500}
 </style>
 <script src="/assets/track.js"></script>
 </head>
@@ -123,19 +151,59 @@
     <h1>Prepare sua família para o que a maioria evita pensar.</h1>
     <p class="sub">Comunidade, equipamentos e treinamentos de preparação familiar, sobrevivência e bushcraft — com quem vive isso de verdade.</p>
     <div class="hero-ctas">
-      <a class="btn btn-accent" href="/cardume">Conheça a comunidade</a>
-      <a class="btn btn-ghost" href="/loja" style="color:#fff;border-color:rgba(255,255,255,.3)">Ver a loja</a>
+      <a class="btn btn-accent" href="#comece" data-cta="home-hero-comece">Comece por R$ 19,90</a>
+      <a class="btn btn-ghost" href="/cardume" style="color:#fff;border-color:rgba(255,255,255,.3)">Conheça a comunidade</a>
     </div>
   </div>
 </section>
 
 <main class="container">
 
+  <!-- COMECE POR AQUI: oferta de entrada (quem chega pela bio do Instagram) -->
+  <section class="section start" id="comece">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Comece por aqui</div>
+        <h2>O primeiro passo custa R$ 19,90</h2>
+        <p>O guia mais pedido pelas famílias que acompanham o Moraes e a Andreia.</p>
+      </div>
+
+      <div class="feat">
+        <a class="feat-img" href="/comida-que-dura" data-cta="home-destaque-img"><img src="/assets/produtos/comida-que-dura.webp" width="1200" height="750" alt="Capa do ebook Comida que Dura, de Andreia Moraes"></a>
+        <div class="feat-body">
+          <span class="feat-tag">Mais vendido</span>
+          <h3>Comida que Dura</h3>
+          <p>Como montar e manter em casa um estoque de alimentos para meses e anos, sem desperdício — o guia da Andreia Moraes.</p>
+          <ul>
+            <li>O que guardar e o que não vale a pena</li>
+            <li>Como armazenar para durar</li>
+            <li>Rodízio: nada vence no fundo do armário</li>
+          </ul>
+          <div class="feat-buy">
+            <div class="feat-price">R$ 19,90 <small>pagamento único</small></div>
+            <a class="btn btn-accent" href="https://pay.hub.la/CkUqU00vHNm3vWBYkiF6" data-cta="home-destaque-comprar">Quero o ebook</a>
+            <a class="feat-more" href="/comida-que-dura" data-cta="home-destaque-detalhes">Ver detalhes →</a>
+          </div>
+          <p class="feat-note">Pix ou cartão · liberado na hora na Hubla</p>
+        </div>
+      </div>
+
+      <div class="start-grid">
+        <a class="scard" href="/mochila-de-emergencia" data-cta="home-card-mochila"><img src="/assets/produtos/ebook-mochila-emergencia.webp" width="1200" height="750" alt="" loading="lazy"><b>Ebook Mochila de Emergência</b><span>R$ 19,90</span></a>
+        <a class="scard" href="/mochila-pet" data-cta="home-card-pet"><img src="/assets/produtos/mochila-emergencia-pet.webp" width="1200" height="750" alt="" loading="lazy"><b>Mochila de Emergência do PET</b><span>R$ 19,90</span></a>
+        <a class="scard" href="/pasta" data-cta="home-card-pasta"><img src="/assets/produtos/pasta-emergencia-familia.webp" width="1200" height="750" alt="" loading="lazy"><b>Pasta de Emergência da Família</b><span>10 fichas para preencher</span></a>
+        <a class="scard" href="/cardume" data-cta="home-card-cardume"><img src="/assets/produtos/comunidade-cardume.webp" width="1200" height="750" alt="" loading="lazy"><b>Comunidade Cardume</b><span>Lives, grupo e descontos</span></a>
+        <a class="scard" href="/preparacao-familiar" data-cta="home-card-curso"><img src="/assets/produtos/curso-presencial.webp" width="1200" height="750" alt="" loading="lazy"><b>Curso presencial</b><span>8 modalidades perto de Brasília</span></a>
+        <a class="scard all" href="/loja" data-cta="home-card-loja"><b>Ver a loja completa →</b><span>Faca IDE e todos os materiais</span></a>
+      </div>
+    </div>
+  </section>
+
   <!-- 3 PILARES -->
   <section class="section">
     <div class="wrap">
       <div class="section-head">
-        <div class="kicker">Por onde começar</div>
+        <div class="kicker">Conheça a IDE</div>
         <h2>Três caminhos, um mesmo propósito</h2>
         <p>Escolha por onde entrar. Cada área tem a sua própria página, com tudo o que você precisa.</p>
       </div>
@@ -194,7 +262,7 @@
           <div>
             <div class="nome">Moraes</div>
             <div class="handle">@moraes.preparacao</div>
-            <p>Fuzileiro Naval. Passou a vida treinando para o que a maioria das pessoas espera que nunca aconteça. Hoje ensina preparação familiar para mais de 160 mil pessoas.</p>
+            <p>Fuzileiro Naval. Passou a vida treinando para o que a maioria das pessoas espera que nunca aconteça. Hoje ensina preparação familiar para mais de 220 mil pessoas.</p>
           </div>
         </div>
         <div class="person">
@@ -256,5 +324,6 @@
   </div>
 </footer>
 
+<script src="/assets/checkout.js"></script>
 </body>
 </html>

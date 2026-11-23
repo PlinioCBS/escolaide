@@ -1,12 +1,161 @@
 {
   "redirects": [
-    { "source": "/produto/ebook-mochila-emergencia", "destination": "/mochila-de-emergencia", "permanent": true },
-    { "source": "/produto/comida-que-dura", "destination": "/comida-que-dura", "permanent": true },
-    { "source": "/produto/mochila-emergencia-pet", "destination": "/mochila-pet", "permanent": true }
+    {
+      "source": "/:path((?!api/).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "escolaide.vercel.app"
+        }
+      ],
+      "destination": "https://preparacaofamiliar.com.br/:path",
+      "permanent": true
+    },
+    {
+      "source": "/ig/:canal/inicio",
+      "destination": "/?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=inicio",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/comida",
+      "destination": "/comida-que-dura?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=comida",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/mochila",
+      "destination": "/mochila-de-emergencia?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=mochila",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/pet",
+      "destination": "/mochila-pet?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=pet",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/pasta",
+      "destination": "/pasta?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=pasta",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/cardume",
+      "destination": "/cardume?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=cardume",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/curso",
+      "destination": "/preparacao-familiar?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=curso",
+      "permanent": false
+    },
+    {
+      "source": "/ig/:canal/loja",
+      "destination": "/loja?utm_source=ig&utm_medium=social&utm_campaign=:canal&utm_content=loja",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/inicio",
+      "destination": "/?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=inicio",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/comida",
+      "destination": "/comida-que-dura?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=comida",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/mochila",
+      "destination": "/mochila-de-emergencia?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=mochila",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/pet",
+      "destination": "/mochila-pet?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=pet",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/pasta",
+      "destination": "/pasta?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=pasta",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/cardume",
+      "destination": "/cardume?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=cardume",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/curso",
+      "destination": "/preparacao-familiar?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=curso",
+      "permanent": false
+    },
+    {
+      "source": "/yt/:canal/loja",
+      "destination": "/loja?utm_source=youtube&utm_medium=video&utm_campaign=:canal&utm_content=loja",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/inicio",
+      "destination": "/?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=inicio",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/comida",
+      "destination": "/comida-que-dura?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=comida",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/mochila",
+      "destination": "/mochila-de-emergencia?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=mochila",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/pet",
+      "destination": "/mochila-pet?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=pet",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/pasta",
+      "destination": "/pasta?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=pasta",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/cardume",
+      "destination": "/cardume?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=cardume",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/curso",
+      "destination": "/preparacao-familiar?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=curso",
+      "permanent": false
+    },
+    {
+      "source": "/wa/:canal/loja",
+      "destination": "/loja?utm_source=whatsapp&utm_medium=mensagem&utm_campaign=:canal&utm_content=loja",
+      "permanent": false
+    },
+    {
+      "source": "/produto/ebook-mochila-emergencia",
+      "destination": "/mochila-de-emergencia",
+      "permanent": true
+    },
+    {
+      "source": "/produto/comida-que-dura",
+      "destination": "/comida-que-dura",
+      "permanent": true
+    },
+    {
+      "source": "/produto/mochila-emergencia-pet",
+      "destination": "/mochila-pet",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/produto/:slug", "destination": "/produto/index.html" },
-    { "source": "/qr/:evento/:produto", "destination": "/qr/index.html" }
+    {
+      "source": "/produto/:slug",
+      "destination": "/produto/index.html"
+    },
+    {
+      "source": "/qr/:evento/:produto",
+      "destination": "/qr/index.html"
+    }
   ],
   "headers": [
     {
@@ -16,12 +165,30 @@
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.youtube.com https://connect.facebook.net https://*.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://*.clarity.ms https://c.bing.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; form-action 'self'; upgrade-insecure-requests"
         },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), browsing-topics=()" },
-        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-        { "key": "X-Permitted-Cross-Domain-Policies", "value": "none" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), browsing-topics=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Permitted-Cross-Domain-Policies",
+          "value": "none"
+        }
       ]
     }
   ]
