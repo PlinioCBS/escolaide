@@ -172,6 +172,12 @@ const PAGINAS = [
       ],
       frase: "Preparação, para mim, parece com pagar o seguro do carro. Você não espera bater, mas se bater, está coberto.",
     },
+    depoimentos: [
+      "Andreiaaaa mulher do ceu!! Precisava vir te mandar essa msg.. a gente passou por aquele perrengue de falta de agua aki na regiao mes passado e graças ao seu capitulo de reserva de agua e o plano de 90 dias a gente passou super de boa aqui em casa!! Meus vizinhos tudo doido atras de caminhao pipa e eu com meus galoes prontos. Deuso te abençoe por compartilhar esse conhecimento de verdade ❤️❤️",
+      "Oi Andreia, tudo bem? Passando só pra te agradecer pelo e-book!! cara, sensacional. eu moro sozinho em ap pequeno e achava q nao tinha como estocar nada kkkkk usei a dica de medir com o termo higrometro e achei um canto otimo embaixo da cama. Ja embalei meus primeiros 10kg de arroz na garrafa pet com o sachê de O2 igual vc ensinou! vlw demais tmj 🙏👊",
+      "Boa noite Andreia, tudo bem? Queria te dar um feedback do ebook. Eu sempre tentava guardar feijão e arroz e dava caruncho em tudo, jogava mto dinheiro fora :( lendo seu livro vi que tava fazendo TUDO errado embalando nos sacos do mercado msm kkkkk. Ja fiz a planilha de inventario que vc colocou nos anexos e ja tamo no ritmo de comprar o item extra toda semana. Muito obrigado msm, me deu uma paz de espirito gigante!!",
+      "Oieee Andreia! Comprei o ebook semana passada e ja li todinho!! Amei demais a parte dos temperos e das garrafas pet com o sachê... ja comecei a montar minha reserva aqui pra mim pras criancas e pro meu cachorro tbm (nem sabia q ração estragava tao rapido na embalagem aberta 😱). O plano de 90 dias ta colado na porta da minha geladeira jah haha Muito obrigada por simplificar tudo sem ter aquela paranoia toda bjs!",
+    ],
     ofertaH2: "Tudo o que você recebe hoje",
     ofertaImg: { src: "/assets/produtos/comida-que-dura.webp" },
     inclui: [
@@ -460,7 +466,16 @@ ${cfg.autora.texto.map((t) => `          <p class="lead">${esc(t)}</p>`).join("\
   </section>
 
 `}
-  <section class="section-soft oferta" id="comprar">
+${cfg.depoimentos ? `  <section class="section-soft">
+    <div class="wrap mid">
+      <div class="sec-head"><div class="kicker">Depoimentos</div><h2>Quem já começou a própria reserva</h2><p>Mensagens de leitores que aplicaram o método em casa.</p></div>
+      <div class="depos">
+${cfg.depoimentos.map((t) => `        <blockquote>${esc(t)}</blockquote>`).join("\n")}
+      </div>
+    </div>
+  </section>
+
+` : ""}  <section class="${cfg.depoimentos ? "section-light" : "section-soft"} oferta" id="comprar">
     <div class="wrap">
       <div class="sec-head center"><div class="kicker">${esc(p.nome)}</div><h2>${esc(cfg.ofertaH2 || "Comece hoje")}</h2></div>
       <div class="box">
