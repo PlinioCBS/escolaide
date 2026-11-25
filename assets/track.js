@@ -23,6 +23,11 @@
   var GA4_ID = "G-EWFL8CP9L4"; // <<< G-XXXXXXXXXX
   var CLARITY_ID = "z6yvyewr1m"; // <<< ID do Microsoft Clarity (heatmap + gravações)
 
+  // testes locais (vercel dev / localhost) não entram nos relatórios
+  if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || /\.localhost$/.test(location.hostname)) {
+    GTM_ID = ""; META_PIXEL_ID = ""; GA4_ID = ""; CLARITY_ID = "";
+  }
+
   window.dataLayer = window.dataLayer || [];
   function dl(o) { try { window.dataLayer.push(o); } catch (e) {} }
 
