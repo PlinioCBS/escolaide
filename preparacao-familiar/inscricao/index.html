@@ -82,7 +82,7 @@
       <b>29 a 31 de janeiro</b> <span class="dot">•</span> Cachoeira Lydia (GO) <span class="dot">•</span> <b>R$&nbsp;1.500</b> por pessoa <span class="dot">•</span> alimentação inclusa
     </div>
 
-    <div class="individual"><b>Cada participante tem a sua própria ficha</b>, com os seus dados de saúde e o seu contato de emergência. Vai com a família ou com amigos? Use <b>“Adicionar outra pessoa”</b> no fim do formulário — o pagamento sai de uma vez só, R$&nbsp;1.500 por pessoa. Para crianças, preencha os dados da criança.</div>
+    <div class="individual"><b>Cada participante tem a sua própria ficha</b>, com os seus dados de saúde e o seu contato de emergência. Vai com a família ou com amigos? Use <b>“Adicionar outra pessoa”</b> no fim do formulário — o pagamento sai de uma vez só, R$&nbsp;1.500 por pessoa.<br><b>Idade mínima: 15 anos.</b> Quer levar um filho mais novo? <a href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20levar%20um%20filho%20com%20menos%20de%2015%20anos%20no%20Curso%20Prepara%C3%A7%C3%A3o%20Familiar." target="_blank" rel="noopener">Fale com a organização no WhatsApp (61) 98564-1912</a>.</div>
 
     <div class="form-error" id="formError">Não conseguimos registrar agora — vamos te atender direto no WhatsApp.</div>
 
@@ -117,7 +117,7 @@
         <div class="field" id="f-idade">
           <label for="idade">Idade</label>
           <input type="text" id="idade" name="idade" inputmode="numeric" placeholder="Ex.: 38" required>
-          <span class="err">Informe a idade.</span>
+          <span class="err">Informe a idade (mínimo de 15 anos).</span>
         </div>
         <div class="field" id="f-nada">
           <label for="nada">Sabe nadar?</label>
@@ -221,6 +221,9 @@
   function val(id) { return (document.getElementById(id).value || '').trim(); }
   function digits(v) { return v.replace(/\D/g, ''); }
   function badPhone(v) { var n = digits(v).length; return n < 10 || n > 11; }
+  // turma de janeiro: idade mínima de 15 anos (menores, só combinando com a organização)
+  var IDADE_MIN = 15;
+  function idadeOk(v) { var n = parseInt(String(v).replace(/\D/g, ''), 10); return !isNaN(n) && n >= IDADE_MIN && n < 120; }
   function brl(v) { return 'R$ ' + v.toLocaleString('pt-BR'); }
 
   /* ---------- outras pessoas ---------- */
@@ -253,7 +256,7 @@
       '<div class="pessoa-head"><b>Participante</b><button type="button" class="link-btn danger" data-act="remover">Remover</button></div>' +
       campo('nome', 'Nome completo', '<input type="text" ' + id('nome') + ' autocomplete="off" placeholder="Nome de quem vai participar">', 'Escreva o nome.') +
       '<div class="row2">' +
-        campo('idade', 'Idade', '<input type="text" ' + id('idade') + ' inputmode="numeric" placeholder="Ex.: 12">', 'Informe a idade.') +
+        campo('idade', 'Idade', '<input type="text" ' + id('idade') + ' inputmode="numeric" placeholder="Ex.: 16">', 'Informe a idade (mínimo de 15 anos).') +
         campo('nada', 'Sabe nadar?', '<select ' + id('nada') + '><option value="">Selecione…</option><option value="Sim">Sim</option><option value="Básico">Básico / mais ou menos</option><option value="Não">Não</option></select>', 'Selecione uma opção.') +
       '</div>' +
       campo('alergias', 'Alergias (alimentos, medicamentos, picadas)', '<textarea ' + id('alergias') + ' rows="2" placeholder="Descreva, ou escreva “nenhuma”"></textarea>', 'Preencha (escreva “nenhuma” se não houver).') +
@@ -299,7 +302,7 @@
     ok = setInvalid('f-whatsapp', badPhone(tel.value)) && ok;
     ok = setInvalid('f-email', !validEmail(val('email'))) && ok;
     ok = setInvalid('f-cidade', val('cidade').length < 2) && ok;
-    ok = setInvalid('f-idade', val('idade').length < 1) && ok;
+    ok = setInvalid('f-idade', !idadeOk(val('idade'))) && ok;
     ok = setInvalid('f-nada', val('nada') === '') && ok;
     ok = setInvalid('f-alergias', val('alergias').length < 2) && ok;
     ok = setInvalid('f-emergnome', val('emerg_nome').length < 2) && ok;
@@ -308,11 +311,16 @@
     for (var i = 0; i < list.length; i++) {
       var el = list[i], p = lerBloco(el), f = function (k) { return el.querySelector('[data-f="' + k + '"]'); };
       ok = setInvalid(f('nome'), p.nome.length < 2) && ok;
-      ok = setInvalid(f('idade'), p.idade.length < 1) && ok;
+      ok = setInvalid(f('idade'), !idadeOk(p.idade)) && ok;
       ok = setInvalid(f('nada'), p.sabe_nadar === '') && ok;
       ok = setInvalid(f('alergias'), p.alergias.length < 2) && ok;
       ok = setInvalid(f('emerg_nome'), p.emerg_nome.length < 2) && ok;
       ok = setInvalid(f('emerg_tel'), badPhone(p.emerg_tel)) && ok;
+    }
+    var temMenor = [val('idade')].concat([].map.call(blocos(), function (el) { return lerBloco(el).idade; })).some(function (v) { var n = parseInt(String(v).replace(/\D/g, ''), 10); return !isNaN(n) && n < IDADE_MIN; });
+    if (temMenor) {
+      formError.innerHTML = 'A idade mínima desta turma é 15 anos. Para levar um filho mais novo, <a href="https://wa.me/5561985641912?text=Ol%C3%A1!%20Quero%20levar%20um%20filho%20com%20menos%20de%2015%20anos%20no%20Curso%20Prepara%C3%A7%C3%A3o%20Familiar." target="_blank" rel="noopener">fale com a organização no WhatsApp (61) 98564-1912</a>.';
+      formError.classList.add('show');
     }
     var consent = document.getElementById('consent').checked;
     document.getElementById('f-consent').classList.toggle('invalid', !consent);
@@ -334,6 +342,7 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     formError.classList.remove('show');
+    formError.textContent = 'Não conseguimos registrar agora — vamos te atender direto no WhatsApp.';
     if (!validate()) return;
 
     var nome = val('nome');
